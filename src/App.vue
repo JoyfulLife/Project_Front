@@ -7,6 +7,7 @@
 <!--      <router-link to="/grid-system">GridSystem</router-link>-->
 <!--    </div>-->
 
+    <!-- push 확인 -->
     <!-- 라우터 -->
     <router-view></router-view>
   </div>
