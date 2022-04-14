@@ -13,7 +13,6 @@
                   <b-card-text>
                     This is a wider card with supporting text as a natural lead-in to additional content.
                     This content is a little bit longer.
-                    이직 준비해야게~~~~~~~~~~~~~~~~~~~~~~~
                   </b-card-text>
                 </b-card-body>
               </b-col>
