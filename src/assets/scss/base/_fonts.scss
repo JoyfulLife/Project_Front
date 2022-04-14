@@ -1,0 +1,144 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations, if any.
+// -----------------------------------------------------------------------------
+
+//
+@font-face {
+  font-family: 'HYQiHei-AZEJF';
+  src: url('~@/assets/font/HYQiHei-AZEJF.svg#HYQiHei-AZEJF') format('svg'),
+       url('~@/assets/font/HYQiHei-AZEJF.ttf') format('truetype'),
+       url('~@/assets/font/HYQiHei-AZEJF.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HYQiHei-AZEJF';
+  src: url('~@/assets/font/HYQiHei-AZEJF-40S.eot');
+  src: url('~@/assets/font/HYQiHei-AZEJF-40S.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/HYQiHei-AZEJF-40S.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+//   @font-face {
+//     font-family: 'HYQiHei-AZEJF';
+//     src: url('~@/assets/font/HYQiHei-AZEJF-40S.eot');
+//     src: url('~@/assets/font/HYQiHei-AZEJF-40S.eot?#iefix') format('embedded-opentype'),
+//          url('~@/assets/font/HYQiHei-AZEJF-40S.woff') format('woff');
+//     font-weight: 400;
+//     font-style: normal;
+//   }
+//   @font-face {
+//     font-family: 'HYQiHei-AZEJF';
+//     src: url('~@/assets/font/HYQiHei-AZEJF-50S.eot');
+//     src: url('~@/assets/font/HYQiHei-AZEJF-50S.eot?#iefix') format('embedded-opentype'),
+//          url('~@/assets/font/HYQiHei-AZEJF-50S.woff') format('woff');
+//     font-weight: 500;
+//     font-style: normal;
+//   }
+@font-face {
+  font-family: 'HYQiHei-AZEJF';
+  src: url('~@/assets/font/HYQiHei-AZEJF-50S.eot');
+  src: url('~@/assets/font/HYQiHei-AZEJF-50S.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/HYQiHei-AZEJF-50S.woff') format('woff');
+  
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HYQiHei-AZEJF';
+  src: url('~@/assets/font/HYQiHei-AZEJF-70S.eot');
+  src: url('~@/assets/font/HYQiHei-AZEJF-70S.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/HYQiHei-AZEJF-70S.woff') format('woff');
+  
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HYQiHei-AZEJF';
+  src: url('~@/assets/font/HYQiHei-AZEJF-90S.eot');
+  src: url('~@/assets/font/HYQiHei-AZEJF-90S.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/HYQiHei-AZEJF-90S.woff') format('woff');
+  
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
+
+////
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  src: url('~@/assets/font/SourceHanSansCN-Bold-Alphabetic.eot');
+  src: url('~@/assets/font/SourceHanSansCN-Bold-Alphabetic.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/SourceHanSansCN-Bold-Alphabetic.svg#SourceHanSansCN-Bold-Alphabetic') format('svg'),
+       url('~@/assets/font/SourceHanSansCN-Bold-Alphabetic.ttf') format('truetype'),
+       url('~@/assets/font/SourceHanSansCN-Bold-Alphabetic.woff') format('woff'),
+       url('~@/assets/font/SourceHanSansCN-Bold-Alphabetic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  src: url('~@/assets/font/SourceHanSansCN-Heavy-Alphabetic.eot');
+  src: url('~@/assets/font/SourceHanSansCN-Heavy-Alphabetic.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/SourceHanSansCN-Heavy-Alphabetic.svg#SourceHanSansCN-Bold-Alphabetic') format('svg'),
+       url('~@/assets/font/SourceHanSansCN-Heavy-Alphabetic.ttf') format('truetype'),
+       url('~@/assets/font/SourceHanSansCN-Heavy-Alphabetic.woff') format('woff'),
+       url('~@/assets/font/SourceHanSansCN-Heavy-Alphabetic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  src: url('~@/assets/font/SourceHanSansCN-Medium-Alphabetic.eot');
+  src: url('~@/assets/font/SourceHanSansCN-Medium-Alphabetic.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/SourceHanSansCN-Medium-Alphabetic.svg#SourceHanSansCN-Bold-Alphabetic') format('svg'),
+       url('~@/assets/font/SourceHanSansCN-Medium-Alphabetic.ttf') format('truetype'),
+       url('~@/assets/font/SourceHanSansCN-Medium-Alphabetic.woff') format('woff'),
+       url('~@/assets/font/SourceHanSansCN-Medium-Alphabetic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  src: url('~@/assets/font/SourceHanSansCN-Normal-Alphabetic.eot');
+  src: url('~@/assets/font/SourceHanSansCN-Normal-Alphabetic.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/SourceHanSansCN-Normal-Alphabetic.svg#SourceHanSansCN-Bold-Alphabetic') format('svg'),
+       url('~@/assets/font/SourceHanSansCN-Normal-Alphabetic.ttf') format('truetype'),
+       url('~@/assets/font/SourceHanSansCN-Normal-Alphabetic.woff') format('woff'),
+       url('~@/assets/font/SourceHanSansCN-Normal-Alphabetic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  src: url('~@/assets/font/SourceHanSansCN-Regular-Alphabetic.eot');
+  src: url('~@/assets/font/SourceHanSansCN-Regular-Alphabetic.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/SourceHanSansCN-Regular-Alphabetic.svg#SourceHanSansCN-Bold-Alphabetic') format('svg'),
+       url('~@/assets/font/SourceHanSansCN-Regular-Alphabetic.ttf') format('truetype'),
+       url('~@/assets/font/SourceHanSansCN-Regular-Alphabetic.woff') format('woff'),
+       url('~@/assets/font/SourceHanSansCN-Regular-Alphabetic.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN';
+  src: url('~@/assets/font/SourceHanSansCN-ExtraLight-Alphabetic.eot');
+  src: url('~@/assets/font/SourceHanSansCN-ExtraLight-Alphabetic.eot?#iefix') format('embedded-opentype'),
+       url('~@/assets/font/SourceHanSansCN-ExtraLight-Alphabetic.svg#SourceHanSansCN-Bold-Alphabetic') format('svg'),
+       url('~@/assets/font/SourceHanSansCN-ExtraLight-Alphabetic.ttf') format('truetype'),
+       url('~@/assets/font/SourceHanSansCN-ExtraLight-Alphabetic.woff') format('woff'),
+       url('~@/assets/font/SourceHanSansCN-ExtraLight-Alphabetic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+

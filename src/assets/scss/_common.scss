@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+// 2. Vendors
+@import
+  '~@/assets/scss/vendors/normalize';
+
+// 3. Base stuff
+@import
+  '~@/assets/scss/base/base',
+  '~@/assets/scss/base/fonts',
+  '~@/assets/scss/base/typography',
+  '~@/assets/scss/base/helpers';
+
+// 4. Layout-related sections
+@import
+  '~@/assets/scss/layout/header',
+  '~@/assets/scss/layout/footer',
+  '~@/assets/scss/layout/navi';
+
+
+// 5. Components
+// @import
+  // '~@/assets/scss/components/button';
+
+// 6. Page-specific styles
+// @import
+  // '~@/assets/scss/pages/home';
+
+// 7. Themes
+@import
+  '~@/assets/scss/themes/bootstrap';

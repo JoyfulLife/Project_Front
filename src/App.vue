@@ -1,17 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header></Header>
+    <Navi></Navi>
+<!--    <div>-->
+<!--      <router-link to="/login">Dashboard</router-link> |-->
+<!--      <router-link to="/grid-system">GridSystem</router-link>-->
+<!--    </div>-->
+
+    <!-- 라우터 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import store from './store'
+import Header from "@/components/layout/Header.vue";
+
+import Navi from "@/components/layout/Navi.vue";
 
 export default {
   name: 'App',
+  store,
   components: {
-    HelloWorld
+    Header,
+    Navi
   }
 }
 </script>

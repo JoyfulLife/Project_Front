@@ -1,0 +1,105 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+header{
+    .h1-logo{
+        
+        overflow: hidden;
+        max-width: 420px;
+        
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .btn.btn-sm{
+        min-width:auto;
+    }
+
+    .text-right::before{
+        @include after;
+        background:url(~@/assets/images/alibaba_logo.png) left top no-repeat;
+        background-size: 100%;
+        width: 260px;
+        height: 35px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    
+}
+
+@media (max-width: 1016px) {
+    header{
+        padding:0 1rem;
+
+        .text-right{
+            padding-top: 10px;
+            @media  (min-width:768px) and (max-width:1024px) {
+                padding-top: 33px;
+            }
+        }
+        .text-right::before{
+            @include after;
+            background:url(~@/assets/images/alibaba_logo_1.png) left top no-repeat; 
+            display: block;          
+            width: 145px !important;
+            height: 19px  !important;
+            margin-top: 0  !important;
+            background-size: auto 19px  !important;        
+            position: absolute;
+            right: 5px;
+            top: -7px; 
+
+            @media  (min-width:768px) and (max-width:1024px) {
+                width: 220px !important;
+                height: 33px !important;
+                margin-top: 0 !important;
+                background-size: auto 29px !important;
+                top: 7px; 
+            }
+        }
+        
+    }
+    .h1-logo{
+        width: 75px;
+        overflow: hidden;
+        
+
+        img{
+            width: 226px !important;
+           // border: 1px solid red;
+        }
+    }
+    
+}
+
+
+//테블릿
+@media  (min-width:768px) and (max-width:1024px) {
+    .h1-logo{
+        
+        overflow: hidden;
+        width: 270px !important;
+        
+        
+        img{
+            width: 100% !important;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+//iphone5
+@media  (max-width:320px) {
+    header{
+     
+        .btn.btn-sm{
+            min-width:auto;
+            font-size: 0.675rem;
+        }
+    }
+}

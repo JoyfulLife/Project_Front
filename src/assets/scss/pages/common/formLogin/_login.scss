@@ -1,0 +1,401 @@
+.loginWrap{
+  font-family:"HYQiHei-AZEJF";
+  font-weight: 400;
+  height: 100%;
+  background: rgb(67,0,109);
+  background: linear-gradient(90deg, rgba(67,0,109,1) 0%, rgba(71,0,114,1) 15%, rgba(90,0,146,1) 31%, rgba(115,0,255,1) 50%, rgba(156,0,255,1) 70%, rgba(217,92,255,1) 81%, rgba(254,192,255,1) 100%);
+  overflow: hidden;
+  margin: 0;
+  min-height: 100vh;
+  /*safari bug*/
+
+  .loginBox{
+    background:url(~@/assets/images/bg-login.png) left bottom no-repeat;
+    background-size: contain;
+    //padding-bottom: 80px;
+   // height:100vh;
+
+   height: 100%;
+   min-height:100vh;
+
+      .input-group-append{
+        padding-top: 3px;
+
+      }
+
+
+      .container{
+        //width:1200px;
+        padding-bottom:127px;
+        height:auto ;
+       // min-height: 910px; login-txt 생길시
+        min-height: 910px;
+        overflow: hidden;
+        margin: 0 auto;
+
+
+        .row{
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          padding-bottom: 30px;
+        }
+      }
+      .container:before{
+        @include after;
+        width:7.813rem;
+        height: 7.813rem;
+        margin-top:30px;
+        background:url(~@/assets/images/logo-white.png) left bottom 100% no-repeat;
+        position: absolute;
+      }
+
+      .card{
+        border:none;
+        border-radius:1.875rem;
+        width:600px;
+        background:#fff;
+        min-height:530px;
+        // position: fixed;
+        // left: 50%;
+        // top: 45%;
+        // -webkit-transform: translate(-50%, -50%);
+        // -ms-transform: translate(-50%, -50%);
+        // -moz-transform: translate(-50%, -50%);
+        // -o-transform: translate(-50%, -50%);
+        // transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        box-shadow: 6px 7px 17px 7px rgb(0 0 0 / 31%);
+        z-index: 2;
+        //margin-top: 18%; login-txt 생길시
+        margin-top: 14%;
+        overflow:hidden;
+
+        .card-body{
+          box-sizing: border-box;
+          width:70%;
+          margin:5.625rem auto 2.5rem  auto;
+          padding: 0;
+
+          .card-body{
+            width: 100%;
+          }
+          .card-body::after{
+            @include after;
+            background:url(~@/assets/images/alibaba_logo.png) center center no-repeat;
+            display: block;
+            height: 35px;
+            background-size: 260px 35px;
+            text-align: center;
+            margin-top: 5px;
+
+            @media (max-width: 320px) {
+              background-size: 100%;
+            }
+
+
+
+          }
+
+        }
+
+
+        h1, .h1 {
+          font-size: 49px;
+          font-weight: 200;
+          letter-spacing: -4px;
+          color:#7300ff;
+          text-transform:uppercase;
+
+          @media (max-width: 1016px) {
+            font-size: 37px !important;
+          }
+       }
+
+        h1:before{
+          @include after;
+          width:40px;
+          height:49px;
+          background:url(~@/assets/images/icon-login.png) left top no-repeat;
+          margin-right:10px;
+          background-size:contain;
+
+          @media (max-width: 1016px) {
+            width:29px;
+            height:38px;
+            margin-right: 5px !important;
+
+          }
+
+       }
+
+
+
+        .form-group{
+          color:#3c2e77;
+
+          label:before{
+            display:none;
+          }
+
+          .form-control{
+            height:45px;
+            border:none;
+            background: #edebf7;
+            border-radius:5px;
+            max-width: 100%;
+            width: 100%;
+          }
+          .form-control.cod-input{
+            width: 66%;
+            display:inline-block;
+          }
+          input[type="password"],
+          .form-control.password-input{
+            width: 84%;
+            display:inline-block;
+
+          }
+
+          .input-group-append{
+            display:inline-block;
+          }
+
+        }
+
+        .btn.btn-primary{
+          border-radius:5px;
+          font-size: 1.5rem;
+          height:60px;
+          margin-top:30px;
+          font-weight: 500;
+        }
+
+        .line{
+          border-top:1px solid #cac6db;
+          padding-top:27px;
+
+        }
+
+        .icon:before{
+          @include after;
+          background-size: 100%;
+        }
+        .-login{
+          text-decoration: underline;
+          font-size:0.875rem;
+        }
+        .-login:before{
+          width:14px;
+          height: 18px;
+          margin-right:0;
+          margin-top:3px;
+          background:url(~@/assets/images/icon-sm-login.png) left top no-repeat;
+
+        }
+        .-join{color:#e847ee;}
+        .-join:before{
+          width:17px;
+          height: 19px;
+          margin-right:5px;
+          margin-top:3px;
+          background:url(~@/assets/images/icon-join.png) left top no-repeat;
+
+        }
+        .btn-register{
+          border-radius:5px;
+          background:#e847ee;
+          color:#fff;
+          width:111px;
+          height: 35px;
+          text-align:center;
+          display:inline-block;
+          box-sizing:border-box;
+          padding-top:5px;
+
+        }
+
+
+    }
+
+    .login-txt{
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 62px;
+      left: 0;
+      font-weight: 400;
+      //display: none;
+      font-size: 1.75rem;
+      letter-spacing: -1px;
+      line-height: 30px;
+
+      span.en{
+        font-size: 22px;
+      }
+
+    }
+
+
+
+  }
+}
+
+.login-foot{
+  background: #f3f1fc;
+  color:#8d8a9a;
+  border-top:1px solid #d8d5e5;
+  padding:10px 0;
+  margin:0;
+  font-size: 0.813rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  font-weight: 300;
+
+}
+.Cookie--bottom{
+  z-index: 99999 !important;
+}
+.Cookie__content{
+  h2,h3{
+      font-size: 1rem !important;
+  }
+}
+
+
+
+
+
+@media (max-width: 1016px) {
+.loginWrap{
+
+  //height:100vh !important;
+
+
+  .loginBox{
+    //height:100vh !important;
+    padding-top:12%;
+    .input-group-append{
+      padding-top: 5px;
+    }
+
+  }
+  .container{
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .container:before{
+    display:none !important;
+  }
+
+  .card{
+    width:100% !important;
+    border-radius:1.2rem !important;
+    min-height: 463px !important;
+    box-shadow: none !important;
+
+    .card-body{
+      width:90% !important;
+      margin-top:2.625rem !important;
+      margin-bottom:0.625rem !important;
+
+      .btn.btn-primary{
+        border-radius:5px;
+        font-size: 1.2rem;
+        height:48px  !important;
+        margin-top:10px  !important;
+        font-weight: 600;
+      }
+
+
+    }
+
+
+
+
+  }
+
+  .login-txt{
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 40px !important;
+    left: 0 !important;
+    font-weight: 300;
+    line-height: 15px !important;
+
+    @media  (max-width:760px) {
+      font-size: 16px !important;
+    }
+    @media  (max-width:320px) {
+
+    }
+    span.en{
+      font-size: 11px !important;
+    }
+
+  }
+
+
+
+  .form-control.cod-input{
+    width: 44% !important;
+    display:inline-block;
+  }
+
+
+
+}
+
+
+
+
+
+}/*phon end*/
+
+//테블릿
+@media  (min-width:768px) and (max-width:1024px) {
+
+  .loginWrap{
+    .login-txt{
+      font-size: 30px !important;
+      line-height: 30px !important;
+      top: 110px !important;
+
+      span.en{
+        font-size: 18px !important;
+      }
+    }
+  }
+
+
+
+
+
+}
+
+@media  (min-width:960px) and (max-width:1200px) {
+  .loginWrap{
+    .container{
+
+      .row{
+        padding-top: 100px;
+      }
+    }
+    .container::before{
+      top: 37px ;
+    }
+  }
+
+  .login-txt{
+    font-size: 1.125rem !important;
+    top: -2px !important;
+  }
+}

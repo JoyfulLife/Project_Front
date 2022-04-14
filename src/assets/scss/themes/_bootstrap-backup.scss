@@ -1,0 +1,360 @@
+@charset "UTF-8";
+
+// Define variable defaults
+// $body-bg: #fff;
+// $body-color: #fff;
+//$primary: #6f42c1;
+//$enable-responsive-font-sizes: true;
+
+// Then import Bootstrap an BootstrapVue SCSS files (order is important)
+
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+//table
+.table thead th{
+    border-top:3px solid #af00ff !important;
+    border-bottom:none; 
+    background:#f3f1fc;
+    font-size:0.813rem;
+    font-weight: 500;
+    color:#322d50;
+    line-height: 120%;
+    vertical-align: middle;
+}
+.table tbody tr:last-child td{
+    border-bottom:0.5px solid #af00ff;
+}
+.table tbody td{
+    border-top:none;
+    border-bottom:1px solid #d2d0db;
+    color:#5f5c6f;
+    
+
+}
+
+/*form-control*/
+.form-group{
+    label{
+        color:#322d50;
+    }
+    label:before{
+        @include after;
+        background:url(~@/assets/images/bl-dot.png) left top no-repeat; 
+        width:4px;
+        height: 4px;
+        margin:10px 5px 0 0;
+    }
+
+    .form-control{
+        border-radius:0;
+        border:1px solid #d2d0dc;
+        color:#5f5c6f;
+        //background: #fff;
+    
+    }
+
+    .form-control:disabled, .form-control[readonly]{
+        background: #f2f2f2;
+    }
+    
+    
+    .custom-select{
+    
+        border-radius:0;
+        border:1px solid #d2d0dc;
+        color:#5f5c6f;
+        background:#fff  url(~@/assets/images/bg-select.png) right center no-repeat;
+        //background-size: 9px 5px;
+        
+    
+    }
+
+    .custom-select:disabled{
+        background:#f2f2f2;
+    }
+
+    .s-input-group{
+        border-radius: 0;       
+        border: 1px solid #d2d0dc;
+    }
+    .rounded{
+        border-radius: 0 !important;       
+
+        .form-control{
+            //background: transparent !important; 
+        }
+    }
+    
+
+    .custom-file{
+        border-radius: 0 !important;
+
+        .custom-file-label{
+            border-color: #d2d0dc;
+            font-size:0.75rem;
+            color:#999;  
+            
+        }
+        .custom-file-label::before{
+            display: none;
+            
+        }
+
+    }
+
+    ///*b-form-datepicker*/
+    .b-form-datepicker{
+        label:before{
+            display: none;
+        }
+
+        .btn .bi-calendar,
+        .btn .bi-calendar-fill{
+
+            color: #af00ff !important;
+        }
+
+       
+    
+
+    }
+       
+    
+    
+
+}
+
+
+/*.pagination*/
+.pagination{
+    //border:1px solid red;
+    .page-item .page-link,
+    .page-item.disabled .page-link{
+        border-radius: 0.25rem;
+        margin:0 5px 0 0;
+        padding: 0.2rem 0.65em;
+        width:1.875rem;
+        height: 1.875rem;
+        border-color: #af00ff;
+        color:#af00ff;
+        font-size: 1rem;
+        box-sizing: border-box;
+        line-height: 1.2;
+
+    }
+
+    .page-item.last .page-link,
+    .page-item.prev .page-link,
+    .page-item.next .page-link,
+    .page-item.first .page-link{
+        background: #f3f1fc;
+        border:1px solid #9d96bf;
+        color: #9d96bf;
+        margin:0 4px;
+        padding: 0.2rem 0.65em;
+        line-height: 1.2;
+    }
+    .page-item.prev .page-link{
+        margin-right: 20px;
+    }
+    .page-item.next .page-link{
+        margin-left: 15px;
+    }
+
+    .page-item.active .page-link,
+    .page-item:hover .page-link{
+        background-color: #af00ff;
+        border-color: #af00ff;
+        color:#fff;
+    }
+
+    
+    
+    
+
+}
+
+/*total*/
+.total b{
+    color:#af00ff;
+}
+
+/*page-select*/
+.page-select{
+    select{
+        border-color: #af00ff;
+        color: #af00ff;
+    }
+}
+
+/*card*/
+.card{
+    border-radius:0;
+    border:none;
+
+    .card-body{
+        padding:0;
+    }
+
+}
+.card-header{
+
+    background:#fff;
+    border-radius: 0;
+    border:none;
+}
+.card-header:first-child{
+    border-radius: 0;
+}
+
+/*search-tab*/
+.search-tab{
+
+    background:#fff;
+    border-radius: 0;
+    border:none;
+    padding: 0;
+
+    .btn.btn-info{
+        border-radius: 0;
+        color: #af00ff;
+        border:none;
+        border-bottom: 3px solid #af00ff;
+        font-size:1.375rem;
+        font-weight:500;
+        background:url(~@/assets/images/bl-search-tab-up.png) 99% center no-repeat; 
+        letter-spacing: -1px;
+    }
+
+    .btn.collapsed{
+        background:url(~@/assets/images/bl-search-tab.png) 99% center no-repeat;         
+    }
+
+    .btn.btn-info:focus,
+    .btn.btn-info:active{
+        border:none !important;
+        outline: 0 !important;
+        box-shadow: 0 !important;      
+        background-color: #fff;
+        color: #af00ff;        
+        //pointer-events: none;
+        //border:1px solid red;
+    }
+
+   
+
+
+   
+
+
+}
+
+/*search-tab-cont*/
+.search-tab-cont{
+    padding:1.875rem 1.563rem;
+
+    div.row > div.col-md-4:nth-child(3n+2){
+       border-left:1px solid #d6d4e4;
+       border-right:1px solid #d6d4e4;
+
+    }
+
+    //phone start
+    @media (max-width: 1016px) {
+
+        div.row > div.col-md-4:nth-child(3n+2){
+            border-left:none;
+            border-right:none;
+        }
+    }
+
+
+
+}
+.search-tab-cont.show{
+    border-bottom:1px solid #af00ff;
+}
+
+
+
+/*title*/
+h4.title{
+    text-align:center;
+    background: #edebf7;
+    font-size:2.125rem;
+    padding:2.813rem 0;
+    font-weight: 500;
+    color:#322d50;
+    letter-spacing: -1px;
+}
+
+/*btn-sm*/
+.btn-list {
+    .btn-sm, 
+    .btn-group-sm > .btn {
+    
+        min-width: 100px;
+        font-weight: 400;
+        box-sizing: border-box;
+
+    }
+}
+
+
+
+
+
+/*layout*/
+
+main{
+    min-height: 600px;
+    margin-bottom:3.75rem;
+
+}
+
+/*form-cont*/
+.form-cont{
+    border-bottom: 1px solid #a863ff;
+    padding-bottom: 1.875rem;
+
+    div.col:nth-child(odd){
+        border-right:1px solid #d6d4e4;
+    }
+}
+
+/*form-uploadfile*/
+.form-uploadfile{
+   background:#f3f1fc;
+   border: 1px solid #d2d0dc;
+   padding: 3.125rem 1.875rem;
+   margin-bottom: 1.875rem;
+
+    legend{
+    color:#322d50;
+    }
+
+    legend:before{
+        @include after;
+        background:url(~@/assets/images/bl-dot.png) left top no-repeat; 
+        width:4px;
+        height: 4px;
+        margin:10px 5px 0 0; 
+    }
+
+    .custom-file-label{
+        font-size: 1rem !important;
+    }
+    .custom-file-label::after{
+        font-size: 1rem;
+        min-width: 120px;
+        text-align:center;
+    }
+
+    .btn-sm{
+        min-width: 130px;
+    }
+
+
+}
+

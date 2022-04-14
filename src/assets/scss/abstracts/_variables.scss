@@ -1,0 +1,157 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+
+// Define variable defaults
+// $body-bg: #fff;
+// $body-color: #fff;
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #df10fe !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+
+$primary:       #7400ff !default;
+$secondary:     #e010ff !default;
+$success:       #19227d !default;
+$info:          #f3f1fc !default;
+$warning:       #ffc107 !default;
+$danger:        #e010ff !default;
+$light:         #f8f9fa !default;
+$dark:          #343a40 !default;
+
+
+
+
+// Pagination
+
+$pagination-padding-y:              .5rem !default;
+$pagination-padding-x:              .75rem !default;
+$pagination-padding-y-sm:           .25rem !default;
+$pagination-padding-x-sm:           .5rem !default;
+$pagination-padding-y-lg:           .75rem !default;
+$pagination-padding-x-lg:           1.5rem !default;
+$pagination-line-height:            1.25 !default;
+
+$pagination-color:                  #000 !default;
+$pagination-bg:                     #fff !default;
+$pagination-border-width:          1px !default;
+$pagination-border-color:          #ccc !default;
+
+
+$pagination-hover-color:           #af00ff !default;
+$pagination-hover-bg:              #af00ff !default;
+$pagination-hover-border-color:    #af00ff !default;
+
+$pagination-active-color:           #fff !default;
+$pagination-active-bg:              #af00ff !default;
+$pagination-active-border-color:    #af00ff !default;
+
+$pagination-disabled-color:         #ae00ff !default;
+$pagination-disabled-bg:            #fff !default;
+$pagination-disabled-border-color:  #af00ff !default;
+
+
+
+/// Regular font family
+/// @type List
+$text-font-stack: 'HYQiHei-AZEJF','Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif:      'HYQiHei-AZEJF',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-monospace:       'HYQiHei-AZEJF',SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:            $font-family-sans-serif !default;
+
+
+/// Copy text color
+/// @type Color
+$text-color: rgb(34, 34, 34) !default;
+
+/// Main brand color
+/// @type Color
+$brand-color: rgb(229, 0, 80) !default;
+
+/// Light grey
+/// @type Color
+$light-grey: rgb(237, 237, 237) !default;
+
+/// Medium grey
+/// @type Color
+$mid-grey: rgb(153, 153, 153) !default;
+
+/// Dark grey
+/// @type Color
+$dark-grey: rgb(68, 68, 68) !default;
+
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'small': 320px,
+  'medium': 768px,
+  'large': 1024px,
+) !default;
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
+) !default;
+
+
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;
+
+
+//input
+//$input-btn-focus-box-shadow:red;
+
+//navbar
+$navbar-dark-color:                 rgba(255,255,255, 1) !default;
+$navbar-dark-hover-color:           rgba(255,197,70, 1) !default;
+$dropdown-min-width:                14.375rem;
+
+//btn-sm
+$btn-padding-y-sm :  0.4rem;
+$btn-padding-x-sm : 0.5rem;
+$btn-font-size-sm  : 1rem;
+$btn-line-height-sm : 1.5;
+$btn-border-radius-sm : 0.313rem;
+
+$btn-font-size-xs  : 12px;
+
+/*.custom-file-label */
+
+ $custom-file-bg: #fff;
+ $custom-file-color : #fff ;
+ $custom-file-button-bg: #b0abd4;
+ $custom-file-border-radius:0;
+ $custom-file-height:40px;
+ $custom-file-height-inner:100%;
+ $custom-file-line-height:1.5;

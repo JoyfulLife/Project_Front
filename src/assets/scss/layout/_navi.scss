@@ -1,0 +1,206 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the navi of the site/application.
+// -----------------------------------------------------------------------------
+
+
+
+.navbar {
+    background: rgb(68,0,109);
+    background: linear-gradient(90deg, rgba(65,0,105,1) 0%, rgba(73,0,118,1) 23%, rgba(118,0,242,1) 36%, rgba(138,0,255,1) 46%, rgba(161,0,255,1) 53%, rgba(217,92,255,1) 74%, rgba(254,192,255,1) 100%);
+    //font-family: 'SourceHanSansCN';
+    //font-weight: 400;
+
+    .container{
+        max-width: 1200px;
+    }
+
+    &  .navbar-nav > li:last-child{
+       // width: 278px;
+    }
+
+    .nav-link{
+        color:#fff;
+        text-transform:capitalize;
+        min-width: 14.375rem;
+        text-align: center;
+        line-height: 1.4rem;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover,
+    .navbar-dark .navbar-nav .nav-link:focus{
+        color: #ffc546;
+    }
+
+    .dropdown-menu{
+        border-radius: 0 !important;
+        padding:0 !important;
+        border:none !important;
+        width:100% !important;
+        top: 112%;
+        background: rgb(85,4,135);
+        background: linear-gradient(43deg, rgba(85,4,135,0.8550770650056898) 0%, rgba(65,0,105,1) 100%);
+
+        a{
+            //background:#410069;
+            border-bottom:1px solid #5f4f6a;
+            height:60px;
+            color: #fff;
+            font-size:0.813rem;
+            text-align:center;
+            box-sizing: border-box;
+            vertical-align: middle;
+            text-shadow: 2px 1px 2px #090909;
+            font-weight: bold;
+            //font-weight: 500;
+            padding: 17px 0;
+        }
+
+        a:active,
+        a:disabled,
+        a:hover,
+        a:focus{
+            background:#410069;
+            color:#ffc546;
+        }
+        
+    }
+
+   
+    
+
+}
+
+//phone start
+@media (max-width: 768px) {
+    
+    .navbar{
+        padding:0 0;
+        //height: 3.75rem;
+        
+        .container{
+            flex-wrap: wrap !important;
+        }
+
+        .navbar-collapse{
+            //border: 1px solid red;
+            display: none !important;
+            flex-basis: 100%;
+            flex-grow: 1;
+            align-items: center;
+            
+        }
+        .navbar-collapse.show{
+            display: block !important;
+        }
+
+        .navbar-toggler{
+            padding:0.625rem;
+            display: block;
+        }
+
+        .navbar-nav{
+            margin-top:0;
+            flex-direction: column;
+
+        }
+
+        .nav-link{
+            width: 100%;
+            text-align:left;
+            padding:0.625rem;
+            box-sizing: border-box;
+            position: relative;
+            border-top: 1px solid #aa96cf;
+            border-bottom: 1px solid #aa96cf;
+            background-color: #8300fe;
+            font-size: 0.875rem;
+
+            span{
+                display:inline-block;
+                padding-left:0.625rem;
+            }
+        }
+        .nav-link::after{
+            position: absolute;
+            right: 0.625rem;
+            top: 40%; 
+            
+            @include after;
+            width:29px;
+            height: 15px;
+            background:transparent url(~@/assets/images/icon-nav-none.png) left top no-repeat; 
+            border:1px solid transparent;
+            background-size: 15px auto;
+
+        }
+        .dropdown-toggle:after{
+            background:transparent url(~@/assets/images/icon-nav-down.png) left top no-repeat;
+            background-size: 15px auto;
+        }
+
+        .dropdown.show .dropdown-toggle:after{
+            background:transparent url(~@/assets/images/icon-nav-up.png) left top no-repeat;
+            background-size: 15px auto;
+        }
+
+        
+        .dropdown-menu{
+            background: #410069;
+
+            .dropdown-item{
+                padding:0.625rem 0;
+                border-bottom: 1px solid #604f6a;
+                height: 45px;
+
+            }
+            .dropdown-item:hover,
+            .dropdown-item:active{
+                color: #ffc546;
+            }
+           
+        }
+
+        &  .navbar-nav > li:last-child{
+            width: 100%;
+        }
+
+
+
+    }
+  
+  
+}/*phon end*/
+
+
+//테블릿
+@media  (min-width:768px) and (max-width:1024px) {
+    .navbar {
+        .dropdown-menu{
+            top: 98%;
+
+        }
+    }
+}
+
+@media  (min-width:960px) and (max-width:1200px) {
+    .navbar {
+
+        width: 100% !important;    
+
+        .nav-link{
+            min-width: 15% !important;
+            font-size: 1rem;
+           line-height: 1rem;
+        }
+
+        .dropdown-menu{
+            width: 116% !important;
+            top: 112%;
+            left: -15px;
+
+            
+        }
+    }
+}

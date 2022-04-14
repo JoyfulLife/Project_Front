@@ -1,0 +1,29 @@
+.s-footer {
+  padding: 2.5rem 0;
+  color: #848290;
+  text-align: center;
+  background-color: #f9f8fe;
+  border-top: 0.05rem solid #e4e2ed;
+  font-size: 0.813rem;
+  font-weight: 300;
+
+  p a{
+    width:200px;
+    height: 40px;
+    border: 1px solid #7300ff;
+    color:#7300ff;
+    display:inline-block;
+    padding-top:10px;
+  }
+  p a:after{
+    @include after;
+    width:15px;
+    height: 8px;
+    background:url(~@/assets/images/icon-top.png) left top no-repeat;
+    background-size: 100%; 
+    margin: 8px 0 0 10px;
+  }
+}
+.s-footer p:last-child {
+  margin-bottom: 0;
+}
