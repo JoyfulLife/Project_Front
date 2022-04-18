@@ -8,7 +8,7 @@
 <!--      <router-link to="/grid-system">GridSystem</router-link>-->
 <!--    </div>-->
 
-    <!-- push 확인22 -->
+    <!-- push 확인 (personal laptop) -->
     <!-- 라우터 -->
     <router-view></router-view>
     <b-container>
