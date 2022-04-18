@@ -1,6 +1,7 @@
 <template>
-  <b-container>
-    <b-navbar type="dark" variant="black" class="mt-5" >
+  
+    <b-navbar type="dark" variant="black" class="fixed-top" >
+      <b-container>
       <b-navbar-nav class="w-100 justify-content-between">
         <b-nav-item href="/">Home</b-nav-item>
 
@@ -32,10 +33,10 @@
         <b-nav-item-dropdown text="User" style="justify-content: end">
           <b-dropdown-item href="/login">Login</b-dropdown-item>
         </b-nav-item-dropdown>
-
       </b-navbar-nav>
+      </b-container>
     </b-navbar>
-  </b-container>
+
 </template>
 
 <script>
