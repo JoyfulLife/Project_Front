@@ -1,8 +1,12 @@
 <template>
   <div id="app">
+
     <Navi></Navi>
+
+    <!-- <div v-if="this.common.loginPage !== 'Y'"> -->
     <Header></Header>
-    
+    <!-- </div> -->
+
 <!--    <div>-->
 <!--      <router-link to="/login">Dashboard</router-link> |-->
 <!--      <router-link to="/grid-system">GridSystem</router-link>-->
@@ -11,7 +15,14 @@
     <!-- push 확인 (personal laptop) -->
     <!-- 라우터 -->
     <router-view></router-view>
-    <b-container>
+    
+    <div v-if="this.common.loginPage !== 'Y'">
+    <b-row>
+    <b-col cols="2" class="mt-5">
+        <Sidebar></Sidebar>
+    </b-col>
+    <b-col cols="9">
+    <!-- <b-container> -->
       <article class="sticky-nav-article mt-5">
       <p>Marshmallow dragée liquorice sweet roll jelly. Tart bear claw donut sweet pastry croissant chupa chups. Topping chocolate cake pie. Toffee danish liquorice. Muffin candy biscuit chupa chups candy cotton candy gummies sweet roll. Wafer chocolate
             jelly beans macaroon jelly-o gingerbread sugar plum. Danish chocolate bar apple pie biscuit candy macaroon cake gummi bears. Cookie brownie cake caramels gummies chocolate tiramisu toffee cookie. Powder bear claw tiramisu cookie soufflé. Lollipop
@@ -54,39 +65,13 @@
             Cake caramels tiramisu apple pie ice cream. Wafer jelly beans gummies jelly-o jelly-o caramels sweet roll marshmallow tiramisu. Cookie jujubes sugar plum sesame snaps pastry marzipan lemon drops gummi bears sugar plum. Jelly-o sweet roll jujubes
             tiramisu dessert cotton candy sesame snaps topping marshmallow. Sweet roll cake chocolate cake bear claw apple pie. Fruitcake jelly beans cheesecake icing lemon drops fruitcake powder. Sweet sugar plum tootsie roll chocolate bar carrot cake
             carrot cake ice cream jujubes powder. Halvah powder muffin cupcake jelly topping dessert.</p>
-
-        <p>Sesame snaps powder bear claw sugar plum ice cream wafer jelly beans chocolate bar. Icing cake jelly chocolate dragée muffin. Jelly halvah marzipan jelly. Sugar plum gummi bears chocolate bar toffee jelly cake icing gummi bears carrot cake. Jujubes
-            topping sugar plum bonbon dragée sugar plum. Danish tart apple pie cheesecake brownie topping danish lemon drops marzipan. Caramels cake cotton candy. Donut topping sugar plum cheesecake candy bear claw soufflé bonbon. Jelly croissant pie.
-            Halvah bear claw jelly beans jelly cake candy canes. Jelly danish jelly-o marshmallow. Cupcake chocolate bar soufflé gummi bears biscuit liquorice lemon drops apple pie caramels. Icing jelly beans donut tiramisu chocolate bar lemon drops.</p>
-
-        <p>Brownie sugar plum ice cream gummi bears carrot cake icing tootsie roll. Sweet roll bonbon soufflé sweet dessert dessert cheesecake topping. Cupcake sesame snaps caramels apple pie gummies tootsie roll sesame snaps. Cupcake chocolate bar marzipan
-            icing cotton candy. Croissant toffee bonbon bonbon soufflé. Cheesecake sesame snaps donut sugar plum apple pie oat cake jelly tart tiramisu. Danish powder chupa chups. Sweet roll donut chocolate cake jelly-o tiramisu. Bonbon gingerbread muffin
-            liquorice pastry jelly-o sesame snaps pudding lollipop. Apple pie jujubes pie cotton candy halvah chocolate bar cookie icing. Icing powder cake caramels. Dragée cookie fruitcake chocolate cake apple pie. Gingerbread gummies toffee dragée dessert
-            sweet gingerbread toffee. Sweet roll muffin marshmallow cookie jujubes jelly-o sweet roll sweet chocolate cake.</p>
-
-        <p>Cake cake chupa chups muffin cotton candy sesame snaps topping. Wafer gingerbread candy canes cotton candy. Cupcake jelly-o sweet roll jujubes. Cotton candy bear claw chupa chups lollipop fruitcake chocolate jujubes cookie. Powder candy canes
-            candy halvah liquorice bonbon chocolate cake croissant. Cotton candy marshmallow gummies sweet. Oat cake sugar plum lollipop tiramisu carrot cake halvah. Jelly beans donut biscuit donut jelly bonbon muffin. Pastry gingerbread caramels cake
-            liquorice sweet roll gummi bears pastry cookie. Cupcake soufflé macaroon powder chocolate jelly soufflé. Tootsie roll halvah pie sugar plum cake lollipop biscuit. Oat cake jelly beans pudding cupcake candy ice cream jujubes pie chocolate cake.
-            Cotton candy icing sweet cake candy bonbon sugar plum croissant halvah.</p>
-
-        <p>Candy canes sweet roll danish lemon drops jelly. Danish brownie croissant sweet roll marshmallow gingerbread chocolate bar biscuit. Pudding tootsie roll carrot cake. Toffee marshmallow halvah chocolate bar jelly beans. Apple pie chocolate biscuit
-            pie liquorice chupa chups caramels bear claw. Brownie cotton candy cupcake gummies. Pastry donut bear claw sesame snaps ice cream apple pie. Pudding pastry apple pie sugar plum muffin chocolate bar apple pie carrot cake. Dessert liquorice
-            chupa chups danish sesame snaps topping jelly. Biscuit brownie carrot cake jelly-o toffee cake jelly. Oat cake chocolate oat cake liquorice donut cheesecake sugar plum pudding. Lollipop pastry cake croissant gingerbread. Candy jujubes cookie
-            topping jujubes croissant. Fruitcake gummi bears sesame snaps muffin carrot cake sweet roll.</p>
-
-        <p>Chocolate cake sweet candy marzipan biscuit cupcake pudding. Caramels gummi bears candy canes pudding chocolate bar pie apple pie. Cotton candy bear claw cake. Biscuit chocolate bar pastry. Pie apple pie cookie. Marshmallow sesame snaps muffin
-            wafer gummies. Danish lollipop chupa chups cheesecake sesame snaps. Jelly beans cupcake gummies jelly beans biscuit gummi bears. Jujubes gummies marzipan marshmallow. Icing chupa chups lemon drops brownie gummies. Marzipan dessert lollipop
-            caramels toffee bear claw pastry. Pastry gummi bears powder soufflé.</p>
-
-        <p>Bonbon chocolate bar chocolate jelly beans cookie caramels chocolate cake. Candy canes dessert muffin chupa chups. Biscuit pie pudding candy tiramisu sugar plum. Topping macaroon tootsie roll topping oat cake jelly. Tart liquorice bear claw apple
-            pie candy cheesecake chocolate cake chocolate bar. Muffin topping pudding. Halvah apple pie chocolate cake brownie lollipop. Chocolate cake oat cake jelly-o biscuit lemon drops. Chocolate biscuit caramels bear claw sugar plum sugar plum cake
-            pastry tiramisu. Brownie jelly-o oat cake macaroon fruitcake cake. Cake chocolate cake tiramisu gummi bears halvah cookie tart. Gummi bears cake gingerbread pudding marzipan jelly-o jujubes.</p>
-
-        <p>Lemon drops jelly lollipop powder lemon drops. Fruitcake brownie pastry dessert tiramisu candy canes. Fruitcake apple pie jelly beans gummi bears wafer pie. Marshmallow wafer dragée lollipop sweet roll. Jelly beans ice cream biscuit sesame snaps
-            cookie cookie wafer. Caramels cupcake halvah gummies donut bear claw carrot cake. Muffin biscuit brownie icing muffin muffin liquorice pudding. Candy cupcake candy. Tart wafer chocolate bar carrot cake lemon drops cheesecake gummi bears ice
-            cream. Donut sesame snaps marzipan pastry. Soufflé liquorice biscuit jujubes cupcake jelly-o halvah dessert carrot cake. Gummies oat cake donut marshmallow ice cream tiramisu.</p>
       </article>
-    </b-container>
+    <!-- </b-container> -->
+        </b-col>
+    </b-row>
+    </div>
+
+    <Footer></Footer>
   </div>
 </template>
 
@@ -95,14 +80,26 @@ import store from './store'
 import Header from "@/components/layout/Header.vue";
 
 import Navi from "@/components/layout/Navi.vue";
+import Sidebar from './components/layout/Sidebar.vue';
+import Footer from './components/layout/Footer.vue';
+
+import { createNamespacedHelpers } from "vuex";
+const commonStore = createNamespacedHelpers("common");
 
 export default {
   name: 'App',
   store,
   components: {
     Header,
-    Navi
-  }
+    Navi,
+    Sidebar,
+    Footer
+  },
+  computed: {
+      ...commonStore.mapState({
+      common: state => state.login,
+    })
+  },
 }
 </script>
 

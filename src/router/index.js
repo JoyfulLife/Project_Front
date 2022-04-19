@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '@/views/Dashboard'
+import Login from '@/views/Login'
 import GridSystem from '@/views/GridSystem'
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/login',
-        name: 'Dashboard',
-        component : Dashboard
+        name: 'Login',
+        component : Login
     },
     {
         path: '/grid-system',

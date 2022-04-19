@@ -33,6 +33,8 @@
         <b-nav-item-dropdown text="User" style="justify-content: end">
           <b-dropdown-item href="/login">Login</b-dropdown-item>
         </b-nav-item-dropdown>
+
+        <b-nav-item href="/login">Login</b-nav-item>
       </b-navbar-nav>
       </b-container>
     </b-navbar>

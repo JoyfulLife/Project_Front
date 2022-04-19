@@ -3,7 +3,7 @@
     <b-carousel
       id="carousel-1"
       v-model="slide"
-      :interval="4000"
+      :interval="0"
       controls
       indicators
       background
@@ -73,11 +73,6 @@
 <!--        </p>-->
 <!--      </b-carousel-slide>-->
     </b-carousel>
-
-    <p class="mt-4">
-      Slide #: {{ slide }}<br>
-      Sliding: {{ sliding }}
-    </p>
   </div>
 </template>
 
