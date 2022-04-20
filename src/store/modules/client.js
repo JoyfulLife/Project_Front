@@ -6,6 +6,11 @@ const defaultState = {
     client:{
         userID: "",
     },
+    signUp:{
+        userID: "",
+        passWord:"",
+        reconfirmPassWord:""
+    }
 }
 
 const state = cloneDeep(defaultState);
@@ -18,9 +23,11 @@ const actions = {
         console.log("actions");
         return apis.retrieveClient(context, payload);
     },
-    // retrieveClient: function () {
-    //     console.log("retrieveClient")
-    // },
+    saveClient: function (context, payload) {
+        console.log("saveClient");
+        return apis.saveClient(context, payload);
+    },
+    
 };
 
 const mutations = {
@@ -34,11 +41,16 @@ const mutations = {
 
 const apis = {
     retrieveClient:function (context) {
-        console.log("apis");
-        console.log(context);
-        // console.log(context.commit("setretrieveClientState"));
+        
         return axios.get(
             "/ado/client/clientInfo",
+        ).then(response => context.commit("setretrieveClientState", response))
+    },
+
+    saveClient:function (context, parameters) {
+        
+        return axios.post(
+            "/ado/client/saveClient", parameters.params
         ).then(response => context.commit("setretrieveClientState", response))
     },
 }
