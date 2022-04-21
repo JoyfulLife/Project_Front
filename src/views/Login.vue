@@ -30,7 +30,7 @@
 
             <b-row class="justify-content-md-center">
               <b-col cols="6">
-                <b-input-group class="mb-3 mt-3">
+                <b-input-group class="mb-5 mt-3">
                   <b-input-group-prepend is-text>
                    <b-icon icon="key"></b-icon>
                   </b-input-group-prepend>
@@ -46,6 +46,9 @@
         </b-tab>
 
         <b-tab title="비밀번호 찾기"><p>I'm the second tab</p></b-tab>
+
+
+
         <b-tab title="회원가입" active>
           <b-card class="text-center" border-variant="white">
 
@@ -65,7 +68,7 @@
                       >
                       </b-form-input>
                       <b-form-invalid-feedback id="input-live-feedback">
-                        Enter at least 3 letters
+                        최소 5글자 이상 적어주세요
                       </b-form-invalid-feedback>
                 </b-input-group>
               </b-col>
@@ -75,7 +78,7 @@
               <b-col cols="6">
                 <b-input-group class="mb-3 mt-3">
                   <b-input-group-prepend is-text>
-                    <b-icon icon="key"></b-icon>
+                    <b-icon icon="key-fill"></b-icon>
                   </b-input-group-prepend>
                   <b-form-input
                     id="input-live"
@@ -88,7 +91,7 @@
 
                   <!-- This will only be shown if the preceding input has an invalid state -->
                   <b-form-invalid-feedback id="input-live-feedback">
-                    Enter at least 3 letters
+                    최소 5글자 이상 적어주세요
                   </b-form-invalid-feedback>
 
                 </b-input-group>
@@ -97,9 +100,9 @@
 
             <b-row class="justify-content-md-center">
               <b-col cols="6">
-                <b-input-group class="mb-5 mt-3">
+                <b-input-group class="mb-3 mt-3">
                   <b-input-group-prepend is-text>
-                    <b-icon icon="key-fill"></b-icon>
+                    <b-icon icon="key"></b-icon>
                   </b-input-group-prepend>
                   <b-form-input
                     id="input-live"
@@ -118,15 +121,63 @@
                 </b-input-group>
               </b-col>
             </b-row>
+            
+            <b-row class="justify-content-md-center">
+              <b-col cols="6">
+                <b-input-group class="mb-3 mt-3">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="tag-fill"></b-icon>
+                    </b-input-group-prepend>
+                      <b-form-input
+                        id="input-live"
+                        type="text"
+                        v-model="signUp.name"
+                        :state="nameState"
+                        placeholder="이름"
                         
-            <b-button @click="postBackEnd">가입하기</b-button>
-            <!-- <b-button v-b-modal.modal-center>가입하기</b-button>
+                      >
+                      </b-form-input>
+                      <b-form-invalid-feedback id="input-live-feedback">
+                        * 필수 *
+                      </b-form-invalid-feedback>
+                </b-input-group>
+              </b-col>
+            </b-row>
 
-            <b-modal id="modal-center" centered title="BootstrapVue" @click="postBackEnd">
-              <p class="my-4">Vertically centered modal!</p>
-            </b-modal> -->
-            <!-- <b-button @click="postBackEnd">msgBoxOk with options</b-button>
-     Return value: {{ String(boxTwo) }} -->
+            <b-row class="justify-content-md-center">
+              <b-col cols="6">
+                <b-input-group class="mb-3 mt-3">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="telephone-fill"></b-icon>
+                    </b-input-group-prepend>
+                      <b-form-input
+                        id="input-live"
+                        type="text"
+                        v-model="signUp.phoneNumber"
+                        :state="phoneNumberState"
+                        placeholder="전화번호"
+                        
+                      >
+                      </b-form-input>
+                      <b-form-invalid-feedback id="input-live-feedback">
+                        * 필수 *
+                      </b-form-invalid-feedback>
+                </b-input-group>
+              </b-col>
+            </b-row>
+
+            <b-row class="justify-content-md-center">
+              <b-col cols="6">
+                <b-input-group class="mb-5 mt-3">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="check-circle-fill"></b-icon>
+                    </b-input-group-prepend>
+                      <b-form-select v-model="signUp.gender" :options="options"></b-form-select>
+                </b-input-group>
+              </b-col>
+            </b-row>
+
+            <b-button @click="postBackEnd">가입하기</b-button>
 
           </b-card>
         </b-tab>
@@ -146,7 +197,14 @@ export default {
   data: function() {
     return {
       name: '',
-      successAction: ''
+      successAction: '',
+      gender: null,
+        options: [
+          { value: "", text: '성별을 선택해 주세요' },
+          { value: 'man', text: '남자' },
+          { value: 'female', text: '여자' },
+          { value: 'noSelect', text: '선택하지 않음' },
+        ]
     }
 
   },
@@ -165,7 +223,7 @@ methods:{
           // title: 'Please Confirm',
           size: 'sm',
           buttonSize: 'sm',
-          okVariant: 'danger',
+          okVariant: 'primary',
           okTitle: 'YES',
           cancelTitle: 'NO',
           footerClass: 'p-2',
@@ -201,15 +259,23 @@ methods:{
     }),
 
     userIDState() {
-        return this.signUp.userID.length > 2 ? true : false
+        return this.signUp.userID.length > 4 ? true : false
       },
     passWordState() {
-        return this.signUp.passWord.length > 2 ? true : false
+        return this.signUp.passWord.length > 4 ? true : false
       },
 
     ReconfirmPassWordState() {
         return (this.signUp.passWord === this.signUp.reconfirmPassWord && this.signUp.reconfirmPassWord != "")? true : false
-      }
+      },
+    nameState() {
+        return this.signUp.name.length > 0 ? true : false
+      },
+    phoneNumberState() {
+        return this.signUp.phoneNumber.length > 10 ? true : false
+      },
+    
+
   },
   created() {
     //로그인 페이지에 들어오면 sidebar , home 본문 보이지 않도록 하기 위함.

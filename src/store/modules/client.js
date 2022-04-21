@@ -9,7 +9,10 @@ const defaultState = {
     signUp:{
         userID: "",
         passWord:"",
-        reconfirmPassWord:""
+        reconfirmPassWord:"",
+        name:"",
+        phoneNumber:"",
+        gender:"",
     }
 }
 
