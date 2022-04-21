@@ -71,7 +71,11 @@
     </b-row>
     </div>
 
-    <Footer></Footer>
+    <div style="height: auto; width: 100%; border-top:1px solid gold;">
+      
+      <b-img width="200" height="200" center src="https://raw.githubusercontent.com/JoyfulLife/Image/main/vueImage.jpg" alt="Center image"></b-img>
+      <Footer></Footer>
+    </div>
   </div>
 </template>
 
