@@ -9,7 +9,7 @@
       </b-iconstack>
 
       <b-tabs content-class="mt-3" align="center" class="mt-5">
-        <b-tab title="로그인" >
+        <b-tab title="로그인" active>
           <b-card class="text-center" border-variant="white">
 
             <b-row class="justify-content-md-center">
@@ -49,7 +49,7 @@
 
 
 
-        <b-tab title="회원가입" active>
+        <b-tab title="회원가입">
           <b-card class="text-center" border-variant="white">
 
             <b-row class="justify-content-md-center">

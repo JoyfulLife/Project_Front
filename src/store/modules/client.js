@@ -35,7 +35,7 @@ const actions = {
 
 const mutations = {
     setretrieveClientState: function (state ,payload) {
-        console.log("mutations");
+        console.log("mutations!!!!!!!!!!");
         console.log(payload);
         state.client.userID = payload.data.userID;
     },
@@ -44,7 +44,7 @@ const mutations = {
 
 const apis = {
     retrieveClient:function (context) {
-        
+        console.log("apis");
         return axios.get(
             "/ado/client/clientInfo",
         ).then(response => context.commit("setretrieveClientState", response))
