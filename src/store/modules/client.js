@@ -1,10 +1,11 @@
 import {cloneDeep} from "lodash";
-// import { messagePost } from "@/store/commonActions";
 // import {jsonPost} from "../commonActions";
+
 import axios from "axios";
 const defaultState = {
     client:{
         userID: "",
+        age:"1111",
     },
     signUp:{
         userID: "",
@@ -35,9 +36,10 @@ const actions = {
 
 const mutations = {
     setretrieveClientState: function (state ,payload) {
-        console.log("mutations!!!!!!!!!!");
-        console.log(payload);
-        state.client.userID = payload.data.userID;
+        console.log("응답 mutation!!!!");
+        console.log(payload.data[0].age);
+        // console.log(state.client.age);
+        state.client.userID = payload.data[0].age;
     },
 
 };
@@ -49,7 +51,7 @@ const apis = {
             "/ado/client/clientInfo",
         ).then(response => context.commit("setretrieveClientState", response))
     },
-
+    
     saveClient:function (context, parameters) {
         
         return axios.post(
