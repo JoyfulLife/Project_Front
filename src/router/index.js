@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/Login'
 import GridSystem from '@/views/GridSystem'
 import MainPage from '@/views/MainPage'
+import Table from '@/views/Table'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
         path: '/main-page',
         name: 'MainPage',
         component : MainPage
+    },
+    {
+        path: '/table',
+        name: 'Table',
+        component : Table
     },
 ]
 

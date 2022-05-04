@@ -5,7 +5,7 @@ import axios from "axios";
 const defaultState = {
     client:{
         userID: "",
-        age:"1111",
+        age:"",
     },
     signUp:{
         userID: "",
@@ -41,6 +41,9 @@ const mutations = {
         // console.log(state.client.age);
         state.client.userID = payload.data[0].age;
     },
+    setsaveClientState: function () {
+        console.log("setsaveClientState");
+    },
 
 };
 
@@ -56,7 +59,7 @@ const apis = {
         
         return axios.post(
             "/ado/client/saveClient", parameters.params
-        ).then(response => context.commit("setretrieveClientState", response))
+        ).then(response => context.commit("setsaveClientState", response))
     },
 }
 

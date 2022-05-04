@@ -20,6 +20,7 @@
 
 <!--First Page -->
     
+    <!-- / 일때만 보이도록 !!! -->
     <div class="mt-5 mb-5" v-if="$route.path === '/'">
       <h1><strong>Join the We</strong></h1>
         <p>여기는 우리의 일상을 더 좋게 만들고 싶은 멋진 동료입니다.</p>

@@ -238,7 +238,7 @@ methods:{
             const args = {
               params: this.signUp,
               };
-              this.saveClient(args)
+              this.saveClient(args);  
             }
 
           })
