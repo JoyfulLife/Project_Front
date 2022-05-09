@@ -28,7 +28,7 @@
             </b-col>
             
             
-                <!-- </b-card-group> -->
+                <!-- 집 노트북 push 확인! -->
         </b-row>
         
     </div>
