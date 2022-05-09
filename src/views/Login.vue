@@ -90,7 +90,7 @@
                     trim
                   ></b-form-input>
 
-                  <!-- This will only be shown if the preceding input has an invalid state -->
+                  <!-- This will only be shown if the preceding input has an invalid state PUSH TEST -->
                   <b-form-invalid-feedback id="input-live-feedback">
                     최소 5글자 이상 적어주세요
                   </b-form-invalid-feedback>
