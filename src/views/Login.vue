@@ -35,8 +35,9 @@
                    <b-icon icon="key"></b-icon>
                   </b-input-group-prepend>
                   <b-form-input 
-                    
+                    type="text"
                     placeholder="PassWord"
+                    v-model="client.passWord"
                     ></b-form-input>
                 </b-input-group>
               </b-col>

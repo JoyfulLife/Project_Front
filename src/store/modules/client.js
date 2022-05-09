@@ -5,7 +5,7 @@ import axios from "axios";
 const defaultState = {
     client:{
         userID: "",
-        age:"",
+        passWord:"",
     },
     signUp:{
         userID: "",
