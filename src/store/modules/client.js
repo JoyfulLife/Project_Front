@@ -4,8 +4,9 @@ import {cloneDeep} from "lodash";
 import axios from "axios";
 const defaultState = {
     client:{
-        userID: "",
+        user_ID: "",
         passWord:"",
+        name:""
     },
     signUp:{
         userID: "",
@@ -23,9 +24,9 @@ const getters = {
 
 };
 const actions = {
-    retrieveClient: function (context, payload) {
-        console.log("actions");
-        return apis.retrieveClient(context, payload);
+    ValidClientCheck: function (context, payload) {
+
+        return apis.ValidClientCheck(context, payload);
     },
     saveClient: function (context, payload) {
         console.log("saveClient");
@@ -35,11 +36,9 @@ const actions = {
 };
 
 const mutations = {
-    setretrieveClientState: function (state ,payload) {
-        console.log("응답 mutation!!!!");
-        console.log(payload.data[0].age);
-        // console.log(state.client.age);
-        state.client.userID = payload.data[0].age;
+    setValidClientCheckState: function (state ,payload) {
+        console.log(payload)
+        state.client.name = payload.data.name;
     },
     setsaveClientState: function () {
         console.log("setsaveClientState");
@@ -48,11 +47,11 @@ const mutations = {
 };
 
 const apis = {
-    retrieveClient:function (context) {
+    ValidClientCheck:function (context, parameters) {
         console.log("apis");
-        return axios.get(
-            "/ado/client/clientInfo",
-        ).then(response => context.commit("setretrieveClientState", response))
+        return axios.post(
+            "/ado/client/clientInfo", parameters.params
+        ).then(response => context.commit("setValidClientCheckState", response))
     },
     
     saveClient:function (context, parameters) {

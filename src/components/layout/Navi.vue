@@ -27,9 +27,7 @@
 
         <b-nav-item href="/table">Table</b-nav-item>
 
-        <b-nav-item-dropdown text="User" style="justify-content: end">
-          <b-dropdown-item href="/login">Login</b-dropdown-item>
-        </b-nav-item-dropdown>
+        <b-nav-item href="/login/myPage">MyPage</b-nav-item>
 
         <b-nav-item href="/login">Login</b-nav-item>
       </b-navbar-nav>

@@ -21,7 +21,7 @@
                       <b-form-input 
                         type="text"
                         placeholder="User ID"
-                        v-model="client.userID"
+                        v-model="client.user_ID"
                       >
                       </b-form-input>
                 </b-input-group>
@@ -178,7 +178,7 @@
               </b-col>
             </b-row>
 
-            <b-button @click="postBackEnd">가입하기</b-button>
+            <b-button @click="SignUp">가입하기</b-button>
 
           </b-card>
         </b-tab>
@@ -210,13 +210,15 @@ export default {
 
   },
 methods:{
-  ...clientStore.mapActions(["retrieveClient","saveClient"]),
+  ...clientStore.mapActions(["ValidClientCheck","saveClient"]),
   backEnd(){
-
-    this.retrieveClient();
+    const args = {
+      params: this.client,
+  };
+    this.ValidClientCheck(args);
 
   },
-  postBackEnd(){
+  SignUp(){
     console.log("test");
     
       this.successAction = ''
