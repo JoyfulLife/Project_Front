@@ -30,7 +30,7 @@ const routes = [
         component : Table
     },
     {
-        path: '/login/myPage',
+        path: '/myPage',
         name: 'MyPage',
         component : MyPage
     },

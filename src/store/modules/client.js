@@ -6,10 +6,11 @@ const defaultState = {
     client:{
         user_ID: "",
         passWord:"",
-        name:""
+        name:"",
+        aaa:""
     },
     signUp:{
-        userID: "",
+        user_ID: "",
         passWord:"",
         reconfirmPassWord:"",
         name:"",

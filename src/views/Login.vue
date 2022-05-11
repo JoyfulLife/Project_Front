@@ -62,7 +62,7 @@
                       <b-form-input
                         id="input-live"
                         type="text"
-                        v-model="signUp.userID"
+                        v-model="signUp.user_ID"
                         :state="userIDState"
                         placeholder="User ID"
                         
@@ -215,7 +215,8 @@ methods:{
     const args = {
       params: this.client,
   };
-    this.ValidClientCheck(args);
+    this.ValidClientCheck(args)
+    // .then(this.$router.push('myPage'));
 
   },
   SignUp(){
@@ -241,7 +242,8 @@ methods:{
             const args = {
               params: this.signUp,
               };
-              this.saveClient(args);  
+              this.saveClient(args)
+              // .then(this.$router.push('/'));
             }
 
           })
@@ -262,7 +264,7 @@ methods:{
     }),
 
     userIDState() {
-        return this.signUp.userID.length > 4 ? true : false
+        return this.signUp.user_ID.length > 4 ? true : false
       },
     passWordState() {
         return this.signUp.passWord.length > 4 ? true : false
