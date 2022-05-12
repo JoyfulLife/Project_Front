@@ -223,34 +223,53 @@ methods:{
     console.log("test");
     
       this.successAction = ''
-        this.$bvModal.msgBoxConfirm('회원가입 하시겠습니까?.', {
-          // title: 'Please Confirm',
-          size: 'sm',
-          buttonSize: 'sm',
-          okVariant: 'primary',
-          okTitle: 'YES',
-          cancelTitle: 'NO',
-          footerClass: 'p-2',
-          hideHeaderClose: false,
-          centered: true
+      //message 값을 초기화
+      this.signUp.message = ""
+      this.$bvModal.msgBoxConfirm('회원가입 하시겠습니까?.', {
+        // title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'primary',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+        .then(value => {
+          this.successAction = value
+
+          // ok 버튼을 눌러야 가입을 할 수 있음.
+          if(this.successAction === true){
+          const args = {
+            params: this.signUp,
+            };
+            this.saveClient(args).then(this.depuplicte)
+          }
+
         })
-          .then(value => {
-            this.successAction = value
-
-            // ok 버튼을 눌러야 가입을 할 수 있음.
-            if(this.successAction === true){
-            const args = {
-              params: this.signUp,
-              };
-              this.saveClient(args)
-              // .then(this.$router.push('/'));
-            }
-
-          })
-          .catch(err => {
-            this.boxTwo = err
-          })
+        .catch(err => {
+          this.boxTwo = err
+        })
   },
+
+  depuplicte(){
+    if(this.signUp.message != ""){
+      this.$bvModal.msgBoxConfirm('중복된 user_ID가 있습니다.', {
+        // title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'primary',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+    }else {
+        this.$router.push('/myPage')
+      }
+    },
 
 },
 
@@ -262,6 +281,7 @@ methods:{
     ...commonStore.mapState({
       common: state => state.login,
     }),
+
 
     userIDState() {
         return this.signUp.user_ID.length > 4 ? true : false

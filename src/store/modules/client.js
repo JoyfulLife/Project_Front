@@ -16,6 +16,7 @@ const defaultState = {
         name:"",
         phoneNumber:"",
         gender:"",
+        message:"",
     }
 }
 
@@ -41,8 +42,10 @@ const mutations = {
         console.log(payload)
         state.client.name = payload.data.name;
     },
-    setsaveClientState: function () {
+    setsaveClientState: function (state ,payload) {
+        console.log(payload)
         console.log("setsaveClientState");
+        state.signUp.message = payload.data.message;
     },
 
 };
