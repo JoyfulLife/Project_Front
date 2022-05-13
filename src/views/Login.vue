@@ -90,7 +90,6 @@
                     trim
                   ></b-form-input>
 
-                  <!-- This will only be shown if the preceding input has an invalid state PUSH TEST -->
                   <b-form-invalid-feedback id="input-live-feedback">
                     최소 5글자 이상 적어주세요
                   </b-form-invalid-feedback>
@@ -178,7 +177,7 @@
               </b-col>
             </b-row>
 
-            <b-button @click="SignUp">가입하기</b-button>
+            <b-button variant="success" @click="SignUp">가입하기</b-button>
 
           </b-card>
         </b-tab>
@@ -199,13 +198,14 @@ export default {
     return {
       name: '',
       successAction: '',
+      successSignUp: '',
       gender: null,
-        options: [
-          { value: "", text: '성별을 선택해 주세요' },
-          { value: 'man', text: '남자' },
-          { value: 'female', text: '여자' },
-          { value: 'noSelect', text: '선택하지 않음' },
-        ]
+      options: [
+        { value: "", text: '성별을 선택해 주세요' },
+        { value: 'man', text: '남자' },
+        { value: 'female', text: '여자' },
+        { value: 'noSelect', text: '선택하지 않음' },
+      ]
     }
 
   },
@@ -223,8 +223,8 @@ methods:{
     console.log("test");
     
       this.successAction = ''
-      //message 값을 초기화
-      this.signUp.message = ""
+      //failMessage 값을 초기화
+      this.signUp.failMessage = ""
       this.$bvModal.msgBoxConfirm('회원가입 하시겠습니까?.', {
         // title: 'Please Confirm',
         size: 'sm',
@@ -244,7 +244,7 @@ methods:{
           const args = {
             params: this.signUp,
             };
-            this.saveClient(args).then(this.depuplicte)
+            this.saveClient(args).then(this.depuplicteCheck)
           }
 
         })
@@ -252,11 +252,21 @@ methods:{
           this.boxTwo = err
         })
   },
+  
+  //  DB 에 중복된 user_ID 있을 경우 에러 메시지, 정상 회원가입 되면 가입 축하 메시지
+  depuplicteCheck(){
 
-  depuplicte(){
-    if(this.signUp.message != ""){
-      this.$bvModal.msgBoxConfirm('중복된 user_ID가 있습니다.', {
-        // title: 'Please Confirm',
+    if(this.signUp.failMessage != ""){
+      this.$bvModal.msgBoxOk(this.signUp.failMessage, {
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'warning',
+        headerClass: 'p-2 border-bottom-0',
+        footerClass: 'p-2 border-top-0',
+        centered: true
+      })
+    }else {
+      this.$bvModal.msgBoxOk(this.signUp.successMessage, {
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'primary',
@@ -265,10 +275,18 @@ methods:{
         footerClass: 'p-2',
         hideHeaderClose: false,
         centered: true
-      })
-    }else {
-        this.$router.push('/myPage')
+      }).then(value => {
+          this.successSignUp = value
+          if(this.successSignUp === true){
+            this.$router.push('myPage')      
+          }
+        })
+        .catch(err => {
+          this.boxTwo = err
+        })
       }
+
+
     },
 
 },
@@ -302,6 +320,7 @@ methods:{
     
 
   },
+
   created() {
     //로그인 페이지에 들어오면 sidebar , home 본문 보이지 않도록 하기 위함.
     this.common.loginPage = 'Y'
