@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ad9fd20-a85c-4257-bbad-8f83f784c557" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Navi.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Navi.vue" afterDir="false" />
-    </list>
+    <list default="true" id="5ad9fd20-a85c-4257-bbad-8f83f784c557" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
