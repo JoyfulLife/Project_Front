@@ -1,62 +1,45 @@
 <template>
     <div v-if="this.common.loginPage !== 'Y'">
-        <!-- <b-row>
+        <b-row>
             <b-col cols="3" class="mt-5">
                 <Sidebar></Sidebar>
             </b-col>
             <b-col cols="9">
                 <b-row>
+                    
                     <b-col 
-                        class="mt-5"
+                        class="mt-5 img scale"
                         cols="4"
                         v-for="(value ,name) in this.tableList.list"
-                        :key="name">
+                        :key="name"
+                        >
                         <b-card
                             border-variant="primary"
                             header="Primary"
-                            header-bg-variant="primary"
+                            header-bg-variant="success"
                             header-text-variant="white"
                             align="center"
+                            img-src="https://picsum.photos/600/300/?image=25"
+                            @click="aaa"
                         >
+                            <!-- <div class="img">
+                                <div class="scale"><></div>
+                            </div> -->
                         <b-card-text>
                             {{tableList.list[name].name}}
                         </b-card-text>
                         </b-card>
                     </b-col>
+                    
                 </b-row>
             </b-col>
-        </b-row> -->
-        <b-card no-body>
-            <b-tabs pills card vertical nav-wrapper-class="w-25">
-                <b-tab title="Tab 1" active><b-card-text><b-row>
-                    <b-col 
-                        class="mt-5"
-                        cols="4"
-                        v-for="(value ,name) in this.tableList.list"
-                        :key="name">
-                        <b-card
-                            border-variant="primary"
-                            header="Primary"
-                            header-bg-variant="primary"
-                            header-text-variant="white"
-                            align="center"
-                        >
-                        <b-card-text>
-                            {{tableList.list[name].name}}
-                        </b-card-text>
-                        </b-card>
-                    </b-col>
-                </b-row></b-card-text></b-tab>
-                <b-tab title="Tab 2"><b-card-text>Tab contents 2</b-card-text></b-tab>
-                <b-tab title="Tab 3"><b-card-text>Tab contents 3</b-card-text></b-tab>
-            </b-tabs>
-        </b-card>
+        </b-row>
     </div>
     
 </template>
 
 <script>
-// import Sidebar from '@/components/layout/Sidebar.vue';
+import Sidebar from '@/components/layout/Sidebar.vue';
 
 import { createNamespacedHelpers } from "vuex";
 const commonStore = createNamespacedHelpers("common");
@@ -66,7 +49,7 @@ export default {
   name: "MainPage",
 
   components: {
-    // Sidebar
+    Sidebar
   },
 
   computed: {
@@ -79,7 +62,12 @@ export default {
   },
 
   methods:{
-      ...tableListStore.mapActions(["retrieveClient"])
+      ...tableListStore.mapActions(["retrieveClient"]),
+
+      aaa(){
+          console.log("check click");
+      },
+      
   },
 
   created() {
@@ -90,5 +78,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.scale {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+}
+.scale:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+.img {width:325px; height:280px; overflow:hidden } /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+
 
 </style>
+

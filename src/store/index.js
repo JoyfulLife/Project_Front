@@ -7,12 +7,14 @@ Vue.use(Vuex);
 import client from "./modules/client";
 import common from "./modules/common";
 import tableList from "./modules/tableList";
+import advertisingList from "./modules/advertising";
 
 // v-model을 사용함. 배포시 strict 모드 사용하지 말 것
 export default new Vuex.Store({
   modules: {
     client,
     common,
-    tableList
+    tableList,
+    advertisingList
   },
 });
