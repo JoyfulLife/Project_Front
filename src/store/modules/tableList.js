@@ -14,7 +14,7 @@ const getters = {
 };
 const actions = {
     retrieveClient: function (context, payload) {
-        console.log("actions");
+        
         return apis.retrieveClient(context, payload);
     },
     
@@ -22,15 +22,14 @@ const actions = {
 
 const mutations = {
     setretrieveClientState: function (state ,payload) {
-        console.log("Table mutations~~~~");
-        console.log(payload.data);
+        
         state.tableList.list = payload.data;
     },
 };
 
 const apis = {
     retrieveClient:function (context) {
-        console.log("apis");
+        
         return axios.get(
             "/table",
         ).then(response => context.commit("setretrieveClientState", response))

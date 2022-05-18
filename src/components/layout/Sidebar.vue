@@ -24,7 +24,7 @@
       <b-list-group-item>
         <b-row class="panel-group">
           <b-col class="card-panel-col">
-            <div class="card-panel" @click="categoryClick()">
+            <div class="card-panel" @click="categoryClick('Sports')">
               <div class="card-panel-icon-wrapper icon-people">
                 <b-icon icon="graph-up" class-name="card-panel-icon" />
               </div>
@@ -42,7 +42,7 @@
       <b-list-group-item>
         <b-row class="panel-group">
           <b-col class="card-panel-col">
-            <div class="card-panel" @click="categoryClick()">
+            <div class="card-panel" @click="categoryClick('News')">
               <div class="card-panel-icon-wrapper icon-message">
                 <b-icon icon="view-stacked" class-name="card-panel-icon" />
               </div>
@@ -60,7 +60,7 @@
       <b-list-group-item>
         <b-row class="panel-group">
           <b-col class="card-panel-col">
-            <div class="card-panel" @click="categoryClick()">
+            <div class="card-panel" @click="categoryClick('Web toon')">
               <div class="card-panel-icon-wrapper icon-money">
                 <b-icon icon="speaker" class-name="card-panel-icon" />
               </div>
@@ -99,10 +99,10 @@ export default {
   methods: {
     ...advertisingListStore.mapActions(["getAdvertisingList"]),
 
-    categoryClick() {
+    categoryClick(values) {
       
-      console.log("Sport 클릭 확인");
-      this.advertisingList.category = "Sport"
+      this.advertisingList.category = values
+      
       const args = {
             params: this.advertisingList,
             };
@@ -117,6 +117,13 @@ export default {
     ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
       }),
+  },
+
+  created() {
+    const args = {
+            params: this.advertisingList,
+            };
+            this.getAdvertisingList(args)
   }
 };
 </script>

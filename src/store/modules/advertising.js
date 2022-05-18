@@ -15,7 +15,7 @@ const getters = {
 };
 const actions = {
     getAdvertisingList: function (context, payload) {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        
         return apis.getAdvertisingList(context, payload);
     },
 };
@@ -23,14 +23,13 @@ const actions = {
 const mutations = {
     setadvertisingListState: function (state ,payload) {
         
-        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
         state.advertisingList.list = payload.data
     },
 };
 
 const apis = {
     getAdvertisingList:function (context, parameters) {
-        console.log("getAdvertisingList apis");
+        
         return axios.post(
             "/advertising/advertisingList", parameters.params
         ).then(response => context.commit("setadvertisingListState", response))
