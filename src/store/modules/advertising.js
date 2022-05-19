@@ -6,6 +6,10 @@ const defaultState = {
         category: "",
         list: []
     },
+
+    count_ad:{
+        list: []
+    }
 }
 
 const state = cloneDeep(defaultState);
@@ -18,12 +22,23 @@ const actions = {
         
         return apis.getAdvertisingList(context, payload);
     },
+
+    getCountAd: function (context, payload) {
+        
+        return apis.getCountAd(context, payload);
+    },
+
 };
 
 const mutations = {
     setadvertisingListState: function (state ,payload) {
         
         state.advertisingList.list = payload.data
+    },
+
+    setcountAdState: function (state ,payload) {
+        
+        state.count_ad.list = payload.data
     },
 };
 
@@ -33,6 +48,13 @@ const apis = {
         return axios.post(
             "/advertising/advertisingList", parameters.params
         ).then(response => context.commit("setadvertisingListState", response))
+    },
+
+    getCountAd:function (context) {
+        
+        return axios.get(
+            "/advertising/countAdvertisingList",
+        ).then(response => context.commit("setcountAdState", response))
     },
 }
 

@@ -32,7 +32,9 @@
                 <div class="card-panel-text">
                   Sport
                 </div>
-                <!-- <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" /> -->
+                <div class="card-panel-num">
+                  {{this.count_ad.list.sports_count}}
+                </div>
               </div>
             </div>
           </b-col>
@@ -49,6 +51,9 @@
               <div class="card-panel-description">
                 <div class="card-panel-text">
                   News
+                </div>
+                <div class="card-panel-num">
+                  {{this.count_ad.list.news_count}}
                 </div>
                 <!-- <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" /> -->
               </div>
@@ -67,6 +72,9 @@
               <div class="card-panel-description">
                 <div class="card-panel-text">
                   Web toon
+                </div>
+                <div class="card-panel-num">
+                  {{this.count_ad.list.webtoon_count}}
                 </div>
                 <!-- <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" /> -->
               </div>
@@ -97,7 +105,7 @@ export default {
   name: "Sidebar",
 
   methods: {
-    ...advertisingListStore.mapActions(["getAdvertisingList"]),
+    ...advertisingListStore.mapActions(["getAdvertisingList", "getCountAd"]),
 
     categoryClick(values) {
       
@@ -116,6 +124,7 @@ export default {
     }),
     ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
+        count_ad: state => state.count_ad,
       }),
   },
 
@@ -123,7 +132,7 @@ export default {
     const args = {
             params: this.advertisingList,
             };
-            this.getAdvertisingList(args)
+            this.getAdvertisingList(args).then(this.getCountAd())
   }
 };
 </script>
