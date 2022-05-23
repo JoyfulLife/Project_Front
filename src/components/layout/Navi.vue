@@ -18,12 +18,7 @@
           <b-dropdown-item href="#">RU</b-dropdown-item>
           <b-dropdown-item href="#">FA</b-dropdown-item>
         </b-nav-item-dropdown>
-        <b-nav-item-dropdown text="Lang">
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
+        <b-nav-item @click="moveSidebar">sidebar</b-nav-item>
 
         <b-nav-item href="/table">Table</b-nav-item>
 
@@ -49,6 +44,9 @@ export default {
   methods: {
     move() {
       this.$router.push('/myPage')
+    },
+    moveSidebar() {
+      this.$router.push('/adminSideBar')
     }
   },
 };

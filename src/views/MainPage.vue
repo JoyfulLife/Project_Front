@@ -1,37 +1,42 @@
 <template>
     <div v-if="this.common.loginPage !== 'Y'">
         <b-row>
-            <b-col cols="3" class="mt-5">
+            <b-col cols="3" class="mt-5" v-if="this.common.loginPage !== 'Y'">
                 <Sidebar></Sidebar>
             </b-col>
             <b-col cols="9">
-                <b-row v-if="this.advertisingList.list.length != 0">
-                    <b-col 
-                        class="mt-5 img scale"
-                        cols="4"
-                        v-for="(item ,index) in advertisingList.list"
-                        :key="index"
-                        >
-                        <b-card
-                            border-variant="primary"
-                            :header="advertisingList.list[index].brand_name"
-                            header-bg-variant="success"
-                            header-text-variant="white"
-                            align="center"
-                            img-src="https://picsum.photos/600/300/?image=25"
-                            @click="aaa"
-                        >
-                            <!-- <div class="img">
-                                <div class="scale"><></div>
+              <b-row v-if="this.advertisingList.list.length != 0">
+                <b-col 
+                  class="mt-5 img scale"
+                  cols="4"
+                  v-for="(item ,index) in advertisingList.list"
+                  :key="index"
+                  >
+                  
+                  <b-card
+                    class="image"
+                    border-variant="primary"
+                    :header="advertisingList.list[index].brand_name"
+                    header-bg-variant="success"
+                    header-text-variant="white"
+                    align="center"
+                    :img-src="getImageUrl(advertisingList.list[index].image)"
+                    @click="(index) => MainPage_Detail(index)"
+
+                    >
+                    <!-- <b-img class="image" :src="getImageUrl(advertisingList.list[index].image)"></b-img> -->
+                    
+                      <!-- <div class="img">
+                            <div class="scale"><></div>
                             </div> -->
-                        <b-card-text>
-                            {{advertisingList.list[index].ad_no}}
-                            <p>{{advertisingList.list[index].url}}</p>
-                        </b-card-text>
+                    <b-card-text>
+                      {{advertisingList.list[index].ad_no}}
+                      <p>{{advertisingList.list[index].url}}</p>
+                    </b-card-text>
                         
-                        </b-card>
-                    </b-col>
-                </b-row>
+                  </b-card>
+                </b-col>
+              </b-row>
                 
                 <!-- <div class="wscn-http404-container" v-if="this.advertisingList.list.length === 0">
                         <div class="wscn-http404">
@@ -55,20 +60,21 @@
                 <b-row class="wscn-http404-container" v-if="this.advertisingList.list.length === 0">
                   <b-col class="wscn-http404">
                     <div class="pic-404">
-                                <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-                                <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-                                <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-                                <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
-                            </div>
-                            <div class="bullshit">
-                                <div class="bullshit__oops">OOPS!</div>
-                                <div class="bullshit__info">All rights reserved
-                                <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
-                                </div>
-                                <div class="bullshit__headline">{{ message }}</div>
-                                <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-                                <a href="" class="bullshit__return-home">Back to home</a>
-                            </div>
+                      <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
+                        <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
+                        <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
+                        <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
+                    </div>
+
+                    <div class="bullshit">
+                    <div class="bullshit__oops">OOPS!</div>
+                    <div class="bullshit__info">All rights reserved
+                    <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
+                    </div>
+                    <div class="bullshit__headline">{{ message }}</div>
+                    <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
+                    <a href="" class="bullshit__return-home">Back to home</a>
+                    </div>
                   </b-col>
                 </b-row>
             </b-col>
@@ -102,17 +108,29 @@ export default {
       ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
       }),
-      message() {
-      return 'The webmaster said that you can not enter this page...'
-    }
+
   },
 
   methods:{
       ...tableListStore.mapActions(["retrieveClient"]),
 
-      aaa(){
+      MainPage_Detail: function(index){
           console.log("check click");
+          
+          console.log(index);
+          this.advertisingList.category = index
+
+          
+          this.$router.push('/main-page/detail');
       },
+      message() {
+      return 'The webmaster said that you can not enter this page...'
+    },
+
+    getImageUrl(image) {
+        
+        return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}.png`
+      }
       
   },
 
@@ -124,6 +142,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.image {
+  .card-img{
+  height: 169.43px;
+  width: 298.59px;
+  }
+}
+.b-card.header-bg-variant {
+  background-color: #1482f0;
+}
 .scale {
   transform: scale(1);
   -webkit-transform: scale(1);

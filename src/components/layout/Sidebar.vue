@@ -1,12 +1,13 @@
 <template>
   <div>
+    
     <b-card
     no-body
     style="max-width: 20rem;"
     img-src="https://placekitten.com/380/200"
     img-alt="Image"
     img-top
-  >
+      >
     <template #header>
       <h2>Category</h2>
     </template>
@@ -21,6 +22,27 @@
     </b-card-body>
 
     <b-list-group flush>
+
+      <b-list-group-item>
+        <b-row class="panel-group">
+          <b-col class="card-panel-col">
+            <div class="card-panel" @click="categoryClick('All')">
+              <div class="card-panel-icon-wrapper icon-shopping">
+                <b-icon icon="bar-chart-steps" class-name="card-panel-icon" />
+              </div>
+              <div class="card-panel-description">
+                <div class="card-panel-text">
+                  All
+                </div>
+                <div class="card-panel-num">
+                  {{this.count_ad.list.all_count}}
+                </div>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </b-list-group-item>
+
       <b-list-group-item>
         <b-row class="panel-group">
           <b-col class="card-panel-col">
@@ -93,6 +115,7 @@
 
     <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
   </b-card>
+  
   </div>
 </template>
 
@@ -174,7 +197,7 @@ export default {
       }
 
       .icon-shopping {
-        background: #34bfa3
+        background: #c719f3
       }
     }
 
@@ -191,7 +214,7 @@ export default {
     }
 
     .icon-shopping {
-      color: #34bfa3
+      color: #c719f3
     }
 
     .card-panel-icon-wrapper {

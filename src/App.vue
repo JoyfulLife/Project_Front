@@ -41,7 +41,7 @@
       <b-button pill variant="primary" href="main-page">Button</b-button>
     </div>
 
-    <div style="height: auto; width: 100%; border-top:1px solid gold;">
+    <div class="mt-5" style="height: auto; width: 100%; border-top:1px solid gold;">
       
       <!-- <b-img width="200" height="200" center src="https://raw.githubusercontent.com/JoyfulLife/Image/main/vueImage.jpg" alt="Center image"></b-img> -->
       <Footer></Footer>
