@@ -20,17 +20,14 @@
                     header-bg-variant="success"
                     header-text-variant="white"
                     align="center"
-                    :img-src="getImageUrl(advertisingList.list[index].image)"
-                    @click="(index) => MainPage_Detail(index)"
-
-                    >
-                    <!-- <b-img class="image" :src="getImageUrl(advertisingList.list[index].image)"></b-img> -->
                     
-                      <!-- <div class="img">
-                            <div class="scale"><></div>
-                            </div> -->
-                    <b-card-text>
-                      {{advertisingList.list[index].ad_no}}
+                    @click="MainPage_Detail(index)"
+                    :img-src="getImageUrl(advertisingList.list[index].image)"
+                    >
+                    <!-- :img-src="getImageUrl(advertisingList.list[index].image)" -->
+                    <b-card-text class="margin0">
+                      <p>Category : {{advertisingList.list[index].category}}</p>
+                      <p>{{advertisingList.list[index].ad_no}}</p>
                       <p>{{advertisingList.list[index].url}}</p>
                     </b-card-text>
                         
@@ -107,6 +104,7 @@ export default {
       }),
       ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
+        advertisingListDetail: state => state.advertisingListDetail,
       }),
 
   },
@@ -114,12 +112,10 @@ export default {
   methods:{
       ...tableListStore.mapActions(["retrieveClient"]),
 
-      MainPage_Detail: function(index){
+      MainPage_Detail(index){
           console.log("check click");
-          
           console.log(index);
-          this.advertisingList.category = index
-
+          this.advertisingListDetail.list = this.advertisingList.list[index]
           
           this.$router.push('/main-page/detail');
       },
@@ -127,6 +123,7 @@ export default {
       return 'The webmaster said that you can not enter this page...'
     },
 
+    //github 에서 이미지 받아옴.
     getImageUrl(image) {
         
         return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}.png`
@@ -142,6 +139,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.margin0 > p {
+  margin: 0;
+}
 .image {
   .card-img{
   height: 169.43px;

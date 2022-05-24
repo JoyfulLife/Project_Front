@@ -6,6 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { IconsPlugin } from 'bootstrap-vue'
 import Sidebar from './components/layout/Sidebar'
+import 'element-ui/packages/card/src/main.vue'
+import Element from 'element-ui'
+Vue.use(Element)
 
 Vue.use(IconsPlugin)
 Vue.use(BootstrapVue)
@@ -17,5 +20,6 @@ new Vue({
   render: h => h(App),
   router,
   store,
-  Sidebar
+  Sidebar,
+  Element
 }).$mount('#app')

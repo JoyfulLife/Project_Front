@@ -7,6 +7,10 @@ const defaultState = {
         list: []
     },
 
+    advertisingListDetail:{
+        list: []
+    },
+
     count_ad:{
         list: []
     }

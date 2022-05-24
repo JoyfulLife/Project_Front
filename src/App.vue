@@ -54,6 +54,7 @@ import store from './store'
 import Header from "@/components/layout/Header.vue";
 import Navi from "@/components/layout/Navi.vue";
 import Footer from './components/layout/Footer.vue';
+
 // import MainPage from './views/MainPage.vue'
 
 import { createNamespacedHelpers } from "vuex";
