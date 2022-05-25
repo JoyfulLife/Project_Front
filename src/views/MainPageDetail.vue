@@ -39,7 +39,7 @@
     </b-row>
 
     <b-button variant="primary" href="https://nbl.com.au/">사이트 바로 이동</b-button>
-    <b-button variant="secondary" class="margin">Add Cart</b-button>
+    <b-button variant="secondary" class="margin" @click="AddCart">Add Cart</b-button>
     <!-- <b-button variant="success">Success</b-button>
     <b-button variant="danger">Danger</b-button>
     <b-button variant="warning">Warning</b-button>
@@ -56,12 +56,20 @@
 import { createNamespacedHelpers } from "vuex";
 const commonStore = createNamespacedHelpers("common");
 const advertisingListStore = createNamespacedHelpers("advertisingList");
+const clientStore = createNamespacedHelpers("client");
+const cartStore = createNamespacedHelpers("cart");
 
 
 
 export default {
   name: "mainPageDeatail",
+  data: function() {
+      return {
+        okbutton: '',
+        
+      }
 
+    },
   components: {
 
     },
@@ -70,14 +78,24 @@ export default {
   computed: {
       ...commonStore.mapState({
       common: state => state.login,
-    }),
+      }),
       ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
         advertisingListDetail: state => state.advertisingListDetail,
-      })
+      }),
+      ...clientStore.mapState({
+      client: state => state.client,
+      signUp: state => state.signUp,
+      }),
+      ...cartStore.mapState({
+      cartList: state => state.cartList,
+      }),
   },
 
   methods:{
+
+    ...cartStore.mapActions(["insertAddCart"]),
+
       MainPage_Detail(){
           console.log("check click");
           this.$router.push('/main-page/detail');
@@ -89,8 +107,35 @@ export default {
       },
 
       resize() {
-      console.log('resize')
-    }
+        console.log('resize')
+      },
+
+      AddCart(){
+        
+        if(this.client.list.loginStatus === "Yes"){
+          this.$bvModal.msgBoxOk(" 로그인이 필요합니다.! 로그인 페이지로 이동합니다.", {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+          })
+          .then(value => {
+          this.okbutton = value
+          if(this.okbutton === true){
+            this.$router.push('/login')      
+          }
+        })
+        }else {
+          //로그인 했을 경우에는 장바구니에 들어간다.
+          const args = {
+            params: this.advertisingListDetail,
+            };
+            this.insertAddCart(args)
+        }
+      }
+
       
   },
 
@@ -107,43 +152,17 @@ export default {
 .text{
   text-align: left;
 }
-.backcolor {
-    height: 100%;
-    background: rgb(158, 160, 161);
+// .backcolor {
+    // height: 100%;
+    // background: rgb(158, 160, 161);
     // background: radial-gradient(circle, rgba(0,142,255,1) 0%, rgba(9,75,121,1) 63%, rgba(0,212,255,1) 100%);
     // background: rgb(0,142,255);
     // background: linear-gradient(180deg, rgba(0,142,255,1) 0%, rgba(9,75,121,1) 20%, rgba(0,215,255,1) 100%);
-}
+// }
 
 .embed{
   width: 600px;
   height: 336px
 }
 
-// .components-container {
-//     position: relative;
-//     height: 100vh;
-//   }
-
-//   .left-container {
-//     background-color: #F38181;
-//     height: 100%;
-//   }
-
-//   .right-container {
-//     background-color: #FCE38A;
-//     height: 200px;
-//   }
-
-//   .top-container {
-//     background-color: #FCE38A;
-//     width: 100%;
-//     height: 100%;
-//   }
-
-//   .bottom-container {
-//     width: 100%;
-//     background-color: #2b5bb4;
-//     height: 100%;
-//   }
 </style>

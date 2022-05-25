@@ -8,6 +8,7 @@ import client from "./modules/client";
 import common from "./modules/common";
 import tableList from "./modules/tableList";
 import advertisingList from "./modules/advertising";
+import cart from "./modules/cart";
 
 // v-model을 사용함. 배포시 strict 모드 사용하지 말 것
 export default new Vuex.Store({
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     client,
     common,
     tableList,
-    advertisingList
+    advertisingList,
+    cart
   },
 });
