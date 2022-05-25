@@ -1,7 +1,7 @@
 <template>
-    <div v-if="this.common.loginPage !== 'Y'">
+    <div>
         <b-row>
-            <b-col cols="3" class="mt-5" v-if="this.common.loginPage !== 'Y'">
+            <b-col cols="3" class="mt-5">
                 <Sidebar></Sidebar>
             </b-col>
             <b-col cols="9">

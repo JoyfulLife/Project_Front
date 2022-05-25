@@ -14,22 +14,20 @@
             class="embed"
             type="iframe"
             aspect="16by9"
-            src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+            
             allowfullscreen
         ></b-embed>
         </b-card>
+        <!-- src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" -->
       </b-col>
 
       <b-col cols="5">
         <b-card :title="advertisingListDetail.list.brand_name" sub-title="category ?">
-          <b-card-text>
-            Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-            content.Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-            content.    
-
+          <b-card-text class="text">
+            {{advertisingListDetail.list.remarks}}
           </b-card-text>
 
-          <b-card-text>A second paragraph of text in the card.</b-card-text>
+          <b-card-text class="text">A second paragraph of text in the card.</b-card-text>
 
           <a href="#" class="card-link">Card link</a>
           <b-link href="#" class="card-link">Another link</b-link>
@@ -41,13 +39,13 @@
     </b-row>
 
     <b-button variant="primary" href="https://nbl.com.au/">사이트 바로 이동</b-button>
-    <b-button variant="secondary">Secondary</b-button>
-    <b-button variant="success">Success</b-button>
+    <b-button variant="secondary" class="margin">Add Cart</b-button>
+    <!-- <b-button variant="success">Success</b-button>
     <b-button variant="danger">Danger</b-button>
     <b-button variant="warning">Warning</b-button>
     <b-button variant="info">Info</b-button>
     <b-button variant="light">Light</b-button>
-    <b-button variant="dark">Dark</b-button>
+    <b-button variant="dark">Dark</b-button> -->
 
   </b-container>
 </template>
@@ -103,6 +101,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.margin{
+  margin-left: 2%;
+}
+.text{
+  text-align: left;
+}
 .backcolor {
     height: 100%;
     background: rgb(158, 160, 161);

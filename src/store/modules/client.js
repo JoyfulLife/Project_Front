@@ -7,7 +7,8 @@ const defaultState = {
         user_ID: "",
         passWord:"",
         name:"",
-        aaa:""
+        list:[],
+        loginStatus:""
     },
     signUp:{
         user_ID: "",
@@ -41,7 +42,8 @@ const actions = {
 const mutations = {
     setValidClientCheckState: function (state ,payload) {
         console.log(payload)
-        state.client.name = payload.data.name;
+        state.client.list = payload.data;
+        // state.client.name = payload.data.name;
     },
     setsaveClientState: function (state ,payload) {
         console.log(payload)

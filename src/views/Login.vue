@@ -42,7 +42,7 @@
                 </b-input-group>
               </b-col>
             </b-row>
-            <b-button @click="backEnd">Login</b-button>
+            <b-button @click="LoginButton">Login</b-button>
           </b-card>
         </b-tab>
 
@@ -211,14 +211,43 @@ export default {
   },
 methods:{
   ...clientStore.mapActions(["ValidClientCheck","saveClient"]),
-  backEnd(){
+  LoginButton(){
     const args = {
       params: this.client,
   };
-    this.ValidClientCheck(args)
-    // .then(this.$router.push('myPage'));
+  console.log("11111111111111111")
+    this.ValidClientCheck(args).then(this.LoginStatus())
 
   },
+
+  //로그인 상태에 따라 박스 텍스트 변경, 라우터 푸쉬 결정!
+
+  // TODO ############################################################################################################
+  // 조건문에서 결과같은 받아오기 전에 값을 비교해서 에러발생함.! => 값을 완전히 받아온다음에 함수 실행하도록 한다.!
+  LoginStatus() {
+    console.log(" 22222222222 "+this.client.list.loginStatus)
+    if(this.client.list.loginStatus === "Yes"){
+        this.$bvModal.msgBoxOk(" 로그인 성공 ! ", {
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'warning',
+        headerClass: 'p-2 border-bottom-0',
+        footerClass: 'p-2 border-top-0',
+        centered: true
+      })
+      .then(this.$router.push('myPage'));
+    }else{
+        this.$bvModal.msgBoxOk(" 로그인 실패! 다시 입력해주세요 ", {
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'warning',
+        headerClass: 'p-2 border-bottom-0',
+        footerClass: 'p-2 border-top-0',
+        centered: true
+      })
+    }
+  },
+
   SignUp(){
     console.log("test");
     
