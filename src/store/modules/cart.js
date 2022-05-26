@@ -41,17 +41,17 @@ const mutations = {
 
 const apis = {
 
-    retrieveCart:function (context) {
+    retrieveCart:function (context, parameters) {
         
-        return axios.get(
-            "/cartList",
+        return axios.post(
+            "/cart/cartList", parameters.params,
         ).then(response => context.commit("setretrieveCartState", response))
     },
     
     insertAddCart:function (context, parameters) {
         
         return axios.post(
-            "/cart",  parameters.params,
+            "/cart/insertCart",  parameters.params,
         ).then(response => context.commit("setInsertAddCartState", response))
     },
 }

@@ -19,21 +19,25 @@
               {{ data.index + 1 }}
             </template>
 
-            <template #head(show_details)>
-              <b-form-checkbox
-                  
-                  
-              >
+            <template #head(check_box)>
+              <b-form-checkbox>
+
               </b-form-checkbox>
             </template>
 
-            <template #cell(show_details)="{ item }">
+            <template #cell(check_box)="{ item }">
               <b-form-checkbox
                   v-model="item.selected"
               >
               </b-form-checkbox>
             </template>
         </b-table>
+
+        <b-row>
+          <b-col cols="4" class="total">
+            Total : 
+          </b-col>
+        </b-row>
       </b-container>
   </div>
     
@@ -44,17 +48,14 @@ import { createNamespacedHelpers } from "vuex";
 
 const cartStore = createNamespacedHelpers("cart");
 const advertisingListStore = createNamespacedHelpers("advertisingList");
+const clientStore = createNamespacedHelpers("client");
 
 export default {
   name: "MyCart",
   data() {
       return {
         
-        items: [
-          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-          { age: 89, first_name: 'Geneva', last_name: 'Wilson' }
-        ]
+        
       }
   },
 
@@ -66,11 +67,14 @@ export default {
       ...advertisingListStore.mapState({
         advertisingListDetail: state => state.advertisingListDetail,
       }),
+      ...clientStore.mapState({
+      client: state => state.client,
+      }),
 
       fields: function() {
       return [
         {
-          key: "show_details",
+          key: "check_box",
           label: "",
           thClass: "w-checkbox"
         },
@@ -118,11 +122,18 @@ export default {
   },
 
   created() {
-      this.retrieveCart();
+
+    const args = {
+      params: this.client,
+    };
+    this.retrieveCart(args);
+    
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
+.total {
+  text-align: left;
+}
 </style>
