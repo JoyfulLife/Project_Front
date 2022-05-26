@@ -20,7 +20,7 @@
         </b-nav-item-dropdown>
         <b-nav-item @click="movePage('/adminSideBar')">sidebar</b-nav-item>
 
-        <b-nav-item @click="movePage('/table')">Table</b-nav-item>
+        <b-nav-item @click="movePage('/mycart')">MyCart</b-nav-item>
 
         <b-nav-item @click="movePage('/myPage')">MyPage</b-nav-item>
 
@@ -49,8 +49,8 @@ export default {
         this.$router.push('/')
         }else if(path === '/adminSideBar'){
             this.$router.push('/adminSideBar')
-          }else if(path === '/table'){
-            this.$router.push('/table')
+          }else if(path === '/mycart'){
+            this.$router.push('/mycart')
             }else if(path === '/login'){
             this.$router.push('/login')
               }else if(path === '/myPage'){

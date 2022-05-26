@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/Login'
 import GridSystem from '@/views/GridSystem'
 import MainPage from '@/views/MainPage'
-import Table from '@/views/Table'
+import MyCart from '@/views/MyCart'
 import MyPage from '@/views/MyPage'
 import AdminSideBar from '@/components/layout/AdminSideBar'
 import MainPageDetail from '@/views/MainPageDetail'
@@ -27,9 +27,9 @@ const routes = [
         component : MainPage
     },
     {
-        path: '/table',
-        name: 'Table',
-        component : Table
+        path: '/myCart',
+        name: 'MyCart',
+        component : MyCart
     },
     {
         path: '/myPage',

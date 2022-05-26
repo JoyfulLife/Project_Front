@@ -5,7 +5,7 @@
               :fields="fields"
               responsive="sm"
               thead-tr-class="rowClass"
-              :items="tableList.list"
+              :items="cartList.list"
               @row-clicked="(row, index) => onRowClick(row, index)"
               show-empty
               bordered
@@ -41,10 +41,12 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const tableListStore = createNamespacedHelpers("tableList");
+
+const cartStore = createNamespacedHelpers("cart");
+const advertisingListStore = createNamespacedHelpers("advertisingList");
 
 export default {
-  name: "Table",
+  name: "MyCart",
   data() {
       return {
         
@@ -58,8 +60,11 @@ export default {
 
   computed: {
 
-      ...tableListStore.mapState({
-        tableList: state => state.tableList,
+      ...cartStore.mapState({
+        cartList: state => state.cartList,
+      }),
+      ...advertisingListStore.mapState({
+        advertisingListDetail: state => state.advertisingListDetail,
       }),
 
       fields: function() {
@@ -76,50 +81,44 @@ export default {
           tdClass: "text-left"
         },
         {
-          key: "name",
-          label: "name",
+          key: "category",
+          label: "category",
           thClass: "w-no"
         },
         {
-          key: "age",
-          label: "age",
+          key: "brand_name",
+          label: "brand_name",
           thClass: "w-10"
         },
         {
-          key: "contact_of_group_family_name",
-          label: "55555",
-          thClass: "w-15 text-left",
-          tdClass: "text-left"
+          key: "url",
+          label: "url",
+          thClass: "width: 10% !important"
+          
         },
-        {
-          key: "contact_of_group_given_name",
-          label: "66666",
-          thClass: "w-15 text-left",
-          tdClass: "text-left"
-        },
-        {
-          key: "mobile_no",
-          label: "77777",
-          thClass: "w-15 text-left",
-          tdClass: "text-left"
-        },
-        {
-          key: "e_mail",
-          label: "88888",
-          thClass: "w-20 text-left",
-          tdClass: "text-left"
-        },
+
       ];
     },
     
   },
 
   methods:{
-      ...tableListStore.mapActions(["retrieveClient"])
+      ...cartStore.mapActions(["retrieveCart"]),
+
+
+      onRowClick(row, index){
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        console.log(row);
+        console.log(index);
+
+        this.advertisingListDetail.list = this.cartList.list[index]
+        
+        this.$router.push('/main-page/detail');
+      }
   },
 
   created() {
-      this.retrieveClient();
+      this.retrieveCart();
   }
 };
 </script>

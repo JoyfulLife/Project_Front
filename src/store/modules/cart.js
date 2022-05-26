@@ -13,14 +13,26 @@ const getters = {
 
 };
 const actions = {
+
+    retrieveCart: function (context, payload) {
+        
+        return apis.retrieveCart(context, payload);
+    },
+
     insertAddCart: function (context, payload) {
-        console.log("car action!!!!!!! 확인!");
+        
         return apis.insertAddCart(context, payload);
     },
     
 };
 
 const mutations = {
+
+    setretrieveCartState: function (state ,payload) {
+        
+        state.cartList.list = payload.data;
+    },
+
     setInsertAddCartState: function (state ,payload) {
         
         state.cartList.list = payload.data;
@@ -28,9 +40,16 @@ const mutations = {
 };
 
 const apis = {
+
+    retrieveCart:function (context) {
+        
+        return axios.get(
+            "/cartList",
+        ).then(response => context.commit("setretrieveCartState", response))
+    },
+    
     insertAddCart:function (context, parameters) {
-        console.log("car apis 확인!");
-        console.log(parameters.params);
+        
         return axios.post(
             "/cart",  parameters.params,
         ).then(response => context.commit("setInsertAddCartState", response))

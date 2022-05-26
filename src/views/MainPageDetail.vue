@@ -38,7 +38,7 @@
 
     </b-row>
 
-    <b-button variant="primary" href="https://nbl.com.au/">사이트 바로 이동</b-button>
+    <b-button variant="primary" :href="this.advertisingListDetail.list.url">사이트 바로 이동</b-button>
     <b-button variant="secondary" class="margin" @click="AddCart">Add Cart</b-button>
     <!-- <b-button variant="success">Success</b-button>
     <b-button variant="danger">Danger</b-button>
@@ -66,7 +66,7 @@ export default {
   data: function() {
       return {
         okbutton: '',
-        
+        questionAddCart: '',
       }
 
     },
@@ -112,7 +112,7 @@ export default {
 
       AddCart(){
         
-        if(this.client.list.loginStatus === "Yes"){
+        if(this.client.list.loginStatus !== "Yes"){
           this.$bvModal.msgBoxOk(" 로그인이 필요합니다.! 로그인 페이지로 이동합니다.", {
           size: 'sm',
           buttonSize: 'sm',
@@ -129,10 +129,30 @@ export default {
         })
         }else {
           //로그인 했을 경우에는 장바구니에 들어간다.
-          const args = {
-            params: this.advertisingListDetail,
-            };
-            this.insertAddCart(args)
+          this.$bvModal.msgBoxConfirm(' 카트에 담겠습니까??? ', {
+            // title: 'Please Confirm',
+            size: 'sm',
+            buttonSize: 'sm',
+            okVariant: 'primary',
+            okTitle: 'YES',
+            cancelTitle: 'NO',
+            footerClass: 'p-2',
+            hideHeaderClose: false,
+            centered: true
+          })
+            .then(value => {
+              this.questionAddCart = value
+
+              // ok 버튼을 눌러야 가입을 할 수 있음.
+              if(this.questionAddCart === true){
+                const args = {
+                  params: this.advertisingListDetail.list,
+                  };
+                this.insertAddCart(args)    
+              }
+
+            })
+
         }
       }
 
