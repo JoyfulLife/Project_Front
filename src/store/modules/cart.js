@@ -3,7 +3,13 @@ import axios from "axios";
 
 const defaultState = {
     cartList: {
-        list: []
+        list: [],
+        page: 0,
+        limit: 10,
+        user_ID: "",
+        limit_st: 0,
+        limit_fin: 0,
+
     }
 }
 
@@ -29,7 +35,7 @@ const actions = {
 const mutations = {
 
     setretrieveCartState: function (state ,payload) {
-        
+        console.log(payload)
         state.cartList.list = payload.data;
     },
 

@@ -10,6 +10,7 @@
               show-empty
               bordered
               hover
+              striped
           >
             <template #empty>
               <h6>데이터가 없습니다.</h6>
@@ -34,9 +35,37 @@
         </b-table>
 
         <b-row>
+
           <b-col cols="4" class="total">
-            Total : 
+            Total : {{this.cartList.list.length}}
           </b-col>
+
+          <b-col cols="4">
+            <b-pagination
+                v-model="cartList.page"
+                :per-page="cartList.limit"
+                first-class="first"
+                last-class="last"
+                next-class="next"
+                prev-class="prev"
+                :total-rows="29"
+                align="center"
+                @change="onPageChange"
+                
+              />
+          </b-col>
+          
+          <b-col cols="4">
+            <b-form-select
+                id="page"
+                v-model="cartList.limit"
+                :options="paginationOptions"
+                class="mb-3"
+                size="sm"
+                @change="onPageChange(1)"
+              ></b-form-select>
+          </b-col>
+
         </b-row>
       </b-container>
   </div>
@@ -54,8 +83,12 @@ export default {
   name: "MyCart",
   data() {
       return {
-        
-        
+        paginationOptions: [
+          { value: 10, text: '10/Page' },
+          { value: 20, text: '20/Page' },
+          { value: 50, text: '50/Page' },
+          { value: 100, text: '100/Page' },
+      ],
       }
   },
 
@@ -111,20 +144,39 @@ export default {
 
 
       onRowClick(row, index){
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        console.log(row);
-        console.log(index);
 
         this.advertisingListDetail.list = this.cartList.list[index]
         
         this.$router.push('/main-page/detail');
+      },
+
+      onPageChange(page) {
+      this.onSearch(page);
+    },
+
+    onSearch(page) {
+      if (!page) {
+        page = 1;
+        this.cartList.limit = 10;
       }
+
+      this.cartList.page = page;
+
+      this.cartList.limit_st = (this.cartList.page-1) * this.cartList.limit
+
+      console.log(this.cartList.limit_st);
+      const args = {
+      params: this.cartList,
+      };
+      this.retrieveCart(args);
+    },
+    
   },
 
   created() {
 
     const args = {
-      params: this.client,
+      params: this.cartList,
     };
     this.retrieveCart(args);
     
