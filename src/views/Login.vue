@@ -215,8 +215,8 @@ methods:{
     const args = {
       params: this.client,
   };
-  console.log("11111111111111111")
-    this.ValidClientCheck(args).then(this.LoginStatus())
+  
+    this.ValidClientCheck(args).then(this.LoginStatus)
 
   },
 
@@ -294,26 +294,27 @@ methods:{
         footerClass: 'p-2 border-top-0',
         centered: true
       })
-    }else {
-      this.$bvModal.msgBoxOk(this.signUp.successMessage, {
-        size: 'sm',
-        buttonSize: 'sm',
-        okVariant: 'primary',
-        okTitle: 'YES',
-        cancelTitle: 'NO',
-        footerClass: 'p-2',
-        hideHeaderClose: false,
-        centered: true
-      }).then(value => {
-          this.successSignUp = value
-          if(this.successSignUp === true){
-            this.$router.push('myPage')      
-          }
-        })
-        .catch(err => {
-          this.boxTwo = err
-        })
-      }
+    }
+    // else {
+    //   this.$bvModal.msgBoxOk(this.signUp.successMessage, {
+    //     size: 'sm',
+    //     buttonSize: 'sm',
+    //     okVariant: 'primary',
+    //     okTitle: 'YES',
+    //     cancelTitle: 'NO',
+    //     footerClass: 'p-2',
+    //     hideHeaderClose: false,
+    //     centered: true
+    //   }).then(value => {
+    //       this.successSignUp = value
+    //       if(this.successSignUp === true){
+    //         this.$router.push('myPage')      
+    //       }
+    //     })
+    //     .catch(err => {
+    //       this.boxTwo = err
+    //     })
+    //   }
 
 
     },

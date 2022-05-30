@@ -48,7 +48,7 @@
                 last-class="last"
                 next-class="next"
                 prev-class="prev"
-                :total-rows="29"
+                :total-rows="32"
                 align="center"
                 @change="onPageChange"
                 
