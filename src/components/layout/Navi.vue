@@ -24,7 +24,9 @@
 
         <b-nav-item @click="movePage('/myPage')">MyPage</b-nav-item>
 
-        <b-nav-item @click="movePage('/login')">Login</b-nav-item>
+        <b-nav-item v-if="this.client.list.loginStatus === 'Yes' " @click="init()">LogOut</b-nav-item>
+
+        <b-nav-item v-else @click="movePage('/login')">Login</b-nav-item>
       </b-navbar-nav>
       </b-container>
     </b-navbar>
@@ -32,17 +34,27 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const clientStore = createNamespacedHelpers("client");
 
 export default {
   name: "navi",
-  computed: {
+  data: function() {
+    return {
+      logout: '',
+    }
 
+  },
+  computed: {
+      ...clientStore.mapState({
+      client: state => state.client,
+    }),
   },
   created() {
     
   },
   methods: {
-
+    ...clientStore.mapActions(["initializeClient"]),
     // 페이지 이동
     movePage(path){
       if(path === '/'){
@@ -57,6 +69,33 @@ export default {
             this.$router.push('/myPage')
                 }
     },
+
+    init(){
+
+      this.$bvModal.msgBoxConfirm(' 로그아웃 하시겠습니까? ', {
+        // title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'primary',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+        .then(value => {
+          this.logout = value
+
+          // ok 버튼을 눌러야 가입을 할 수 있음.
+          if(this.logout === true){
+            this.initializeClient().then(this.$router.push('/'));
+          }
+
+        })
+        .catch(err => {
+          this.boxTwo = err
+        })
+    }
 
 
   },

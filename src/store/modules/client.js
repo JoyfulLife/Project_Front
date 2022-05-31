@@ -36,6 +36,9 @@ const actions = {
         console.log("saveClient");
         return apis.saveClient(context, payload);
     },
+    initializeClient: function (context) {
+        context.commit("initializeClientState");
+    }
     
 };
 
@@ -50,6 +53,10 @@ const mutations = {
         console.log("setsaveClientState");
         state.signUp.failMessage = payload.data.failMessage;
         state.signUp.successMessage = payload.data.successMessage;
+    },
+    initializeClientState: function (state) {
+        const newInstance = cloneDeep(defaultState.client);
+        state.client = newInstance;
     },
 
 };

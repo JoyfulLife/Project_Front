@@ -199,6 +199,7 @@ export default {
       name: '',
       successAction: '',
       successSignUp: '',
+      successLogin: '',
       gender: null,
       options: [
         { value: "", text: '성별을 선택해 주세요' },
@@ -222,22 +223,33 @@ methods:{
 
   //로그인 상태에 따라 박스 텍스트 변경, 라우터 푸쉬 결정!
 
-  // TODO ############################################################################################################
-  // 조건문에서 결과같은 받아오기 전에 값을 비교해서 에러발생함.! => 값을 완전히 받아온다음에 함수 실행하도록 한다.!
   LoginStatus() {
-    console.log(" 22222222222 "+this.client.list.loginStatus)
+    
     if(this.client.list.loginStatus === "Yes"){
-        this.$bvModal.msgBoxOk(" 로그인 성공 ! ", {
+        this.$bvModal.msgBoxOk(" 로그인 성공 ! MyPage로 이동합니다.", {
         size: 'sm',
         buttonSize: 'sm',
-        okVariant: 'warning',
-        headerClass: 'p-2 border-bottom-0',
-        footerClass: 'p-2 border-top-0',
+        okVariant: 'primary',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
         centered: true
       })
-      .then(this.$router.push('myPage'));
+      .then(value => {
+          this.successLogin = value
+
+          // ok 버튼을 눌러야 가입을 할 수 있음.
+          if(this.successLogin === true){
+            this.$router.push('myPage')
+          }
+        })
+        .catch(err => {
+          this.boxTwo = err
+        })
+      
     }else{
-        this.$bvModal.msgBoxOk(" 로그인 실패! 다시 입력해주세요 ", {
+        this.$bvModal.msgBoxOk(this.client.list.failMessage, {
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'warning',
@@ -285,36 +297,36 @@ methods:{
   //  DB 에 중복된 user_ID 있을 경우 에러 메시지, 정상 회원가입 되면 가입 축하 메시지
   depuplicteCheck(){
 
-    if(this.signUp.failMessage != ""){
-      this.$bvModal.msgBoxOk(this.signUp.failMessage, {
+    if(this.signUp.successMessage != ""){
+      this.$bvModal.msgBoxOk(this.signUp.successMessage, {
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'warning',
         headerClass: 'p-2 border-bottom-0',
         footerClass: 'p-2 border-top-0',
         centered: true
-      })
+      }).then(value => {
+          this.successSignUp = value
+          if(this.successSignUp === true){
+            this.$router.push('myPage')      
+          }
+        })
+        .catch(err => {
+          this.boxTwo = err
+        })
     }
-    // else {
-    //   this.$bvModal.msgBoxOk(this.signUp.successMessage, {
-    //     size: 'sm',
-    //     buttonSize: 'sm',
-    //     okVariant: 'primary',
-    //     okTitle: 'YES',
-    //     cancelTitle: 'NO',
-    //     footerClass: 'p-2',
-    //     hideHeaderClose: false,
-    //     centered: true
-    //   }).then(value => {
-    //       this.successSignUp = value
-    //       if(this.successSignUp === true){
-    //         this.$router.push('myPage')      
-    //       }
-    //     })
-    //     .catch(err => {
-    //       this.boxTwo = err
-    //     })
-    //   }
+    else {
+      this.$bvModal.msgBoxOk(this.signUp.failMessage, {
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'warning',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+      }
 
 
     },
@@ -354,6 +366,8 @@ methods:{
   created() {
     //로그인 페이지에 들어오면 sidebar , home 본문 보이지 않도록 하기 위함.
     this.common.loginPage = 'Y'
+    this.signUp.successMessage = ""
+    this.signUp.failMessage = ""
   },
 
 }
