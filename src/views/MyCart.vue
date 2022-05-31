@@ -1,7 +1,65 @@
 <template>
   <div>
       <b-container class="mt-5">
+        <b-button v-b-toggle.collapse-3 class="m-1" variant="outline-dark">
+          Search Condtion
+        </b-button>
+        <b-collapse visible id="collapse-3" class="text mt-3">
+
+          <b-row>
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  category
+                </template>
+                <b-form-input
+                  v-model="cartList.category"
+                  maxlength="30"
+                />
+              </b-form-group>
+            </b-col>
+
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  brand_name
+                </template>
+                <b-form-input
+                  v-model="cartList.brand_name"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row>
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  url
+                </template>
+                <b-form-input
+                  v-model="cartList.url"
+                  maxlength="30"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row class="mt-4">
+            <b-col cols="12" class="align">
+              <b-button @click="onSearch()" class="color">
+                Search
+              </b-button>
+              <b-button @click="init()" class="margin color">
+                initialize
+              </b-button>
+            </b-col>
+          </b-row>
+
+        </b-collapse>
+
         <b-table
+              class="mt-5"
               :fields="fields"
               responsive="sm"
               thead-tr-class="rowClass"
@@ -50,7 +108,7 @@
                 prev-class="prev"
                 :total-rows="32"
                 align="center"
-                @change="onPageChange"
+                @change="onPageChange()"
                 
               />
           </b-col>
@@ -140,7 +198,7 @@ export default {
   },
 
   methods:{
-      ...cartStore.mapActions(["retrieveCart"]),
+      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch"]),
 
 
       onRowClick(row, index){
@@ -170,6 +228,10 @@ export default {
       };
       this.retrieveCart(args);
     },
+
+    init() {
+      this.initializeCartListSearch();
+    }
     
   },
 
@@ -185,7 +247,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.text {
+  text-align: left;
+}
 .total {
   text-align: left;
+}
+.align {
+  text-align: center;
+}
+.margin {
+  margin-left: 2%;
+}
+.color {
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(39,1,135,1) 22%, rgba(1,76,115,1) 32%, rgba(1,104,144,1) 42%, rgba(1,123,164,1) 51%, rgba(1,141,183,1) 58%, rgba(1,156,198,1) 67%, rgba(1,173,215,1) 77%, rgba(231,58,1,1) 86%, rgba(0,212,255,1) 100%);
 }
 </style>

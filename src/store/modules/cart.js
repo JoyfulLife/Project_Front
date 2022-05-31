@@ -4,12 +4,14 @@ import axios from "axios";
 const defaultState = {
     cartList: {
         list: [],
-        page: 0,
+        page: 1,
         limit: 10,
         user_ID: "",
         limit_st: 0,
         limit_fin: 0,
-
+        category: "",
+        brand_name: "",
+        url: ""
     }
 }
 
@@ -30,6 +32,9 @@ const actions = {
         return apis.insertAddCart(context, payload);
     },
     
+    initializeCartListSearch: function (context) {
+        context.commit("initializeCartListSearchState");
+    }
 };
 
 const mutations = {
@@ -42,6 +47,15 @@ const mutations = {
     setInsertAddCartState: function (state ,payload) {
         
         state.cartList.list = payload.data;
+    },
+
+    initializeCartListSearchState: function (state) {
+        //list: [] 때문에 초기화 진행 x
+        // const newInstance = cloneDeep(defaultState.cartList);
+        // state.cartList = newInstance;
+        state.cartList.category = "",
+        state.cartList.brand_name = "",
+        state.cartList.url = ""
     },
 };
 
