@@ -106,9 +106,9 @@
                 last-class="last"
                 next-class="next"
                 prev-class="prev"
-                :total-rows="32"
+                :total-rows="33"
                 align="center"
-                @change="onPageChange()"
+                @change="onPageChange(cartList.page)"
                 
               />
           </b-col>
@@ -219,10 +219,11 @@ export default {
       }
 
       this.cartList.page = page;
+      console.log("this.cartList.page : " + this.cartList.page);
 
       this.cartList.limit_st = (this.cartList.page-1) * this.cartList.limit
 
-      console.log(this.cartList.limit_st);
+      console.log("this.cartList.limit_st : " + this.cartList.limit_st);
       const args = {
       params: this.cartList,
       };
@@ -230,7 +231,7 @@ export default {
     },
 
     init() {
-      this.initializeCartListSearch();
+      // this.initializeCartListSearch();
     }
     
   },
