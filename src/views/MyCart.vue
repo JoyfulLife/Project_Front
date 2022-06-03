@@ -71,7 +71,7 @@
               striped
           >
             <template #empty>
-              <h6>데이터가 없습니다.</h6>
+              <h6> 데이터가 없습니다. </h6>
             </template>
 
             <template #cell(index)="data">
@@ -79,8 +79,10 @@
             </template>
 
             <template #head(check_box)>
-              <b-form-checkbox>
-
+              <b-form-checkbox
+                @change="allSelect"
+                v-model="cartList.allCheckBox"
+              >
               </b-form-checkbox>
             </template>
 
@@ -95,7 +97,7 @@
         <b-row>
 
           <b-col cols="4" class="total">
-            Total : {{this.cartList.list.length}}
+            Total : {{this.cartList.allCount}}
           </b-col>
 
           <b-col cols="4">
@@ -106,9 +108,9 @@
                 last-class="last"
                 next-class="next"
                 prev-class="prev"
-                :total-rows="33"
+                :total-rows="cartList.allCount"
                 align="center"
-                @change="onPageChange(cartList.page)"
+                @change="onPageChange"
                 
               />
           </b-col>
@@ -209,14 +211,15 @@ export default {
       },
 
       onPageChange(page) {
-      this.onSearch(page);
+        this.cartList.allCheckBox = false;
+        this.onSearch(page);
     },
 
     onSearch(page) {
-      if (!page) {
-        page = 1;
-        this.cartList.limit = 10;
-      }
+      // if (!page) {
+      //   page = 1;
+      //   this.cartList.limit = 10;
+      // }
 
       this.cartList.page = page;
       console.log("this.cartList.page : " + this.cartList.page);
@@ -231,8 +234,14 @@ export default {
     },
 
     init() {
-      // this.initializeCartListSearch();
-    }
+      this.initializeCartListSearch();
+    },
+
+    allSelect(checked) {
+      this.cartList.list.forEach(item => {
+        item.selected = (checked === true);
+      })
+    },
     
   },
 

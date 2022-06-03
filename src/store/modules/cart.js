@@ -11,7 +11,9 @@ const defaultState = {
         limit_fin: 0,
         category: "",
         brand_name: "",
-        url: ""
+        url: "",
+        allCheckBox: false,
+        allCount: 0
     }
 }
 
@@ -40,8 +42,11 @@ const actions = {
 const mutations = {
 
     setretrieveCartState: function (state ,payload) {
-        console.log(payload)
-        state.cartList.list = payload.data;
+        console.log(payload);
+        
+        payload.data.res.forEach(cartItem => cartItem.selected = false);
+        state.cartList.list = payload.data.res;
+        state.cartList.allCount = payload.data.cartCount;
     },
 
     setInsertAddCartState: function (state ,payload) {
