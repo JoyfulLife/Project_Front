@@ -14,6 +14,10 @@ const defaultState = {
         url: "",
         allCheckBox: false,
         allCount: 0
+    },
+
+    deleteCartList: {
+        list: []
     }
 }
 
@@ -36,13 +40,17 @@ const actions = {
     
     initializeCartListSearch: function (context) {
         context.commit("initializeCartListSearchState");
-    }
+    },
+
+    sendDeleteCartList: function (context, payload) {
+        console.log("DELETE Actions");
+        return apis.sendDeleteCartList(context, payload);
+    },
 };
 
 const mutations = {
 
     setretrieveCartState: function (state ,payload) {
-        console.log(payload);
         
         payload.data.res.forEach(cartItem => cartItem.selected = false);
         state.cartList.list = payload.data.res;
@@ -62,6 +70,15 @@ const mutations = {
         state.cartList.brand_name = "",
         state.cartList.url = ""
     },
+
+    setSendDeleteCartListState: function () {
+        console.log("DELETE mutations");
+        const newInstance = cloneDeep(defaultState.deleteCartList);
+        state.deleteCartList = newInstance;
+        // payload.data.res.forEach(cartItem => cartItem.selected = false);
+        // state.cartList.list = payload.data.res;
+        // state.cartList.allCount = payload.data.cartCount;
+    },
 };
 
 const apis = {
@@ -78,6 +95,13 @@ const apis = {
         return axios.post(
             "/cart/insertCart",  parameters.params,
         ).then(response => context.commit("setInsertAddCartState", response))
+    },
+
+    sendDeleteCartList:function (context, parameters) {
+        // console.log("DELETE apis");
+        return axios.post(
+            "/cart/deleteCartList", parameters.params,
+        ).then(response => context.commit("setSendDeleteCartListState", response))
     },
 }
 

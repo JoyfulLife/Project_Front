@@ -127,6 +127,15 @@
           </b-col>
 
         </b-row>
+
+        <b-row class="mt-4">
+            <b-col cols="12" class="align">
+              <b-button @click="onDelete()" class="color">
+                Delete
+              </b-button>
+            </b-col>
+          </b-row>
+        
       </b-container>
   </div>
     
@@ -156,6 +165,7 @@ export default {
 
       ...cartStore.mapState({
         cartList: state => state.cartList,
+        deleteCartList: state => state.deleteCartList,
       }),
       ...advertisingListStore.mapState({
         advertisingListDetail: state => state.advertisingListDetail,
@@ -200,7 +210,7 @@ export default {
   },
 
   methods:{
-      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch"]),
+      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch","sendDeleteCartList"]),
 
 
       onRowClick(row, index){
@@ -227,10 +237,8 @@ export default {
       this.cartList.limit_st = (this.cartList.page-1) * this.cartList.limit
 
       console.log("this.cartList.limit_st : " + this.cartList.limit_st);
-      const args = {
-      params: this.cartList,
-      };
-      this.retrieveCart(args);
+      
+      this.searchCartList();
     },
 
     init() {
@@ -242,16 +250,47 @@ export default {
         item.selected = (checked === true);
       })
     },
+
+    onDelete() {
+
+      this.deleteCartList.list = this.cartList.list.filter(item => {
+        return (item.selected === true);
+      })
+
+      if(this.deleteCartList.list.length === 0){
+          console.log("AAAAAAAAAA");
+          this.$bvModal.msgBoxOk("삭제할 data를 클릭해주세요", {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+      }else {
+        const args = {
+        // params: this.deleteCartList.list.map(item => item.ad_no),
+        params: this.deleteCartList.list
+        };
+        
+        this.sendDeleteCartList(args).then(this.searchCartList);
+      }
+      
+
+    },
+
+    searchCartList() {
+      
+      const args = {
+      params: this.cartList,
+    };
+    this.retrieveCart(args);
+    },
     
   },
 
   created() {
-
-    const args = {
-      params: this.cartList,
-    };
-    this.retrieveCart(args);
-    
+    this.searchCartList();
   }
 };
 </script>
