@@ -13,7 +13,9 @@ const defaultState = {
         brand_name: "",
         url: "",
         allCheckBox: false,
-        allCount: 0
+        allCount: 0,
+        failMessage: "",
+        successMessage: "",
     },
 
     deleteCartList: {
@@ -43,7 +45,7 @@ const actions = {
     },
 
     sendDeleteCartList: function (context, payload) {
-        console.log("DELETE Actions");
+        
         return apis.sendDeleteCartList(context, payload);
     },
 };
@@ -71,13 +73,15 @@ const mutations = {
         state.cartList.url = ""
     },
 
-    setSendDeleteCartListState: function () {
-        console.log("DELETE mutations");
+    setSendDeleteCartListState: function (state ,payload) {
+        
         const newInstance = cloneDeep(defaultState.deleteCartList);
         state.deleteCartList = newInstance;
-        // payload.data.res.forEach(cartItem => cartItem.selected = false);
-        // state.cartList.list = payload.data.res;
-        // state.cartList.allCount = payload.data.cartCount;
+        
+        //실패시 메시지를 받아온다.
+        state.cartList.failMessage = payload.data.failMessage;
+        state.cartList.successMessage = payload.data.successMessage;
+        
     },
 };
 
@@ -98,7 +102,7 @@ const apis = {
     },
 
     sendDeleteCartList:function (context, parameters) {
-        // console.log("DELETE apis");
+        
         return axios.post(
             "/cart/deleteCartList", parameters.params,
         ).then(response => context.commit("setSendDeleteCartListState", response))

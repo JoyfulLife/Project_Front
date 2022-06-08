@@ -264,14 +264,14 @@ export default {
       })
 
       if(this.deleteCartList.list.length === 0){
-          console.log("AAAAAAAAAA");
-          this.$bvModal.msgBoxOk("삭제할 data를 클릭해주세요", {
+          
+          this.$bvModal.msgBoxOk(" 삭제할 data를 클릭해주세요 ", {
           size: 'sm',
           buttonSize: 'sm',
           okVariant: 'warning',
           headerClass: 'p-2 border-bottom-0',
           footerClass: 'p-2 border-top-0',
-          centered: true
+          centered: true,
         })
       }else {
         const args = {
@@ -279,7 +279,8 @@ export default {
         params: this.deleteCartList.list
         };
         
-        this.sendDeleteCartList(args).then(this.searchCartList);
+        this.sendDeleteCartList(args).then(this.checkError);
+        
       }
       
 
@@ -291,7 +292,33 @@ export default {
       params: this.cartList,
     };
     this.retrieveCart(args);
+
     },
+
+    checkError() {
+      
+      if(this.cartList.failMessage != null){
+          this.$bvModal.msgBoxOk(this.cartList.failMessage, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+        .then(this.searchCartList);
+      }else{
+          this.$bvModal.msgBoxOk(this.cartList.successMessage, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+        .then(this.searchCartList);
+      }
+    }
     
   },
 
@@ -315,7 +342,7 @@ export default {
   margin-left: 2%;
 }
 .color {
-background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(39,1,135,1) 22%, rgba(1,76,115,1) 32%, rgba(1,104,144,1) 42%, rgba(1,123,164,1) 51%, rgba(1,141,183,1) 58%, rgba(1,156,198,1) 67%, rgba(1,173,215,1) 77%, rgba(231,58,1,1) 86%, rgba(0,212,255,1) 100%);
+background: rgb(87,5,107);
+background: linear-gradient(90deg, rgba(87,5,107,1) 0%, rgba(162,0,255,1) 93%);
 }
 </style>
