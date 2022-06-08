@@ -74,8 +74,8 @@
               <h6> 데이터가 없습니다. </h6>
             </template>
 
-            <template #cell(index)="data">
-              {{ data.index + 1 }}
+            <template #cell(row_number)="data_01">
+              {{ ((cartList.page - 1) * cartList.limit) + data_01.index + 1 }}
             </template>
 
             <template #head(check_box)>
@@ -180,6 +180,12 @@ export default {
           key: "check_box",
           label: "",
           thClass: "w-checkbox"
+        },
+        {
+          key: "row_number",
+          label: "No.",
+          thClass: "w-15 text-left",
+          tdClass: "text-left"
         },
         {
           key: "ad_no",
