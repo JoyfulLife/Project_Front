@@ -15,7 +15,7 @@
       <p>여기는 우리의 일상을 더 좋게 만들고 싶은 멋진 동료입니다.</p>
       <p>다양한 생각을 자유롭게 나누며, 언제나 놀라운 결과를 만들어내죠.</p>
       <p>당신도 세상을 바꾸고 싶나요? 여기로 오세요!!</p>
-      <b-button pill variant="primary" @click="movePage('/main-page')">Button</b-button>
+      <b-button pill variant="primary" @click="movePage('/ad-request-page')">Button</b-button>
 
       <h1 class="mt-5"><strong>Join the We</strong></h1>
       <p>여기는 우리의 일상을 더 좋게 만들고 싶은 멋진 동료입니다.</p>
@@ -58,6 +58,8 @@ export default {
     movePage(path) {
       if(path === '/main-page'){
         this.$router.push('/main-page')
+      }else if(path === '/ad-request-page'){
+        this.$router.push('/ad-request-page')
       }
     }
   },

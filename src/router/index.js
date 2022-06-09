@@ -7,6 +7,7 @@ import MyCart from '@/views/MyCart'
 import MyPage from '@/views/MyPage'
 import AdminSideBar from '@/components/layout/AdminSideBar'
 import MainPageDetail from '@/views/MainPageDetail'
+import Ad_RequestPage from '@/views/Ad_RequestPage'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
         path: '/main-page/detail',
         name: 'MainPageDetail',
         component : MainPageDetail
+    },
+    {
+        path: '/ad-request-page',
+        name: 'Ad_RequestPage',
+        component : Ad_RequestPage
     },
 ]
 
