@@ -34,6 +34,17 @@
 
           
         </b-card>
+        <b-form-rating
+          class="mt-3"
+          stars="5"
+          icon-empty="heart"
+          icon-half="heart-half"
+          icon-full="heart-fill"
+          icon-clear="slash-circle"
+          show-clear
+          variant="danger"
+          v-model="advertisingListDetail.list.ad_no"
+        />
       </b-col>
 
     </b-row>

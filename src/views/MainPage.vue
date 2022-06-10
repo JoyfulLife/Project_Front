@@ -1,81 +1,72 @@
 <template>
     <div>
         <b-row>
-            <b-col cols="3" class="mt-5">
-                <Sidebar></Sidebar>
-            </b-col>
-            <b-col cols="9">
-              <b-row v-if="this.advertisingList.list.length != 0">
-                <b-col 
-                  class="mt-5 img scale"
-                  cols="4"
-                  v-for="(item ,index) in advertisingList.list"
-                  :key="index"
-                  >
+          <b-col cols="3" class="mt-5">
+              <Sidebar></Sidebar>
+          </b-col>
+          <b-col cols="9">
+            <b-row v-if="this.advertisingList.list.length != 0">
+              <b-col 
+                class="mt-5 img scale"
+                cols="4"
+                v-for="(item ,index) in advertisingList.list"
+                :key="index"
+               >
                   
-                  <b-card
-                    class="image"
-                    border-variant="primary"
-                    :header="advertisingList.list[index].brand_name"
-                    header-bg-variant="success"
-                    header-text-variant="white"
-                    align="center"
+                <b-card
+                  class="image"
+                  border-variant="primary"
+                  :header="advertisingList.list[index].brand_name"
+                  header-bg-variant="success"
+                  header-text-variant="white"
+                  align="center"
                     
-                    @click="MainPage_Detail(index)"
-                    :img-src="getImageUrl(advertisingList.list[index].image)"
-                    >
+                  @click="MainPage_Detail(index)"
+                  :img-src="getImageUrl(advertisingList.list[index].image)"
+                  >
                     <!-- :img-src="getImageUrl(advertisingList.list[index].image)" -->
-                    <b-card-text class="margin0">
-                      <p>Category : {{advertisingList.list[index].category}}</p>
-                      <p>{{advertisingList.list[index].ad_no}}</p>
-                      <p>{{advertisingList.list[index].url}}</p>
-                    </b-card-text>
+                  <b-card-text class="margin0">
+                    
+                    <b-form-rating 
+                      v-model="value"
+                      readonly
+                      show-value
+                      precision="1"
+                      no-border
+                      color="#ff8800"
+                      />
+                    
+                    <p>Category : {{advertisingList.list[index].category}}</p>
+                    <p>{{advertisingList.list[index].ad_no}}</p>
+                    <p>{{advertisingList.list[index].url}}</p>
+                  </b-card-text>
                         
-                  </b-card>
-                </b-col>
-              </b-row>
-                
-                <!-- <div class="wscn-http404-container" v-if="this.advertisingList.list.length === 0">
-                        <div class="wscn-http404">
-                            <div class="pic-404">
-                                <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-                                <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-                                <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-                                <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
-                            </div>
-                            <div class="bullshit">
-                                <div class="bullshit__oops">OOPS!</div>
-                                <div class="bullshit__info">All rights reserved
-                                <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
-                                </div>
-                                <div class="bullshit__headline">{{ message }}</div>
-                                <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-                                <a href="" class="bullshit__return-home">Back to home</a>
-                            </div>
-                        </div>
-                    </div> -->
-                <b-row class="wscn-http404-container" v-if="this.advertisingList.list.length === 0">
-                  <b-col class="wscn-http404">
-                    <div class="pic-404">
-                      <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-                        <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-                        <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-                        <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
-                    </div>
+                </b-card>
+              </b-col>
+            </b-row>
 
-                    <div class="bullshit">
-                    <div class="bullshit__oops">OOPS!</div>
-                    <div class="bullshit__info">All rights reserved
-                    <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
-                    </div>
-                    <div class="bullshit__headline">{{ message }}</div>
-                    <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-                    <a href="" class="bullshit__return-home">Back to home</a>
-                    </div>
-                  </b-col>
-                </b-row>
-            </b-col>
-        </b-row>
+            <b-row class="wscn-http404-container" v-if="this.advertisingList.list.length === 0">
+              <b-col class="wscn-http404">
+                <div class="pic-404">
+                  <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
+                    <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
+                    <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
+                    <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
+                </div>
+
+                <div class="bullshit">
+                <div class="bullshit__oops">OOPS!</div>
+                <div class="bullshit__info">All rights reserved
+                <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
+                </div>
+                <div class="bullshit__headline">{{ message }}</div>
+                <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
+                <a href="" class="bullshit__return-home">Back to home</a>
+                </div>
+              </b-col>
+            </b-row>
+          </b-col>
+       </b-row>
     </div>
     
 </template>
@@ -90,6 +81,12 @@ const advertisingListStore = createNamespacedHelpers("advertisingList");
 
 export default {
   name: "MainPage",
+
+  data() {
+      return {
+        value: 4.4
+      }
+  },
 
   components: {
     Sidebar

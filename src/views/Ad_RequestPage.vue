@@ -3,13 +3,15 @@
         <b-container class="mt-5 text-align">
             
             <b-row class="mt-3">
-                <b-col cols="12" md="6">
+                <b-col cols="12" md="6" class="br-line">
                     <b-form-group label-for="reservation-id">
                         <template #label>
+                          <span class="text-danger">*</span>
                             user_ID
                         </template>
                         <b-form-input
                             disabled
+                            v-model="client.list.user_ID"
                         />
                     </b-form-group>
                 </b-col>
@@ -17,24 +19,39 @@
                 <b-col cols="12" md="6">
                     <b-form-group label-for="reservation-id">
                         <template #label>
+                          <span class="text-danger">*</span>
                             category
                         </template>
-                        <b-form-input
-                        
+                        <b-form-select
+                          class="form-select"
+                          v-model="adRequest.category"
+                          :options="options"
                         />
+                        <!-- <b-form-select v-model="adRequest.category" :options="options"></b-form-select> -->
                     </b-form-group>
                 </b-col>
+
+              <!-- <b-col cols="6">
+                <b-input-group class="mb-5 mt-3">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="check-circle-fill"></b-icon>
+                    </b-input-group-prepend>
+                      <b-form-select v-model="adRequest.category" :options="options"></b-form-select>
+                </b-input-group>
+              </b-col> -->
+            
             </b-row>
 
             <b-row class="mt-3">
-                <b-col cols="12" md="6">
+                <b-col cols="12" md="6" class="br-line">
                     <b-form-group label-for="reservation-id">
                         <template #label>
+                          <span class="text-danger">*</span>
                             brand_name
                         </template>
                         <b-form-input
-                        
-                        maxlength="30"
+                          v-model="adRequest.brand_name"
+                          maxlength="30"
                         />
                     </b-form-group>
                 </b-col>
@@ -42,35 +59,11 @@
                 <b-col cols="12" md="6">
                     <b-form-group label-for="reservation-id">
                         <template #label>
-                            brand_name
+                          <span class="text-danger">*</span>
+                            url
                         </template>
                         <b-form-input
-                        
-                        />
-                    </b-form-group>
-                </b-col>
-            </b-row>
-
-            <b-row class="mt-3">
-                <b-col cols="12" md="6">
-                    <b-form-group label-for="reservation-id">
-                        <template #label>
-                        category
-                        </template>
-                        <b-form-input
-                        
-                        maxlength="30"
-                        />
-                    </b-form-group>
-                </b-col>
-
-                <b-col cols="12" md="6">
-                    <b-form-group label-for="reservation-id">
-                        <template #label>
-                        brand_name
-                        </template>
-                        <b-form-input
-                        
+                          v-model="adRequest.url"
                         />
                     </b-form-group>
                 </b-col>
@@ -80,11 +73,12 @@
                 <b-col cols="12" md="12">
                     <b-form-group label-for="reservation-id">
                         <template #label>
+                          <span class="text-danger">*</span>
                         Remarks
                         </template>
                             <b-form-textarea
                             id="textarea"
-                            
+                            v-model="adRequest.remarks"
                             placeholder="Enter something..."
                             rows="3"
                             max-rows="6"
@@ -94,10 +88,11 @@
             </b-row>
 
             <b-row class="mt-5">
-                <b-col cols="12" md="12">
+                <b-col cols="12" md="6">
                     <b-form-group label-for="reservation-id">
                         <template #label>
-                            images
+                          <span class="text-danger">*</span>
+                            images ( jpg, png, gif 파일 )
                         </template>
                         <b-list-group-item>                        
                             
@@ -112,49 +107,33 @@
                                 plain
                             ></b-form-file>
         
-                            <div class="mt-3">
+                            <div class="mt-3 align-center">
                             <b-img class="upload-container" :src="previewImageData"></b-img>
                             </div>
+
+                            <b-button class="mt-3" @click="this.deleteImage">이미지 삭제</b-button>
 
                         </b-list-group-item>
                     </b-form-group>
                 </b-col>
             </b-row>
 
-            <b-button @click="bbb">이미지 삭제</b-button>
-
-            <!-- <b-row class="mt-5">
-                <b-col cols="12" md="12">
-                    <b-form-group label-for="reservation-id">
-                        <template #label>
-                            images
-                        </template>
-                        <b-list-group-item>                        
-                            
-                            <b-form-item prop="image_uri" style="margin-bottom: 30px;">
-                                <Upload v-model="adRequest.images" />
-                            </b-form-item>
-
-                        </b-list-group-item>
-                    </b-form-group>
+            <b-row class="mt-5">
+                <b-col cols="12" md="12" class="align-center">
+                    <b-button variant="primary" @click="this.clickAdRequest"> 광고 신청하기! </b-button>
                 </b-col>
-            </b-row> -->
+            </b-row>
 
 
-
-
-
-
-
-
-
-
+            
+            
         </b-container>
     </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
+const clientStore = createNamespacedHelpers("client");
 // import Upload from '@/components/layout/SingleImage3'
 
 const ad_requestPageStore = createNamespacedHelpers("ad_requestPage");
@@ -168,8 +147,13 @@ export default {
         form: {
         petName: "",
         file: "",
-        desc: ""
-      },
+        desc: "",
+      },  
+      options: [
+        { value: 'Sports', text: 'Sports' },
+        { value: 'News', text: 'News' },
+      ],
+
       show: true,
       previewImageData: null
 
@@ -180,21 +164,19 @@ export default {
       ...ad_requestPageStore.mapState({
         adRequest: state => state.adRequest,
       }),
+      ...clientStore.mapState({
+      client: state => state.client,
+      }),
   },
   methods: {
-      aaa(){
-          console.log("AAAAAA");
-          console.log(this.adRequest.image.name);
-      },
-      bbb(){
-          console.log("BBBBBBBBB");
-          console.log(this.adRequest.image.name);
-          this.adRequest.image = null,
-          this.previewImageData = ""
-          
-      },
+    ...ad_requestPageStore.mapActions(["sendAdRequest1"]),
 
-      onSubmit(evt) {
+    deleteImage(){
+        this.adRequest.image = null,
+        this.previewImageData = ""
+        },
+
+    onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
     },
@@ -221,6 +203,17 @@ export default {
       } else {
           this.previewImageData = null;
       }
+    },
+
+    clickAdRequest(){
+      // const args = {
+      //     params: this.adRequest
+          
+      //   };
+        
+      // this.sendAdRequest(args)
+
+      console.log(this.adRequest.image)
     }
 
 
@@ -306,4 +299,19 @@ export default {
   }
 }
 
+.align-center {
+    text-align: center;
+}
+
+.br-line {
+  border-right:1px solid #b9b2e9;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+// .form-select{
+//   // height: 38px;
+//   // width: 334.77px;
+// }
 </style>
