@@ -326,10 +326,10 @@ methods:{
         hideHeaderClose: false,
         centered: true
       })
-      }
+    }
 
 
-    },
+  },
 
 },
 

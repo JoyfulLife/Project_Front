@@ -123,7 +123,7 @@ export default {
     //github 에서 이미지 받아옴.
     getImageUrl(image) {
         
-        return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}.png`
+        return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}`
       }
       
   },

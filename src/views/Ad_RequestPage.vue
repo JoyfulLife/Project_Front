@@ -11,7 +11,7 @@
                         </template>
                         <b-form-input
                             disabled
-                            v-model="client.list.user_ID"
+                            v-model="adRequest.user_ID"
                         />
                     </b-form-group>
                 </b-col>
@@ -120,7 +120,7 @@
 
             <b-row class="mt-5">
                 <b-col cols="12" md="12" class="align-center">
-                    <b-button variant="primary" @click="this.clickAdRequest"> 광고 신청하기! </b-button>
+                    <b-button variant="primary" @click="this.validationCheck"> 광고 신청하기! </b-button>
                 </b-col>
             </b-row>
 
@@ -147,11 +147,13 @@ export default {
         form: {
         petName: "",
         file: "",
-        desc: "",
+        desc: ""
+        
       },  
       options: [
         { value: 'Sports', text: 'Sports' },
         { value: 'News', text: 'News' },
+        { value: 'Web toon', text: 'Web toon' },
       ],
 
       show: true,
@@ -169,7 +171,7 @@ export default {
       }),
   },
   methods: {
-    ...ad_requestPageStore.mapActions(["sendAdRequest1"]),
+    ...ad_requestPageStore.mapActions(["sendAdRequest"]),
 
     deleteImage(){
         this.adRequest.image = null,
@@ -206,17 +208,63 @@ export default {
     },
 
     clickAdRequest(){
-      // const args = {
-      //     params: this.adRequest
+      const args = {
+          // params: this.adRequest
+          params: {
+            user_id: this.adRequest.user_ID,
+            category: this.adRequest.category,
+            brand_name: this.adRequest.brand_name,
+            url: this.adRequest.url,
+            remarks: this.adRequest.remarks,
+            image: this.adRequest.image.name
+          }
           
-      //   };
+        };
+        // args.image = this.adRequest.image.name
+        console.log(args);
+        // console.log(args.image);
+      this.sendAdRequest(args)
+
+      // console.log(this.adRequest.image.name);
+      // console.log(this.adRequest.image);
+      
+
+    },
+
+    validationCheck(){
+      
+      if(this.client.list.user_ID === "" ||
+        this.adRequest.category === "" ||
+        this.adRequest.brand_name === "" ||
+        this.adRequest.url === "" ||
+        this.adRequest.Remarks === "" ||
+        this.adRequest.image === null){
+
+        this.$bvModal.msgBoxOk(' 필수 값을 모두 입력해주세요~ ', {
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'warning',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+
+      }else {
         
-      // this.sendAdRequest(args)
+        this.clickAdRequest();
+        }
+      
 
-      console.log(this.adRequest.image)
-    }
+      
+    },
 
 
+  },
+
+  created() {
+    this.adRequest.user_ID = this.client.list.user_ID
   }
 
 };

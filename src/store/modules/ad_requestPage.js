@@ -3,7 +3,7 @@ import axios from "axios";
 
 const defaultState = {
     adRequest:{
-        user_ID:"",
+        user_id:"",
         category:"",
         brand_name:"",
         url:"",
@@ -36,7 +36,7 @@ const apis = {
     sendAdRequest:function (context, parameters) {
         console.log("BBBBBBBBBBBBBBBBBBB");
         return axios.post(
-            "/cart/cartList", parameters.params,
+            "/advertising/insertAdvertising", parameters.params,
         ).then(response => context.commit("setsendAdRequestState", response))
     },
 }
