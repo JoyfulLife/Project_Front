@@ -10,6 +10,7 @@ const defaultState = {
         remarks:"",
         image:null,
         
+        message: ""
     }
 }
 
@@ -27,6 +28,7 @@ const actions = {
 
 const mutations = {
     setsendAdRequestState: function (state ,payload) {
+        state.adRequest.message = payload.data.message
         console.log(payload);
     },
 };

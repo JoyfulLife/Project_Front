@@ -223,7 +223,16 @@ export default {
         // args.image = this.adRequest.image.name
         console.log(args);
         // console.log(args.image);
-      this.sendAdRequest(args)
+      this.sendAdRequest(args).then(this.$bvModal.msgBoxOk(this.adRequest.message, {
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'warning',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      }))
 
       // console.log(this.adRequest.image.name);
       // console.log(this.adRequest.image);

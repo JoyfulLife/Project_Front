@@ -20,7 +20,26 @@ const defaultState = {
 
     deleteCartList: {
         list: []
-    }
+    },
+
+    myAdRequest: {
+        list: [],
+        page: 1,
+        limit: 10,
+        allCount: 0,
+        user_id: "",
+        limit_st: 0,
+        limit_fin: 0,
+        category: "",
+        brand_name: "",
+        url: "",
+        allCheckBox: false,
+        message: ""
+    },
+
+    deleteMyAdList: {
+        list: []
+    },
 }
 
 const state = cloneDeep(defaultState);
@@ -47,6 +66,16 @@ const actions = {
     sendDeleteCartList: function (context, payload) {
         
         return apis.sendDeleteCartList(context, payload);
+    },
+
+    retrieveMyAd: function (context, payload) {
+        
+        return apis.retrieveMyAd(context, payload);
+    },
+
+    sendDeleteMyAdList: function (context, payload) {
+        
+        return apis.sendDeleteMyAdList(context, payload);
     },
 };
 
@@ -83,6 +112,24 @@ const mutations = {
         state.cartList.successMessage = payload.data.successMessage;
         
     },
+
+    setretrieveMyAdState: function (state ,payload) {
+        
+        payload.data.res.forEach(cartItem => cartItem.selected = false);
+        state.myAdRequest.list = payload.data.res;
+        state.myAdRequest.allCount = payload.data.myAdCount;
+    },
+
+    setsendDeleteMyAdListState: function (state ,payload) {
+        
+        // const newInstance = cloneDeep(defaultState.deleteCartList);
+        // state.deleteCartList = newInstance;
+        
+        // //실패시 메시지를 받아온다.
+        // state.cartList.failMessage = payload.data.failMessage;
+        state.myAdRequest.message = payload.data.message;
+        console.log(payload)
+    },
 };
 
 const apis = {
@@ -106,6 +153,20 @@ const apis = {
         return axios.post(
             "/cart/deleteCartList", parameters.params,
         ).then(response => context.commit("setSendDeleteCartListState", response))
+    },
+
+    retrieveMyAd:function (context, parameters) {
+        
+        return axios.post(
+            "/advertising/myAdRequest", parameters.params,
+        ).then(response => context.commit("setretrieveMyAdState", response))
+    },
+
+    sendDeleteMyAdList:function (context, parameters) {
+        
+        return axios.post(
+            "/advertising/deleteMyAdRequest", parameters.params,
+        ).then(response => context.commit("setsendDeleteMyAdListState", response))
     },
 }
 

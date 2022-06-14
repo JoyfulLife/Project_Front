@@ -34,11 +34,14 @@
                   <b-input-group-prepend is-text>
                    <b-icon icon="key"></b-icon>
                   </b-input-group-prepend>
+
                   <b-form-input 
+                    class="input-number-password"
                     type="text"
                     placeholder="PassWord"
                     v-model="client.passWord"
                     ></b-form-input>
+                    
                 </b-input-group>
               </b-col>
             </b-row>
@@ -374,5 +377,7 @@ methods:{
 </script>
 
 <style lang="scss">
-
+.input-number-password {
+    -webkit-text-security: disc;
+}
 </style>

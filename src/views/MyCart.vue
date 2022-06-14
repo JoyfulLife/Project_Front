@@ -58,7 +58,16 @@
 
         </b-collapse>
 
-        <b-table
+        <b-tabs
+          class="mt-5"
+          content-class="mt-3"
+          align="center"
+          active-nav-item-class="font-weight-bold text-uppercase text-dark"
+          active-tab-class="font-weight-bold text-dark"
+          >
+
+          <b-tab title="Mycart" active>
+            <b-table
               class="mt-5"
               :fields="fields"
               responsive="sm"
@@ -69,72 +78,157 @@
               bordered
               hover
               striped
-          >
-            <template #empty>
-              <h6> 데이터가 없습니다. </h6>
-            </template>
-
-            <template #cell(row_number)="data_01">
-              {{ ((cartList.page - 1) * cartList.limit) + data_01.index + 1 }}
-            </template>
-
-            <template #head(check_box)>
-              <b-form-checkbox
-                @change="allSelect"
-                v-model="cartList.allCheckBox"
               >
-              </b-form-checkbox>
-            </template>
+              <template #empty>
+                <h6> 데이터가 없습니다. </h6>
+              </template>
 
-            <template #cell(check_box)="{ item }">
-              <b-form-checkbox
-                  v-model="item.selected"
+              <template #cell(row_number)="data_01">
+                {{ ((cartList.page - 1) * cartList.limit) + data_01.index + 1 }}
+              </template>
+
+              <template #head(check_box)>
+                <b-form-checkbox
+                  @change="allSelect"
+                  v-model="cartList.allCheckBox"
+                >
+                </b-form-checkbox>
+              </template>
+
+              <template #cell(check_box)="{ item }">
+                <b-form-checkbox
+                    v-model="item.selected"
+                >
+                </b-form-checkbox>
+              </template>
+            </b-table>
+
+            <b-row>
+
+              <b-col cols="4" class="total">
+                Total : {{this.cartList.allCount}}
+              </b-col>
+
+              <b-col cols="4">
+                <b-pagination
+                    v-model="cartList.page"
+                    :per-page="cartList.limit"
+                    first-class="first"
+                    last-class="last"
+                    next-class="next"
+                    prev-class="prev"
+                    :total-rows="cartList.allCount"
+                    align="center"
+                    @change="onPageChange"
+                    
+                  />
+              </b-col>
+              
+              <b-col cols="4">
+                <b-form-select
+                    id="page"
+                    v-model="cartList.limit"
+                    :options="paginationOptions"
+                    class="mb-3"
+                    size="sm"
+                    @change="onPageChange(1)"
+                  ></b-form-select>
+              </b-col>
+
+            </b-row>
+
+            <b-row class="mt-4">
+              <b-col cols="12" class="align">
+                <b-button @click="onDelete()" class="color">
+                  Delete
+                </b-button>
+              </b-col>
+            </b-row>
+          </b-tab>
+
+          <b-tab title="내가 신청한 광고!">
+            <b-table
+              class="mt-5"
+              :fields="fieldsMyAd"
+              responsive="sm"
+              thead-tr-class="rowClass"
+              :items="myAdRequest.list"
+              @row-clicked="(row, index) => onRowClick(row, index)"
+              show-empty
+              bordered
+              hover
+              striped
               >
-              </b-form-checkbox>
-            </template>
-        </b-table>
+              <template #empty>
+                <h6> 데이터가 없습니다. </h6>
+              </template>
 
-        <b-row>
+              <template #cell(row_number)="data_02">
+                {{ ((myAdRequest.page - 1) * myAdRequest.limit) + data_02.index + 1 }}
+              </template>
 
-          <b-col cols="4" class="total">
-            Total : {{this.cartList.allCount}}
-          </b-col>
+              <template #head(check_box)>
+                <b-form-checkbox
+                  @change="MyAdAllSelect"
+                  v-model="myAdRequest.allCheckBox"
+                >
+                </b-form-checkbox>
+              </template>
 
-          <b-col cols="4">
-            <b-pagination
-                v-model="cartList.page"
-                :per-page="cartList.limit"
-                first-class="first"
-                last-class="last"
-                next-class="next"
-                prev-class="prev"
-                :total-rows="cartList.allCount"
-                align="center"
-                @change="onPageChange"
-                
-              />
-          </b-col>
-          
-          <b-col cols="4">
-            <b-form-select
-                id="page"
-                v-model="cartList.limit"
-                :options="paginationOptions"
-                class="mb-3"
-                size="sm"
-                @change="onPageChange(1)"
-              ></b-form-select>
-          </b-col>
+              <template #cell(check_box)="{ item }">
+                <b-form-checkbox
+                    v-model="item.selected"
+                >
+                </b-form-checkbox>
+              </template>
+            </b-table>
 
-        </b-row>
+            <b-row>
 
-        <b-row class="mt-4">
-            <b-col cols="12" class="align">
-              <b-button @click="onDelete()" class="color">
-                Delete
-              </b-button>
-            </b-col>
-          </b-row>
+              <b-col cols="4" class="total">
+                Total : {{this.myAdRequest.allCount}}
+              </b-col>
+
+              <b-col cols="4">
+                <b-pagination
+                    v-model="myAdRequest.page"
+                    :per-page="myAdRequest.limit"
+                    first-class="first"
+                    last-class="last"
+                    next-class="next"
+                    prev-class="prev"
+                    :total-rows="myAdRequest.allCount"
+                    align="center"
+                    @change="onPageChangeMyAdRequest"
+                    
+                  />
+              </b-col>
+              
+              <b-col cols="4">
+                <b-form-select
+                    id="page"
+                    v-model="myAdRequest.limit"
+                    :options="paginationOptions"
+                    class="mb-3"
+                    size="sm"
+                    @change="onPageChangeMyAdRequest(1)"
+                  ></b-form-select>
+              </b-col>
+
+            </b-row>
+
+            <b-row class="mt-4">
+              <b-col cols="12" class="align">
+                <b-button @click="myAdonDelete()" class="color">
+                  Deletefwe
+                </b-button>
+              </b-col>
+            </b-row>
+          </b-tab>
+            
+        </b-tabs>
+
+        
         
       </b-container>
   </div>
@@ -166,6 +260,8 @@ export default {
       ...cartStore.mapState({
         cartList: state => state.cartList,
         deleteCartList: state => state.deleteCartList,
+        myAdRequest: state => state.myAdRequest,
+        deleteMyAdList: state => state.deleteMyAdList,
       }),
       ...advertisingListStore.mapState({
         advertisingListDetail: state => state.advertisingListDetail,
@@ -212,11 +308,53 @@ export default {
 
       ];
     },
+
+    fieldsMyAd: function() {
+      return [
+        {
+          key: "check_box",
+          label: "",
+          thClass: "w-checkbox"
+        },
+        {
+          key: "row_number",
+          label: "No.",
+          thClass: "w-15 text-left",
+          tdClass: "text-left"
+        },
+        {
+          key: "ad_no",
+          label: "ad_no",
+          thClass: "w-15 text-left",
+          tdClass: "text-left"
+        },
+        {
+          key: "category",
+          label: "category",
+          thClass: "w-no"
+        },
+        {
+          key: "brand_name",
+          label: "brand_name",
+          thClass: "w-10"
+        },
+        {
+          key: "url",
+          label: "url",
+          thClass: "width: 10% !important"
+        },
+        {
+          key: "approval",
+          label: "승인 상태",
+          thClass: "width: 10% !important"
+        },
+      ];
+    },
     
   },
 
   methods:{
-      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch","sendDeleteCartList"]),
+      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch","sendDeleteCartList", "retrieveMyAd","sendDeleteMyAdList"]),
 
 
       onRowClick(row, index){
@@ -229,6 +367,11 @@ export default {
       onPageChange(page) {
         this.cartList.allCheckBox = false;
         this.onSearch(page);
+    },
+
+    onPageChangeMyAdRequest(page){
+        this.myAdRequest.allCheckBox = false;
+        this.onSearchMyAdRequest(page);
     },
 
     onSearch(page) {
@@ -247,12 +390,26 @@ export default {
       this.searchCartList();
     },
 
+    onSearchMyAdRequest(page){
+      this.myAdRequest.page = page;
+      
+      this.myAdRequest.limit_st = (this.myAdRequest.page-1) * this.myAdRequest.limit
+
+      this.searchMyAdRequestList();
+    },
+
     init() {
       this.initializeCartListSearch();
     },
 
     allSelect(checked) {
       this.cartList.list.forEach(item => {
+        item.selected = (checked === true);
+      })
+    },
+
+    MyAdAllSelect(checked){
+      this.myAdRequest.list.forEach(item => {
         item.selected = (checked === true);
       })
     },
@@ -284,6 +441,32 @@ export default {
       }
       
 
+    },
+
+    myAdonDelete(){
+      this.deleteMyAdList.list = this.myAdRequest.list.filter(item => {
+        return (item.selected === true);
+      })
+
+      if(this.deleteMyAdList.list.length === 0){
+          
+          this.$bvModal.msgBoxOk(" 삭제할 data를 클릭해주세요 ", {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true,
+        })
+      }else {
+        const args = {
+        // params: this.deleteCartList.list.map(item => item.ad_no),
+        params: this.deleteMyAdList.list
+        };
+        
+        this.sendDeleteMyAdList(args).then(this.MyAdCheckError);
+        
+      }
     },
 
     searchCartList() {
@@ -318,12 +501,35 @@ export default {
         })
         .then(this.searchCartList);
       }
-    }
+    },
+
+    MyAdCheckError(){
+      if(this.myAdRequest.message != null){
+          this.$bvModal.msgBoxOk(this.myAdRequest.message, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+        .then(this.searchMyAdRequestList);
+      }
+    },
+
+    searchMyAdRequestList(){
+      const args = {
+        params: this.myAdRequest,
+      };
+      this.retrieveMyAd(args);
+    },
     
   },
 
   created() {
+    this.myAdRequest.user_id = this.client.list.user_ID
     this.searchCartList();
+    this.searchMyAdRequestList();
   }
 };
 </script>
@@ -342,7 +548,7 @@ export default {
   margin-left: 2%;
 }
 .color {
-background: rgb(87,5,107);
-background: linear-gradient(90deg, rgba(87,5,107,1) 0%, rgba(162,0,255,1) 93%);
+background: rgb(74,68,195);
+background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
 }
 </style>
