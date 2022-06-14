@@ -63,6 +63,10 @@ const actions = {
         context.commit("initializeCartListSearchState");
     },
 
+    initializeMyAdRequestListSearch: function (context) {
+        context.commit("initializeMyAdRequestListSearchState");
+    },
+
     sendDeleteCartList: function (context, payload) {
         
         return apis.sendDeleteCartList(context, payload);
@@ -100,6 +104,12 @@ const mutations = {
         state.cartList.category = "",
         state.cartList.brand_name = "",
         state.cartList.url = ""
+    },
+
+    initializeMyAdRequestListSearchState: function (state) {
+        state.myAdRequest.category = "",
+        state.myAdRequest.brand_name = "",
+        state.myAdRequest.url = ""
     },
 
     setSendDeleteCartListState: function (state ,payload) {

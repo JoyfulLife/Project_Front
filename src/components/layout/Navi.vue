@@ -62,7 +62,26 @@ export default {
         }else if(path === '/adminSideBar'){
             this.$router.push('/adminSideBar')
           }else if(path === '/mycart'){
-            this.$router.push('/mycart')
+            //로그인 체크!!!! (로그인이 되어 있어야 Mycart에 들어갈 수 있다.)
+            if(this.client.list.loginStatus !== "Yes"){
+                this.$bvModal.msgBoxOk(" 로그인이 필요합니다.! 로그인 페이지로 이동합니다.", {
+                size: 'sm',
+                buttonSize: 'sm',
+                okVariant: 'warning',
+                headerClass: 'p-2 border-bottom-0',
+                footerClass: 'p-2 border-top-0',
+                centered: true
+                })
+                .then(value => {
+                this.okbutton = value
+                if(this.okbutton === true){
+                  this.$router.push('/login')      
+                }
+              })
+              }else if (this.client.list.loginStatus === "Yes"){
+              this.$router.push('/mycart')
+              }
+
             }else if(path === '/login'){
             this.$router.push('/login')
               }else if(path === '/myPage'){

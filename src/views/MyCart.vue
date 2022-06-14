@@ -4,7 +4,7 @@
         <b-button v-b-toggle.collapse-3 class="m-1" variant="outline-dark">
           Search Condtion
         </b-button>
-        <b-collapse visible id="collapse-3" class="text mt-3">
+        <b-collapse v-if="tabs === 'mycart' " visible id="collapse-3" class="text mt-3">
 
           <b-row>
             <b-col cols="12" md="6">
@@ -14,7 +14,7 @@
                 </template>
                 <b-form-input
                   v-model="cartList.category"
-                  maxlength="30"
+                  
                 />
               </b-form-group>
             </b-col>
@@ -39,7 +39,7 @@
                 </template>
                 <b-form-input
                   v-model="cartList.url"
-                  maxlength="30"
+                  
                 />
               </b-form-group>
             </b-col>
@@ -47,16 +47,76 @@
 
           <b-row class="mt-4">
             <b-col cols="12" class="align">
+
               <b-button @click="onSearch()" class="color">
                 Search
               </b-button>
               <b-button @click="init()" class="margin color">
                 initialize
               </b-button>
+
             </b-col>
           </b-row>
 
         </b-collapse>
+
+        <b-collapse v-if="tabs === 'myAdRequest' " visible id="collapse-3" class="text mt-3">
+
+          <b-row>
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  category
+                </template>
+                <b-form-input
+                  v-model="myAdRequest.category"
+                  
+                />
+              </b-form-group>
+            </b-col>
+
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  brand_name
+                </template>
+                <b-form-input
+                  v-model="myAdRequest.brand_name"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row>
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  url
+                </template>
+                <b-form-input
+                  v-model="myAdRequest.url"
+                  
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row class="mt-4">
+            <b-col cols="12" class="align">
+
+              <b-button v-if="tabs === 'myAdRequest'" @click="onSearchMyAdRequest()" class="color">
+                Search
+              </b-button>
+              <b-button v-if="tabs === 'myAdRequest'" @click="initMyAdRequest()" class="margin color">
+                initialize
+              </b-button>
+
+            </b-col>
+          </b-row>
+
+        </b-collapse>
+
+
 
         <b-tabs
           class="mt-5"
@@ -66,8 +126,9 @@
           active-tab-class="font-weight-bold text-dark"
           >
 
-          <b-tab title="Mycart" active>
+          <b-tab title="Mycart" active @click="tabs = 'mycart'">
             <b-table
+              head-variant="primary"
               class="mt-5"
               :fields="fields"
               responsive="sm"
@@ -111,6 +172,7 @@
 
               <b-col cols="4">
                 <b-pagination
+                head-variant="dark"
                     v-model="cartList.page"
                     :per-page="cartList.limit"
                     first-class="first"
@@ -146,14 +208,14 @@
             </b-row>
           </b-tab>
 
-          <b-tab title="내가 신청한 광고!">
+          <b-tab title="내가 신청한 광고!" @click="tabs = 'myAdRequest'">
             <b-table
               class="mt-5"
               :fields="fieldsMyAd"
               responsive="sm"
               thead-tr-class="rowClass"
               :items="myAdRequest.list"
-              @row-clicked="(row, index) => onRowClick(row, index)"
+              @row-clicked="(row, index) => MyAdRequestOnRowClick(row, index)"
               show-empty
               bordered
               hover
@@ -246,6 +308,10 @@ export default {
   name: "MyCart",
   data() {
       return {
+
+        tabs : "mycart",
+
+
         paginationOptions: [
           { value: 10, text: '10/Page' },
           { value: 20, text: '20/Page' },
@@ -354,12 +420,19 @@ export default {
   },
 
   methods:{
-      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch","sendDeleteCartList", "retrieveMyAd","sendDeleteMyAdList"]),
+      ...cartStore.mapActions(["retrieveCart","initializeCartListSearch","sendDeleteCartList", "retrieveMyAd","sendDeleteMyAdList", "initializeMyAdRequestListSearch"]),
 
 
       onRowClick(row, index){
 
         this.advertisingListDetail.list = this.cartList.list[index]
+        
+        this.$router.push('/main-page/detail');
+      },
+
+      MyAdRequestOnRowClick(row, index){
+
+        this.advertisingListDetail.list = this.myAdRequest.list[index]
         
         this.$router.push('/main-page/detail');
       },
@@ -400,6 +473,10 @@ export default {
 
     init() {
       this.initializeCartListSearch();
+    },
+
+    initMyAdRequest(){
+      this.initializeMyAdRequestListSearch();
     },
 
     allSelect(checked) {
@@ -551,4 +628,5 @@ export default {
 background: rgb(74,68,195);
 background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
 }
+
 </style>
