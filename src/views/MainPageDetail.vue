@@ -159,19 +159,34 @@ export default {
                 const args = {
                   params: this.advertisingListDetail.list,
                   };
-                this.insertAddCart(args)    
+                this.insertAddCart(args).then(this.checkMessage)
               }
 
             })
-
         }
-      }
+        
+      },
 
+      checkMessage(){
+        console.log("AAAAAAA");
+        if(this.cartList.successMessage != ""){
+            this.$bvModal.msgBoxOk(this.cartList.successMessage , {
+            size: 'sm',
+            buttonSize: 'sm',
+            okVariant: 'warning',
+            okTitle: 'YES',
+            cancelTitle: 'NO',
+            footerClass: 'p-2',
+            hideHeaderClose: false,
+            centered: true
+            })
+          }
+      },
       
   },
 
   created() {
-      
+      this.advertisingListDetail.list.user_id = this.client.list.user_ID
   }
 };
 </script>

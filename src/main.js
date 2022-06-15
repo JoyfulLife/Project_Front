@@ -7,6 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { IconsPlugin } from 'bootstrap-vue'
 import Sidebar from './components/layout/Sidebar'
 import 'element-ui/packages/card/src/main.vue'
+import ErrorPage from './components/layout/ErrorPage'
 import Element from 'element-ui'
 Vue.use(Element)
 
@@ -21,5 +22,6 @@ new Vue({
   router,
   store,
   Sidebar,
-  Element
+  Element,
+  ErrorPage
 }).$mount('#app')

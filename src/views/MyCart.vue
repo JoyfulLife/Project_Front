@@ -605,6 +605,7 @@ export default {
 
   created() {
     this.myAdRequest.user_id = this.client.list.user_ID
+    this.cartList.user_id = this.client.list.user_ID
     this.searchCartList();
     this.searchMyAdRequestList();
   }

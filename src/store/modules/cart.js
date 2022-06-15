@@ -6,7 +6,7 @@ const defaultState = {
         list: [],
         page: 1,
         limit: 10,
-        user_ID: "",
+        user_id: "",
         limit_st: 0,
         limit_fin: 0,
         category: "",
@@ -15,7 +15,7 @@ const defaultState = {
         allCheckBox: false,
         allCount: 0,
         failMessage: "",
-        successMessage: "",
+        successMessage: ""
     },
 
     deleteCartList: {
@@ -93,8 +93,8 @@ const mutations = {
     },
 
     setInsertAddCartState: function (state ,payload) {
-        
-        state.cartList.list = payload.data;
+        console.log(payload)
+        state.cartList.successMessage = payload.data.message;
     },
 
     initializeCartListSearchState: function (state) {
