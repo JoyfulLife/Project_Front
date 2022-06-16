@@ -57,8 +57,10 @@
                             class="margin denyButton-color"
                             @click="denyButton(row)"
                             >
+                            
                                 거절
                             </b-button>
+
                         </template>
 
                     </b-table>
@@ -152,17 +154,17 @@ export default {
             footerClass: 'p-2',
             hideHeaderClose: false,
             centered: true
-        })
+            })
             .then(value => {
             this.successAction = value
 
             if(this.successAction === true){
-                console.log("AAAAAAAAAAAAAA");
-            const args = {
+                
+              const args = {
                 params: this.AdTable.list[row.index],
-                };
-                this.AdTable.list[row.index].adminCheck="Yes"
-                this.sendConfirmButton(args);
+              };
+              this.AdTable.list[row.index].adminCheck="Yes"
+              this.sendConfirmButton(args);
             }
 
             })
@@ -171,8 +173,30 @@ export default {
             })
       },
 
-      denyButton(){
-          console.log("222222222222");
+      denyButton(row){
+          this.$bvModal.msgBoxConfirm(' 거절 사유 ', {
+            // title: 'Please Confirm',
+            size: 'sm',
+            buttonSize: 'sm',
+            okVariant: 'primary',
+            okTitle: 'YES',
+            cancelTitle: 'NO',
+            footerClass: 'p-2',
+            hideHeaderClose: false,
+            centered: true
+            
+            })
+            .then(value => {
+            this.successAction = value
+
+            if(this.successAction === true){
+              console.log(row)
+            }
+
+            })
+            .catch(err => {
+            this.boxTwo = err
+            })
       },
 
       onSearch(){
@@ -198,11 +222,11 @@ export default {
 }
 
 .confirmButton-color{
-background: rgb(74,68,195);
-background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
+  background: rgb(74,68,195);
+  background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
 }
 .denyButton-color{
-background: rgb(228,36,36);
-background: linear-gradient(90deg, rgba(228,36,36,1) 4%, rgba(238,134,29,1) 90%);
+  background: rgb(228,36,36);
+  background: linear-gradient(90deg, rgba(228,36,36,1) 4%, rgba(238,134,29,1) 90%);
 }
 </style>
