@@ -4,7 +4,8 @@ import axios from "axios";
 const defaultState = {
     advertisingList:{
         category: "",
-        list: []
+        list: [],
+        adminCheck: ""
     },
 
     advertisingListDetail:{

@@ -119,8 +119,6 @@ export default {
       ...tableListStore.mapActions(["retrieveClient"]),
 
       MainPage_Detail(index){
-          console.log("check click");
-          console.log(index);
           
           this.advertisingListDetail.list = this.advertisingList.list[index]
           this.advertisingListDetail.list.user_id = this.client.list.user_ID
@@ -140,7 +138,8 @@ export default {
   },
 
   created() {
-      this.retrieveClient();
+    this.advertisingList.category = "All";
+    this.retrieveClient();
       
   }
 };

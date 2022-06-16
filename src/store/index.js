@@ -10,6 +10,7 @@ import tableList from "./modules/tableList";
 import advertisingList from "./modules/advertising";
 import cart from "./modules/cart";
 import ad_requestPage from "./modules/ad_requestPage";
+import admin from "./modules/admin";
 
 // v-model을 사용함. 배포시 strict 모드 사용하지 말 것
 export default new Vuex.Store({
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     tableList,
     advertisingList,
     cart,
-    ad_requestPage
+    ad_requestPage,
+    admin
   },
 });

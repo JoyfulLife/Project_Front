@@ -21,7 +21,7 @@
       <p>여기는 우리의 일상을 더 좋게 만들고 싶은 멋진 동료입니다.</p>
       <p>다양한 생각을 자유롭게 나누며, 언제나 놀라운 결과를 만들어내죠.</p>
       <p>당신도 세상을 바꾸고 싶나요? 여기로 오세요!!</p>
-      <b-button class="color" pill variant="primary" @click="movePage('/main-page')">Button</b-button>
+      <b-button class="color" pill variant="primary" @click="movePage('/admin')">Button</b-button>
     </div>
 
     <div class="mt-5" style="height: auto; width: 100%; border-top:1px solid gold;">
@@ -79,6 +79,9 @@ export default {
         }else if (this.client.list.loginStatus === "Yes"){
         this.$router.push('/ad-request-page')
         }
+      }
+      else if(path === '/admin'){
+        this.$router.push('/admin');
       }
     }
   },

@@ -8,6 +8,7 @@ import MyPage from '@/views/MyPage'
 import AdminSideBar from '@/components/layout/AdminSideBar'
 import MainPageDetail from '@/views/MainPageDetail'
 import Ad_RequestPage from '@/views/Ad_RequestPage'
+import Admin from '@/views/Admin'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
         path: '/ad-request-page',
         name: 'Ad_RequestPage',
         component : Ad_RequestPage
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component : Admin
     },
 ]
 
