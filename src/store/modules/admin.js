@@ -10,7 +10,13 @@ const defaultState = {
         limit_st: 0,
         limit_fin: 0,
         adminCheck: "Yes",
-        message: ""
+        message: "",
+        allCheckBox : false,
+        allCount: 0,
+    },
+
+    confirmList: {
+        list: []
     }
 }
 
@@ -28,20 +34,35 @@ const actions = {
         
         return apis.sendConfirmButton(context, payload);
     },
+
+    sendDenyButton: function (context, payload) {
+        
+        return apis.sendDenyButton(context, payload);
+    },
 };
 
 const mutations = {
     setgetAdTableState: function (state ,payload) {
         console.log(payload);
-        state.AdTable.list = payload.data;
-        payload.data.forEach(cartItem => cartItem.selected = false);
+        payload.data.res.forEach(cartItem => cartItem.selected = false);
+        state.AdTable.list = payload.data.res;
         state.AdTable.message = payload.data.message
+        state.AdTable.allCount = payload.data.AdListCount
         // state.cartList.allCount = payload.data.cartCount;
     },
 
     setsendConfirmButtonState: function (state ,payload) {
         console.log(payload);
         state.AdTable.list = payload.data;
+        // payload.data.forEach(cartItem => cartItem.selected = false);
+        // state.AdTable.message = payload.data.message
+        // state.cartList.allCount = payload.data.cartCount;
+    },
+
+    setsendDenyButtonState: function (state ,payload) {
+        console.log(payload);
+        state.AdTable.list = payload.data;
+        // state.AdTable.allCount = payload.data.AdListCount;
         // payload.data.forEach(cartItem => cartItem.selected = false);
         // state.AdTable.message = payload.data.message
         // state.cartList.allCount = payload.data.cartCount;
@@ -61,6 +82,13 @@ const apis = {
         return axios.post(
             "advertising/advertisingList", parameters.params,
         ).then(response => context.commit("setsendConfirmButtonState", response))
+    },
+
+    sendDenyButton:function (context, parameters) {
+        
+        return axios.post(
+            "advertising/advertisingList", parameters.params,
+        ).then(response => context.commit("setsendDenyButtonState", response))
     },
 }
 

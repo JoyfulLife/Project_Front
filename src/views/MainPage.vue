@@ -368,5 +368,10 @@ export default {
 //     }
 //   }
 // }
+
+.color {
+background: rgb(74,68,195);
+background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
+}
 </style>
 

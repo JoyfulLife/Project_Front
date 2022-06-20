@@ -38,7 +38,7 @@ const actions = {
 const mutations = {
     setadvertisingListState: function (state ,payload) {
         
-        state.advertisingList.list = payload.data
+        state.advertisingList.list = payload.data.res
     },
 
     setcountAdState: function (state ,payload) {

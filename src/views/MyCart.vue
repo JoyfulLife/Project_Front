@@ -282,7 +282,7 @@
             <b-row class="mt-4">
               <b-col cols="12" class="align">
                 <b-button @click="myAdonDelete()" class="color">
-                  Deletefwe
+                  Delete
                 </b-button>
               </b-col>
             </b-row>

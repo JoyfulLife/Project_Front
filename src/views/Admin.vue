@@ -28,8 +28,8 @@
 
                         <template #head(check_box)>
                             <b-form-checkbox
-                            
-                            
+                              @change="allSelectMyCart"
+                              v-model="AdTable.allCheckBox"
                             >
                             </b-form-checkbox>
                         </template>
@@ -53,7 +53,7 @@
 
                             <b-button
                             size="xs"
-                            
+                            id="modal-multi-3"
                             class="margin denyButton-color"
                             @click="denyButton(row)"
                             >
@@ -64,6 +64,39 @@
                         </template>
 
                     </b-table>
+                    <b-row>
+
+                      <b-col cols="4" class="total">
+                        Total : {{this.AdTable.allCount}}
+                      </b-col>
+
+                      <b-col cols="4">
+                        <b-pagination
+                            v-model="AdTable.page"
+                            :per-page="AdTable.limit"
+                            first-class="first"
+                            last-class="last"
+                            next-class="next"
+                            prev-class="prev"
+                            :total-rows="AdTable.allCount"
+                            align="center"
+                            @change="onPageChangeAdList"
+                            
+                          />
+                      </b-col>
+
+                      <b-col cols="4">
+                        <b-form-select
+                            id="page"
+                            v-model="AdTable.limit"
+                            :options="paginationOptions"
+                            class="mb-3"
+                            size="sm"
+                            @change="onPageChangeAdList(1)"
+                          ></b-form-select>
+                      </b-col>
+                    </b-row>
+                    
                 </b-tab>
 
                 <b-tab title="Second">
@@ -85,7 +118,18 @@ const adminStore = createNamespacedHelpers("admin");
 
 export default {
   name: "Admin",
+  data() {
+      return {
 
+        paginationOptions: [
+          { value: 10, text: '10/Page' },
+          { value: 20, text: '20/Page' },
+          { value: 50, text: '50/Page' },
+          { value: 100, text: '100/Page' },
+      ],
+
+      }
+  },
   computed: {
     ...clientStore.mapState({
       client: state => state.client,
@@ -93,6 +137,7 @@ export default {
 
     ...adminStore.mapState({
       AdTable: state => state.AdTable,
+      confirmList: state => state.confirmList,
     }),
 
     fields: function() {
@@ -140,10 +185,16 @@ export default {
   },
 
   methods: {
-      ...adminStore.mapActions(["getAdTable","sendConfirmButton"]),
+      ...adminStore.mapActions(["getAdTable","sendConfirmButton","sendDenyButton"]),
 
       confirmButton(row){
           console.log(row);
+
+          this.confirmList.list = this.AdTable.list.filter(item => {
+            return (item.selected === true);
+          })
+          console.log(this.confirmList.list);
+
           this.$bvModal.msgBoxConfirm(' 승인 하시겠습니까 ? ', {
             // title: 'Please Confirm',
             size: 'sm',
@@ -159,11 +210,12 @@ export default {
             this.successAction = value
 
             if(this.successAction === true){
-                
+              
               const args = {
                 params: this.AdTable.list[row.index],
               };
               this.AdTable.list[row.index].adminCheck="Yes"
+              this.AdTable.list[row.index].updateData="updata"
               this.sendConfirmButton(args);
             }
 
@@ -174,7 +226,7 @@ export default {
       },
 
       denyButton(row){
-          this.$bvModal.msgBoxConfirm(' 거절 사유 ', {
+          this.$bvModal.msgBoxConfirm(' 승인 거절하시겠습니까 ', {
             // title: 'Please Confirm',
             size: 'sm',
             buttonSize: 'sm',
@@ -184,13 +236,20 @@ export default {
             footerClass: 'p-2',
             hideHeaderClose: false,
             centered: true
+
             
             })
             .then(value => {
             this.successAction = value
-
+            
             if(this.successAction === true){
               console.log(row)
+              const args = {
+                params: this.AdTable.list[row.index],
+              };
+              this.AdTable.list[row.index].adminCheck="Yes"
+              this.AdTable.list[row.index].deleteData="delete"
+              this.sendDenyButton(args);
             }
 
             })
@@ -205,6 +264,28 @@ export default {
         };
         this.getAdTable(args);
       },
+
+
+      allSelectMyCart(checked){
+        this.AdTable.list.forEach(item => {
+          item.selected = (checked === true);
+        })
+      },
+
+      onPageChangeAdList(page){
+        this.AdTable.allCheckBox = false;
+        this.onSearchAdList(page);
+      },
+
+      onSearchAdList(page){
+      this.AdTable.page = page;
+      
+      this.AdTable.limit_st = (this.AdTable.page-1) * this.AdTable.limit
+
+      this.onSearch();
+    },
+
+      
 
 
   },
@@ -229,4 +310,9 @@ export default {
   background: rgb(228,36,36);
   background: linear-gradient(90deg, rgba(228,36,36,1) 4%, rgba(238,134,29,1) 90%);
 }
+
+.total {
+  text-align: left;
+}
+
 </style>

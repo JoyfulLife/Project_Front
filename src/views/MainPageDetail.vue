@@ -22,7 +22,10 @@
       </b-col>
 
       <b-col cols="5">
-        <b-card :title="advertisingListDetail.list.brand_name" sub-title="category ?">
+        <b-card :title="advertisingListDetail.list.brand_name">
+          <b-card-text class="text-right">
+            category : {{advertisingListDetail.list.category}}
+          </b-card-text>
           <b-card-text class="text">
             {{advertisingListDetail.list.remarks}}
           </b-card-text>
@@ -34,8 +37,9 @@
 
           
         </b-card>
+
+        <p class="p">원하는 만큼 하트를 눌러주세요</p>
         <b-form-rating
-          class="mt-3"
           stars="5"
           icon-empty="heart"
           icon-half="heart-half"
@@ -43,7 +47,7 @@
           icon-clear="slash-circle"
           show-clear
           variant="danger"
-          v-model="advertisingListDetail.list.ad_no"
+          v-model="advertisingListDetail.list.rate"
         />
       </b-col>
 
@@ -159,6 +163,7 @@ export default {
                 const args = {
                   params: this.advertisingListDetail.list,
                   };
+                  this.advertisingListDetail.list.rate
                 this.insertAddCart(args).then(this.checkMessage)
               }
 
@@ -211,4 +216,13 @@ export default {
   height: 336px
 }
 
+.text-center{
+  text-align: center;
+}
+
+.p{
+  margin-bottom: 0;
+  margin-top: 5%;
+  text-align: left;
+}
 </style>
