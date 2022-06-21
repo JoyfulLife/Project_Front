@@ -29,7 +29,7 @@ const getters = {
 };
 const actions = {
     ValidClientCheck: function (context, payload) {
-
+        console.log(payload);
         return apis.ValidClientCheck(context, payload);
     },
     saveClient: function (context, payload) {

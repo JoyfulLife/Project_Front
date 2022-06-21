@@ -26,7 +26,7 @@
                             {{ ((AdTable.page - 1) * AdTable.limit) + data_01.index + 1 }}
                         </template>
 
-                        <template #head(check_box)>
+                        <!-- <template #head(check_box)>
                             <b-form-checkbox
                               @change="allSelectMyCart"
                               v-model="AdTable.allCheckBox"
@@ -39,7 +39,7 @@
                                 v-model="item.selected"
                             >
                             </b-form-checkbox>
-                        </template>
+                        </template> -->
                         <template #cell(button)="row">
                             
                             <b-button
@@ -216,7 +216,7 @@ export default {
               };
               this.AdTable.list[row.index].adminCheck="Yes"
               this.AdTable.list[row.index].updateData="updata"
-              this.sendConfirmButton(args);
+              this.sendConfirmButton(args).then(this.onSearch);
             }
 
             })

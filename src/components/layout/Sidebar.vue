@@ -128,7 +128,7 @@ export default {
   name: "Sidebar",
 
   methods: {
-    ...advertisingListStore.mapActions(["getAdvertisingList", "getCountAd"]),
+    ...advertisingListStore.mapActions(["getAdvertisingList", "getCountAd","getAd_no"]),
 
     categoryClick(values) {
       
@@ -148,14 +148,31 @@ export default {
     ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
         count_ad: state => state.count_ad,
+        ad_noList: state => state.ad_noList,
       }),
   },
 
   created() {
+const args1 = {
+            // params: this.advertisingList,
+            params: {
+            category: this.advertisingList.category,
+            adminCheck: ""
+          }
+            };
+    this.getAd_no(args1);
+    
     const args = {
-            params: this.advertisingList,
+            // params: this.advertisingList,
+            params: {
+            category: this.advertisingList.category,
+            ad_noList: this.ad_noList.list,
+            adminCheck: ""
+          }
             };
             this.getAdvertisingList(args).then(this.getCountAd())
+
+            
   }
 };
 </script>

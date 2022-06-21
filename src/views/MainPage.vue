@@ -28,7 +28,7 @@
                   <b-card-text class="margin0">
                     
                     <b-form-rating 
-                      v-model="value"
+                      v-model="advertisingList.list[index].rate"
                       readonly
                       show-value
                       precision="1"
@@ -108,6 +108,7 @@ export default {
       ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
         advertisingListDetail: state => state.advertisingListDetail,
+        ad_noList: state => state.ad_noList,
       }),
       ...clientStore.mapState({
       client: state => state.client,

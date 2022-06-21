@@ -1,9 +1,57 @@
 <template>
     <div>
-        <b-container>
-            <b-form-input class="mt-3"  placeholder="Enter your name" v-model="this.client.list.name"></b-form-input>
-            <b-form-input class="mt-3"  placeholder="Enter your name" v-model="this.client.list.passWord"></b-form-input>
-            <b-form-input class="mt-3"  placeholder="Enter your name" v-model="this.client.list.user_ID"></b-form-input>
+        <b-container class="mt-5">
+
+          <b-row class="text">
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  name
+                </template>
+                <b-form-input
+                  v-model="this.client.list.name"
+                  
+                />
+              </b-form-group>
+            </b-col>
+
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  user_ID
+                </template>
+                <b-form-input
+                  v-model="this.client.list.user_ID"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row class="text mt-3">
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  password
+                </template>
+                <b-form-input
+                  v-model="this.client.list.passWord"
+                  
+                />
+              </b-form-group>
+            </b-col>
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  Phone number
+                </template>
+                <b-form-input
+                  v-model="this.client.list.phone_no"
+                  
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
         </b-container>
     </div>
 </template>
@@ -26,5 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.text {
+  text-align: left;
+}
 </style>
