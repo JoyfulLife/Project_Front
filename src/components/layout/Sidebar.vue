@@ -56,7 +56,7 @@
               </div>
               <div class="card-panel-description">
                 <div class="card-panel-text">
-                  Sport
+                  Sports
                 </div>
                 <div class="card-panel-num">
                   {{this.count_ad.list.sports_count}}
