@@ -1,6 +1,6 @@
 <template>
   
-    <b-navbar type="dark" variant="black" class="fixed-top" >
+    <b-navbar type="dark"  class="fixed-top naviColor" >
       <b-container>
       <b-navbar-nav class="w-100 justify-content-between">
         <b-nav-item @click="movePage('/')">Home</b-nav-item>
@@ -109,5 +109,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.naviColor{
+background: rgb(4,4,4);
+background: linear-gradient(90deg, rgba(4,4,4,1) 20%, rgba(73,66,66,1) 50%, rgba(0,0,0,1) 80%);
+}
 </style>
