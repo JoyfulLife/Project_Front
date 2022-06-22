@@ -8,7 +8,7 @@
             <b-icon stacked icon="chevron-right" shift-h="4" variant="primary"></b-icon>
       </b-iconstack>
 
-      <b-tabs content-class="mt-3" align="center" class="mt-5">
+      <b-tabs content-class="mt-3" align="center" class="mt-5" v-model="tabIndex">
         <b-tab title="로그인" active>
           <b-card class="text-center" border-variant="white">
 
@@ -72,7 +72,7 @@
                       >
                       </b-form-input>
                       <b-form-invalid-feedback id="input-live-feedback">
-                        최소 5글자 이상 적어주세요
+                        * 필수 * 최소 5글자 이상 적어주세요
                       </b-form-invalid-feedback>
                 </b-input-group>
               </b-col>
@@ -90,11 +90,12 @@
                     :state="passWordState"
                     aria-describedby="input-live-help input-live-feedback"
                     placeholder="PassWord"
+                    class="input-number-password"
                     trim
                   ></b-form-input>
 
                   <b-form-invalid-feedback id="input-live-feedback">
-                    최소 5글자 이상 적어주세요
+                    * 필수 * 최소 5글자 이상 적어주세요
                   </b-form-invalid-feedback>
 
                 </b-input-group>
@@ -113,6 +114,7 @@
                     :state="ReconfirmPassWordState"
                     aria-describedby="input-live-help input-live-feedback"
                     placeholder="Reconfirm Password"
+                    class="input-number-password"
                     trim
                   ></b-form-input>
                   
@@ -199,6 +201,7 @@ export default {
   name: "Login",
   data: function() {
     return {
+      tabIndex: 1,
       name: '',
       successAction: '',
       successSignUp: '',
@@ -214,7 +217,7 @@ export default {
 
   },
 methods:{
-  ...clientStore.mapActions(["ValidClientCheck","saveClient"]),
+  ...clientStore.mapActions(["ValidClientCheck","saveClient","initializeSignUp"]),
   LoginButton(){
     const args = {
       params: this.client,
@@ -229,7 +232,7 @@ methods:{
   LoginStatus() {
     
     if(this.client.list.loginStatus === "Yes"){
-        this.$bvModal.msgBoxOk(" 로그인 성공 ! MyPage로 이동합니다.", {
+        this.$bvModal.msgBoxOk(" 로그인 성공 ! Home 화면으로 이동합니다.", {
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'primary',
@@ -244,7 +247,7 @@ methods:{
 
           // ok 버튼을 눌러야 가입을 할 수 있음.
           if(this.successLogin === true){
-            this.$router.push('myPage')
+            this.$router.push('/')
           }
         })
         .catch(err => {
@@ -269,32 +272,50 @@ methods:{
       this.successAction = ''
       //failMessage 값을 초기화
       this.signUp.failMessage = ""
-      this.$bvModal.msgBoxConfirm('회원가입 하시겠습니까?.', {
-        // title: 'Please Confirm',
-        size: 'sm',
-        buttonSize: 'sm',
-        okVariant: 'primary',
-        okTitle: 'YES',
-        cancelTitle: 'NO',
-        footerClass: 'p-2',
-        hideHeaderClose: false,
-        centered: true
-      })
-        .then(value => {
-          this.successAction = value
 
-          // ok 버튼을 눌러야 가입을 할 수 있음.
-          if(this.successAction === true){
-          const args = {
-            params: this.signUp,
-            };
-            this.saveClient(args).then(this.depuplicteCheck)
-          }
+      if(this.ReconfirmPassWordState === false ||
+         this.nameState === false || 
+         this.passWordState === false || 
+         this.phoneNumberState === false || 
+         this.userIDState === false ){
 
+        this.$bvModal.msgBoxOk('필수 항목을 정확히 기입해 주세요!', {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+          })
+
+        }else {
+          this.$bvModal.msgBoxConfirm('회원가입 하시겠습니까?.', {
+          // title: 'Please Confirm',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'primary',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+          centered: true
         })
-        .catch(err => {
-          this.boxTwo = err
-        })
+          .then(value => {
+            this.successAction = value
+
+            // ok 버튼을 눌러야 가입을 할 수 있음.
+            if(this.successAction === true){
+            const args = {
+              params: this.signUp,
+              };
+              this.saveClient(args).then(this.depuplicteCheck)
+            }
+
+          })
+          .catch(err => {
+            this.boxTwo = err
+          })
+  }
   },
   
   //  DB 에 중복된 user_ID 있을 경우 에러 메시지, 정상 회원가입 되면 가입 축하 메시지
@@ -311,7 +332,8 @@ methods:{
       }).then(value => {
           this.successSignUp = value
           if(this.successSignUp === true){
-            this.$router.push('myPage')      
+            this.tabIndex = 0;
+            this.initializeSignUp();
           }
         })
         .catch(err => {

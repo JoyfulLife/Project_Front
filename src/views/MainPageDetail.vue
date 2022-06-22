@@ -22,7 +22,11 @@
       </b-col>
 
       <b-col cols="5">
-        <b-card :title="advertisingListDetail.list.brand_name">
+        <b-card 
+          :title="advertisingListDetail.list.brand_name"
+          class="image"
+          :img-src="getImageUrl(advertisingListDetail.list.image)"
+          >
           <b-card-text class="text-right">
             category : {{advertisingListDetail.list.category}}
           </b-card-text>
@@ -30,10 +34,10 @@
             {{advertisingListDetail.list.remarks}}
           </b-card-text>
 
-          <b-card-text class="text">A second paragraph of text in the card.</b-card-text>
+          <b-card-text class="text"></b-card-text>
 
-          <a href="#" class="card-link">Card link</a>
-          <b-link href="#" class="card-link">Another link</b-link>
+          <!-- <a href="#" class="card-link">Card link</a>
+          <b-link href="#" class="card-link">Another link</b-link> -->
 
           
         </b-card>
@@ -53,14 +57,9 @@
 
     </b-row>
 
-    <b-button variant="primary" :href="this.advertisingListDetail.list.url">사이트 바로 이동</b-button>
-    <b-button variant="secondary" class="margin" @click="AddCart">Add Cart</b-button>
-    <!-- <b-button variant="success">Success</b-button>
-    <b-button variant="danger">Danger</b-button>
-    <b-button variant="warning">Warning</b-button>
-    <b-button variant="info">Info</b-button>
-    <b-button variant="light">Light</b-button>
-    <b-button variant="dark">Dark</b-button> -->
+    <b-button v-if="this.client.list.user_ID != 'admin'" class="mt-5 sitecolor" :href="this.advertisingListDetail.list.url">사이트 바로 이동</b-button>
+    <b-button v-if="this.client.list.user_ID != 'admin'" class="mt-5 margin color" @click="AddCart">Add Cart</b-button>
+    <b-button v-if="this.client.list.user_ID === 'admin'" class="mt-5 margin color" @click="back">뒤로 가기</b-button>
 
   </b-container>
 </template>
@@ -116,9 +115,9 @@ export default {
           this.$router.push('/main-page/detail');
       },
 
-      getImageUrl() {
+      getImageUrl(image) {
         
-        return `https://raw.githubusercontent.com/JoyfulLife/Image/main/test.jpg`
+        return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}`
       },
 
       resize() {
@@ -139,7 +138,7 @@ export default {
           .then(value => {
           this.okbutton = value
           if(this.okbutton === true){
-            this.$router.push('/login')      
+            this.$router.push('/login')   
           }
         })
         }else {
@@ -187,6 +186,10 @@ export default {
             })
           }
       },
+
+      back(){
+        this.$router.push('/admin');
+      },
       
   },
 
@@ -203,13 +206,6 @@ export default {
 .text{
   text-align: left;
 }
-// .backcolor {
-    // height: 100%;
-    // background: rgb(158, 160, 161);
-    // background: radial-gradient(circle, rgba(0,142,255,1) 0%, rgba(9,75,121,1) 63%, rgba(0,212,255,1) 100%);
-    // background: rgb(0,142,255);
-    // background: linear-gradient(180deg, rgba(0,142,255,1) 0%, rgba(9,75,121,1) 20%, rgba(0,215,255,1) 100%);
-// }
 
 .embed{
   width: 600px;
@@ -224,5 +220,22 @@ export default {
   margin-bottom: 0;
   margin-top: 5%;
   text-align: left;
+}
+
+.color {
+  background: rgb(74,68,195);
+  background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
+}
+
+.sitecolor{
+  background: rgb(68,139,12);
+  background: linear-gradient(90deg, rgba(68,139,12,1) 0%, rgba(6,74,51,1) 100%);
+}
+.image {
+  .card-img{
+  height: 169.43px;
+  width: 298.59px;
+  }
+  align-items: center;
 }
 </style>

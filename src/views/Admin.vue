@@ -4,7 +4,7 @@
 
             <b-tabs content-class="mt-3" align="center">
 
-                <b-tab title="AD confirm" active>
+                <b-tab title="AD confirm or deny" active>
                     <b-table
                         head-variant="primary"
                         class="mt-5"
@@ -85,7 +85,7 @@
                           />
                       </b-col>
 
-                      <b-col cols="4">
+                      <b-col cols="4" class="left">
                         <b-form-select
                             id="page"
                             v-model="AdTable.limit"
@@ -99,12 +99,12 @@
                     
                 </b-tab>
 
-                <b-tab title="Second">
+                <!-- <b-tab title="Second">
                 </b-tab>
 
                 <b-tab title="Disabled">
                     
-                </b-tab>
+                </b-tab> -->
 
             </b-tabs>
         </b-container>
@@ -115,6 +115,7 @@
 import { createNamespacedHelpers } from "vuex";
 const clientStore = createNamespacedHelpers("client");
 const adminStore = createNamespacedHelpers("admin");
+const advertisingListStore = createNamespacedHelpers("advertisingList");
 
 export default {
   name: "Admin",
@@ -139,14 +140,17 @@ export default {
       AdTable: state => state.AdTable,
       confirmList: state => state.confirmList,
     }),
+    ...advertisingListStore.mapState({
+        advertisingListDetail: state => state.advertisingListDetail,
+      }),
 
     fields: function() {
       return [
-        {
-          key: "check_box",
-          label: "",
-          thClass: "w-checkbox"
-        },
+        // {
+        //   key: "check_box",
+        //   label: "",
+        //   thClass: "w-checkbox"
+        // },
         {
           key: "row_number",
           label: "No.",
@@ -249,7 +253,7 @@ export default {
               };
               this.AdTable.list[row.index].adminCheck="Yes"
               this.AdTable.list[row.index].deleteData="delete"
-              this.sendDenyButton(args);
+              this.sendDenyButton(args).then(this.onSearch);
             }
 
             })
@@ -285,13 +289,20 @@ export default {
       this.onSearch();
     },
 
-      
+      onRowClick(row, index){
+
+        this.advertisingListDetail.list = this.AdTable.list[index]
+        
+        this.$router.push('/main-page/detail');
+      },
 
 
   },
 
   created() {
-      this.onSearch();
+    this.AdTable.page = 1; 
+    this.AdTable.limit = 10;
+    this.onSearch();
   },
 };
 </script>
@@ -315,4 +326,7 @@ export default {
   text-align: left;
 }
 
+.left{
+  text-align: end;
+}
 </style>

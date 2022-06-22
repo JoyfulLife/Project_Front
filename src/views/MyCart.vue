@@ -186,7 +186,7 @@
                   />
               </b-col>
               
-              <b-col cols="4">
+              <b-col cols="4" class="left">
                 <b-form-select
                     id="page"
                     v-model="cartList.limit"
@@ -266,7 +266,7 @@
                   />
               </b-col>
               
-              <b-col cols="4">
+              <b-col cols="4" class="left">
                 <b-form-select
                     id="page"
                     v-model="myAdRequest.limit"
@@ -514,7 +514,7 @@ export default {
         };
         
         this.sendDeleteCartList(args).then(this.checkError);
-        
+        this.cartList.allCheckBox = false
       }
       
 
@@ -542,7 +542,7 @@ export default {
         };
         
         this.sendDeleteMyAdList(args).then(this.MyAdCheckError);
-        
+        this.myAdRequest.allCheckBox = false
       }
     },
 
@@ -608,6 +608,8 @@ export default {
     this.cartList.user_id = this.client.list.user_ID
     this.searchCartList();
     this.searchMyAdRequestList();
+    this.cartList.allCheckBox = false
+    this.myAdRequest.allCheckBox = false
   }
 };
 </script>
@@ -629,5 +631,7 @@ export default {
 background: rgb(74,68,195);
 background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
 }
-
+.left{
+  text-align: end;
+}
 </style>

@@ -3,21 +3,25 @@
     
     <b-card
     no-body
+    style="max-width: 100%;"
+      >
+      <!--
+        no-body
     style="max-width: 20rem;"
     img-src="https://placekitten.com/380/200"
     img-alt="Image"
-    img-top
-      >
+    img-top 
+    --> 
     <template #header>
       <h2>Category</h2>
     </template>
 
     <b-card-body>
-      <b-card-title>Card Title</b-card-title>
-      <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title>
+      <b-card-title>Click</b-card-title>
+      <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
       <b-card-text>
-        Some quick example text to build on the card title and make up the bulk of the card's
-        content.
+        <p>원하는 카테고리를 클릭하세요!</p>
+        <p>마음에 드는 광고를 클릭하면 상세보기가 가능합니다!</p>
       </b-card-text>
     </b-card-body>
 
@@ -106,14 +110,14 @@
       </b-list-group-item>
     </b-list-group>
 
-    <b-card-body>
+    <!-- <b-card-body>
       <a href="#" class="card-link">Card link</a>
       <a href="#" class="card-link">Another link</a>
-    </b-card-body>
+    </b-card-body> -->
 
-    <b-card-footer>This is a footer</b-card-footer>
+    <!-- <b-card-footer>This is a footer</b-card-footer> -->
 
-    <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img>
+    <!-- <b-card-img src="https://placekitten.com/480/210" alt="Image" bottom></b-card-img> -->
   </b-card>
   
   </div>

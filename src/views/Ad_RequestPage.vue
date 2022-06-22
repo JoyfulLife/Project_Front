@@ -120,7 +120,7 @@
 
             <b-row class="mt-5">
                 <b-col cols="12" md="12" class="align-center">
-                    <b-button variant="primary" @click="this.validationCheck"> 광고 신청하기! </b-button>
+                    <b-button class="color" @click="this.validationCheck"> 광고 신청하기! </b-button>
                 </b-col>
             </b-row>
 
@@ -171,7 +171,7 @@ export default {
       }),
   },
   methods: {
-    ...ad_requestPageStore.mapActions(["sendAdRequest"]),
+    ...ad_requestPageStore.mapActions(["sendAdRequest","initializeAdRequest"]),
 
     deleteImage(){
         this.adRequest.image = null,
@@ -220,10 +220,12 @@ export default {
           }
           
         };
-        // args.image = this.adRequest.image.name
-        console.log(args);
-        // console.log(args.image);
-      this.sendAdRequest(args).then(this.$bvModal.msgBoxOk(this.adRequest.message, {
+
+      this.sendAdRequest(args).then(this.message);
+
+    },
+    message(){
+      this.$bvModal.msgBoxOk(this.adRequest.message, {
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'warning',
@@ -232,12 +234,19 @@ export default {
         footerClass: 'p-2',
         hideHeaderClose: false,
         centered: true
-      }))
+      }).then(value => {
+          this.successAction = value
 
-      // console.log(this.adRequest.image.name);
-      // console.log(this.adRequest.image);
-      
+          // ok 버튼을 눌러야 가입을 할 수 있음.
+          this.$router.push('/');
 
+        })
+        .catch(err => {
+          this.boxTwo = err
+        })
+    },
+    moveRouter(){
+      this.$router.push('/');
     },
 
     validationCheck(){
@@ -273,6 +282,8 @@ export default {
   },
 
   created() {
+    
+    this.initializeAdRequest();
     this.adRequest.user_ID = this.client.list.user_ID
   }
 
@@ -367,8 +378,9 @@ export default {
 .text-danger {
   color: #dc3545 !important;
 }
-// .form-select{
-//   // height: 38px;
-//   // width: 334.77px;
-// }
+
+.color {
+background: rgb(74,68,195);
+background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
+}
 </style>

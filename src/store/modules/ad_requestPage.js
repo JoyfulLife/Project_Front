@@ -21,9 +21,13 @@ const getters = {
 };
 const actions = {
     sendAdRequest: function (context, payload) {
-        console.log("AAAAAAAAAAAAAAAAAAAA");
+    
         return apis.sendAdRequest(context, payload);
     },
+    initializeAdRequest: function (context) {
+
+        context.commit("initializeAdRequestState");
+    }
 };
 
 const mutations = {
@@ -31,12 +35,17 @@ const mutations = {
         state.adRequest.message = payload.data.message
         console.log(payload);
     },
+
+    initializeAdRequestState: function (state) {
+        const newInstance = cloneDeep(defaultState.adRequest);
+        state.adRequest = newInstance;
+    },
 };
 
 const apis = {
 
     sendAdRequest:function (context, parameters) {
-        console.log("BBBBBBBBBBBBBBBBBBB");
+        
         return axios.post(
             "/advertising/insertAdvertising", parameters.params,
         ).then(response => context.commit("setsendAdRequestState", response))

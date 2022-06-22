@@ -38,6 +38,10 @@ const actions = {
     },
     initializeClient: function (context) {
         context.commit("initializeClientState");
+    },
+
+    initializeSignUp: function (context) {
+        context.commit("initializeSignUpState");
     }
     
 };
@@ -57,6 +61,10 @@ const mutations = {
     initializeClientState: function (state) {
         const newInstance = cloneDeep(defaultState.client);
         state.client = newInstance;
+    },
+    initializeSignUpState: function (state) {
+        const newInstance = cloneDeep(defaultState.signUp);
+        state.signUp = newInstance;
     },
 
 };

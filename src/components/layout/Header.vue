@@ -1,5 +1,5 @@
 <template>
-  <div class="width='50'">
+  <div>
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -13,33 +13,26 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <!-- Text slides with image -->
+      <!-- Text slides with image 
+      caption="First slide"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."-->
       <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        
         img-src="https://picsum.photos/1024/170/?image=52"
       >
-      <b-jumbotron>
-        <template #header>BootstrapVue</template>
+      <b-jumbotron class="size">
+        <template #header>Advertising center</template>
 
         <template #lead>
-          This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-          featured content or information.
+          우리는 광고를 찾아볼 수 있고, 광고를 신청할 수 있고, 손 쉽게 정보를 얻을 수 있습니다!
         </template>
 
         <hr class="my-4">
 
         <p>
-          It uses utility classes for typography and spacing to space content out within the larger
-          container.
+          We can browse ads, sign up for ads and get information easily!
         </p>
 
-        <b-button variant="primary" href="#" v-b-modal.modal-1>Do Something
-          <b-modal id="modal-1" title="BootstrapVue">
-            <p class="my-4">Hello from modal!</p>
-          </b-modal>
-        </b-button>
-        <b-button variant="success" href="#">Do Something Else</b-button>
       </b-jumbotron>
       </b-carousel-slide>
 
@@ -65,13 +58,6 @@
         </template>
       </b-carousel-slide>
 
-      <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-<!--      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">-->
-<!--        <p>-->
-<!--          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt-->
-<!--          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.-->
-<!--        </p>-->
-<!--      </b-carousel-slide>-->
     </b-carousel>
   </div>
 </template>
@@ -102,5 +88,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.size{
+  width: 100%;
+  height: 100%;
+}
 </style>

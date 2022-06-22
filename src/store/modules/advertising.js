@@ -38,7 +38,7 @@ const actions = {
     },
 
     getAd_no: function (context, payload) {
-        console.log("AAAAAAAAAAAAAAAAA");
+        
         return apis.getAd_no(context, payload);
     },
 
@@ -56,9 +56,9 @@ const mutations = {
     },
 
     setgetAd_no_State: function (state ,payload) {
-        console.log("CCCCCCCCCCCCCCCC");
+        
         state.ad_noList.list = payload.data
-        console.log(payload);
+        
     },
 };
 
@@ -78,7 +78,7 @@ const apis = {
     },
 
     getAd_no:function (context, parameters) {
-        console.log("BBBBBBBBBBB");
+        
         return axios.post(
             "/advertising/ad_no", parameters.params
         ).then(response => context.commit("setgetAd_no_State", response))
