@@ -49,7 +49,7 @@
           </b-card>
         </b-tab>
 
-        <b-tab title="비밀번호 찾기"><p>I'm the second tab</p></b-tab>
+        <!-- <b-tab title="비밀번호 찾기"><p>I'm the second tab</p></b-tab> -->
 
 
 
