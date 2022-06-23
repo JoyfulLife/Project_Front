@@ -152,7 +152,7 @@ export default {
       },  
       options: [
         { value: 'Sports', text: 'Sports' },
-        { value: 'Shoping', text: 'Shoping' },
+        { value: 'Shopping', text: 'Shopping' },
         { value: 'Book', text: 'Book' },
       ],
 

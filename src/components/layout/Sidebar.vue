@@ -76,10 +76,10 @@
               </div>
               <div class="card-panel-description">
                 <div class="card-panel-text">
-                  Shoping
+                  Shopping
                 </div>
                 <div class="card-panel-num">
-                  {{this.count_ad.list.shoping_count}}
+                  {{this.count_ad.list.shopping_count}}
                 </div>
                 <!-- <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" /> -->
               </div>
