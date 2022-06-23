@@ -3,7 +3,7 @@
     
     <b-card
     no-body
-    style="max-width: 100%;"
+    style="max-width: 20rem;"
       >
       <!--
         no-body
@@ -76,10 +76,10 @@
               </div>
               <div class="card-panel-description">
                 <div class="card-panel-text">
-                  News
+                  Shoping
                 </div>
                 <div class="card-panel-num">
-                  {{this.count_ad.list.news_count}}
+                  {{this.count_ad.list.shoping_count}}
                 </div>
                 <!-- <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" /> -->
               </div>
@@ -97,10 +97,10 @@
               </div>
               <div class="card-panel-description">
                 <div class="card-panel-text">
-                  Web toon
+                  Book
                 </div>
                 <div class="card-panel-num">
-                  {{this.count_ad.list.webtoon_count}}
+                  {{this.count_ad.list.book_count}}
                 </div>
                 <!-- <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" /> -->
               </div>

@@ -4,8 +4,8 @@ import {cloneDeep} from "lodash";
 import axios from "axios";
 const defaultState = {
     client:{
-        user_ID: "whdbstkd96",
-        passWord:"dbstkd96",
+        user_ID: "admin",
+        passWord:"dbstkd96!",
         name:"",
         list:[],
         loginStatus:""

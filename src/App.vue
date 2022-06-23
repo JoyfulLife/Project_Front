@@ -17,13 +17,13 @@
       <p>나만의 광고를 널리 알리고 싶나요? 그렇다면 버튼을 누르세요!!</p>
       <b-button class="color" pill variant="primary" @click="movePage('/ad-request-page')">Button</b-button>
 
-      <!-- <div v-if="this.client.list.user_ID === 'admin'"> -->
+      <div v-if="this.client.list.user_ID === 'admin'">
       <h1 class="mt-5"><strong>Manage the We</strong></h1>
       <p>여기는 관리자만 이용할 수 있는 곳입니다.</p>
-      <p>이용자가 신청한 광고를 수락, 거절할 수 있습니다.</p>
+      <p>이용자가 신청한 광고를 승인, 거절할 수 있습니다.</p>
       <p>올바른 우리를 만들기 위한다면 버튼을 누르세요!!</p>
       <b-button class="color" pill variant="primary" @click="movePage('/admin')">Button</b-button>
-      <!-- </div> -->
+      </div>
     </div>
 
     <div class="mt-5" style="height: auto; width: 100%; border-top:1px solid gold;">

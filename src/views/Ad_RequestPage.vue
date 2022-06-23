@@ -111,7 +111,7 @@
                             <b-img class="upload-container" :src="previewImageData"></b-img>
                             </div>
 
-                            <b-button class="mt-3" @click="this.deleteImage">이미지 삭제</b-button>
+                            <b-button class="mt-3 deleteColor" @click="this.deleteImage">이미지 삭제</b-button>
 
                         </b-list-group-item>
                     </b-form-group>
@@ -152,8 +152,8 @@ export default {
       },  
       options: [
         { value: 'Sports', text: 'Sports' },
-        { value: 'News', text: 'News' },
-        { value: 'Web toon', text: 'Web toon' },
+        { value: 'Shoping', text: 'Shoping' },
+        { value: 'Book', text: 'Book' },
       ],
 
       show: true,
@@ -382,5 +382,10 @@ export default {
 .color {
 background: rgb(74,68,195);
 background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
+}
+
+.deleteColor {
+  background: rgb(228,36,36);
+  background: linear-gradient(90deg, rgba(228,36,36,1) 4%, rgba(238,134,29,1) 90%);
 }
 </style>

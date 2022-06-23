@@ -15,7 +15,7 @@
                   
                 <b-card
                   class="image color"
-                  border-variant="primary"
+                  
                   :header="advertisingList.list[index].brand_name"
                   header-text-variant="white"
                   align="center"
@@ -39,7 +39,7 @@
                       />
                     
                     <p>Category : {{advertisingList.list[index].category}}</p>
-                    <p>{{advertisingList.list[index].ad_no}}</p>
+                    <!-- <p>{{advertisingList.list[index].ad_no}}</p> -->
                     <p>{{advertisingList.list[index].url}}</p>
                   </b-card-text>
                         
@@ -135,8 +135,8 @@ export default {
 }
 .image {
   .card-img{
-  height: 169.43px;
-  width: 298.59px;
+  height: 160.43px;
+  width: 298.40px;
   }
 }
 .b-card.header-bg-variant {
