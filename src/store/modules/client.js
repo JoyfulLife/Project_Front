@@ -5,20 +5,24 @@ import axios from "axios";
 const defaultState = {
     client:{
         user_ID: "admin",
-        passWord:"dbstkd96!",
-        name:"",
-        list:[],
-        loginStatus:""
+        passWord: "dbstkd96!",
+        name: "",
+        phone_no: "",
+        list: [],
+        loginStatus: "",
+        update: "",
+        delete: "",
+        failMessage:""
     },
     signUp:{
         user_ID: "",
-        passWord:"",
-        reconfirmPassWord:"",
-        name:"",
-        phoneNumber:"",
-        gender:"",
-        successMessage:"",
-        failMessage:"",
+        passWord: "",
+        reconfirmPassWord: "",
+        name: "",
+        phoneNumber: "",
+        gender: "",
+        successMessage: "",
+        failMessage: "",
     }
 }
 
@@ -42,15 +46,23 @@ const actions = {
 
     initializeSignUp: function (context) {
         context.commit("initializeSignUpState");
-    }
-    
+    },
+
+    clientUpdate: function (context, payload) {
+        
+        return apis.clientUpdate(context, payload);
+    },
+    clientDelete: function (context, payload) {
+        
+        return apis.clientDelete(context, payload);
+    },
 };
 
 const mutations = {
     setValidClientCheckState: function (state ,payload) {
         console.log(payload)
         state.client.list = payload.data;
-        // state.client.name = payload.data.name;
+        
     },
     setsaveClientState: function (state ,payload) {
         console.log(payload)
@@ -66,22 +78,43 @@ const mutations = {
         const newInstance = cloneDeep(defaultState.signUp);
         state.signUp = newInstance;
     },
-
+    setclientUpdateState: function (state ,payload) {
+        
+        state.client.list = payload.data;
+        
+    },
+    setclientDeleteState: function (state ,payload) {
+        
+        state.client.list = payload.data;
+        
+    },
 };
 
 const apis = {
     ValidClientCheck:function (context, parameters) {
         console.log("apis");
         return axios.post(
-            "/ado/client/clientInfo", parameters.params
+            "/client/clientInfo", parameters.params
         ).then(response => context.commit("setValidClientCheckState", response))
     },
     
     saveClient:function (context, parameters) {
         
         return axios.post(
-            "/ado/client/saveClient", parameters.params
+            "/client/saveClient", parameters.params
         ).then(response => context.commit("setsaveClientState", response))
+    },
+
+    clientUpdate:function (context, parameters) {
+        return axios.post(
+            "/client/clientInfo", parameters.params
+        ).then(response => context.commit("setclientUpdateState", response))
+    },
+
+    clientDelete:function (context, parameters) {
+        return axios.post(
+            "/client/clientInfo", parameters.params
+        ).then(response => context.commit("setclientDeleteState", response))
     },
 }
 

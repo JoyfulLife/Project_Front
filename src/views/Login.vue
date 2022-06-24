@@ -45,7 +45,7 @@
                 </b-input-group>
               </b-col>
             </b-row>
-            <b-button @click="LoginButton">Login</b-button>
+            <b-button @click="LoginButton" class="color">Login</b-button>
           </b-card>
         </b-tab>
 
@@ -182,7 +182,7 @@
               </b-col>
             </b-row>
 
-            <b-button variant="success" @click="SignUp">가입하기</b-button>
+            <b-button variant="success" @click="SignUp" class="color">가입하기</b-button>
 
           </b-card>
         </b-tab>
@@ -401,5 +401,10 @@ methods:{
 <style lang="scss">
 .input-number-password {
     -webkit-text-security: disc;
+}
+
+.color {
+background: rgb(74,68,195);
+background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%);
 }
 </style>

@@ -194,7 +194,7 @@ const args1 = {
     cursor: pointer;
     font-size: 30px;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     color: #666;
     background: #fff;
     box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);

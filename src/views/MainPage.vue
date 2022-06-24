@@ -14,7 +14,7 @@
                >
                   
                 <b-card
-                  class="image color"
+                  class="image color card-img"
                   
                   :header="advertisingList.list[index].brand_name"
                   header-text-variant="white"
@@ -136,7 +136,8 @@ export default {
 .image {
   .card-img{
   height: 160.43px;
-  width: 298.40px;
+  width: 296.80px;
+  background-color: rgb(230, 14, 14);
   }
 }
 .b-card.header-bg-variant {
@@ -176,4 +177,3 @@ background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%
   background-color: white;
 }
 </style>
-
