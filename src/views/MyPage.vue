@@ -77,8 +77,9 @@ export default {
     ...clientStore.mapActions(["clientUpdate","clientDelete"]),
 
     Update(){
-      if(this.client.passWord.length <5){
-        this.$bvModal.msgBoxOk(" 변경하는 비밀번호는 최소 5자리 이상입니다. ", {
+
+      this.$bvModal.msgBoxConfirm(' 비밀번호를 변경하시겠습니까?  ', {
+          // title: 'Please Confirm',
           size: 'sm',
           buttonSize: 'sm',
           okVariant: 'primary',
@@ -87,15 +88,37 @@ export default {
           footerClass: 'p-2',
           hideHeaderClose: false,
           centered: true
-          
         })
-      }else {
-        const args = {
-          params: this.client
-        };
-        this.client.update = "update";
-        this.clientUpdate(args).then(this.LoginStatus)
-      }
+          .then(value => {
+            this.successAction = value
+
+            if(this.successAction === true){
+              if(this.client.passWord.length <5){
+                this.$bvModal.msgBoxOk(" 변경하는 비밀번호는 최소 5자리 이상입니다. ", {
+                  size: 'sm',
+                  buttonSize: 'sm',
+                  okVariant: 'primary',
+                  okTitle: 'YES',
+                  cancelTitle: 'NO',
+                  footerClass: 'p-2',
+                  hideHeaderClose: false,
+                  centered: true
+              })
+                }else {
+                  const args = {
+                    params: this.client
+                  };
+                  this.client.update = "update";
+                  this.clientUpdate(args).then(this.LoginStatus)
+                }
+                  }
+
+          })
+          .catch(err => {
+            this.boxTwo = err
+          })
+
+      
     },
 
     LoginStatus() {
@@ -155,7 +178,7 @@ export default {
     },
 
     afterDelete(){
-      if(this.client.delete === "YES"){
+      if(this.client.list.delete === "YES"){
         
         this.$bvModal.msgBoxOk("정상적으로 삭제 되었습니다.", {
           size: 'sm',

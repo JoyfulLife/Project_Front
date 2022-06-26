@@ -14,7 +14,7 @@
             class="embed"
             type="iframe"
             aspect="16by9"
-            src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"    
+            src="https://www.youtube.com/embed/NbMUCXUnYyA"
             allowfullscreen
         ></b-embed>
         </b-card>

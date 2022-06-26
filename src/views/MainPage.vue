@@ -1,6 +1,7 @@
 <template>
     <div>
-        <b-row>
+      <!-- <b-container> -->
+        <b-row class="row-margin">
           <b-col cols="2" class="mt-5">
               <Sidebar></Sidebar>
           </b-col>
@@ -53,6 +54,7 @@
             </b-row>
           </b-col>
        </b-row>
+      <!-- </b-container> -->
     </div>
     
 </template>
@@ -136,7 +138,7 @@ export default {
 .image {
   .card-img{
   height: 160.43px;
-  width: 296.80px;
+  width: 298.30px;
   background-color: rgb(230, 14, 14);
   }
 }
@@ -175,5 +177,9 @@ background: linear-gradient(90deg, rgba(74,68,195,1) 0%, rgba(29,150,175,1) 100%
 }
 .card-body{
   background-color: white;
+}
+
+.row-margin{
+margin: 0%;
 }
 </style>
