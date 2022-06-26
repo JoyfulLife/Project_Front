@@ -2,7 +2,7 @@
   
     <b-navbar type="dark"  class="fixed-top naviColor" >
       <b-container>
-      <b-navbar-nav class="w-100 justify-content-between">
+      <b-navbar-nav class="w-50 justify-content-between align">
         <b-nav-item @click="movePage('/')">Home</b-nav-item>
 
         <!-- Navbar dropdowns -->
@@ -129,5 +129,9 @@ export default {
 .naviColor{
 background: rgb(4,4,4);
 background: linear-gradient(90deg, rgba(4,4,4,1) 20%, rgba(73,66,66,1) 50%, rgba(0,0,0,1) 80%);
+}
+
+.align{
+  margin-left: 25%;
 }
 </style>
