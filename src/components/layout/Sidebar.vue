@@ -132,7 +132,7 @@ export default {
   name: "Sidebar",
 
   methods: {
-    ...advertisingListStore.mapActions(["getAdvertisingList", "getCountAd","getAd_no"]),
+    ...advertisingListStore.mapActions(["getAdvertisingList", "getCountAd"]),
 
     categoryClick(values) {
       
@@ -157,14 +157,6 @@ export default {
   },
 
   created() {
-const args1 = {
-            // params: this.advertisingList,
-            params: {
-            category: this.advertisingList.category,
-            adminCheck: ""
-          }
-            };
-    this.getAd_no(args1);
     
     const args = {
             // params: this.advertisingList,
@@ -176,7 +168,9 @@ const args1 = {
             };
             this.getAdvertisingList(args).then(this.getCountAd())
 
-            
+   
+   
+   
   }
 };
 </script>

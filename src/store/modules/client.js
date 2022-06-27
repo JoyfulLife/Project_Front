@@ -60,13 +60,12 @@ const actions = {
 
 const mutations = {
     setValidClientCheckState: function (state ,payload) {
-        console.log(payload)
+        
         state.client.list = payload.data;
         
     },
     setsaveClientState: function (state ,payload) {
-        console.log(payload)
-        console.log("setsaveClientState");
+        
         state.signUp.failMessage = payload.data.failMessage;
         state.signUp.successMessage = payload.data.successMessage;
     },
@@ -79,12 +78,12 @@ const mutations = {
         state.signUp = newInstance;
     },
     setclientUpdateState: function (state ,payload) {
-        
+        state.client.update = "";
         state.client.list = payload.data;
         
     },
     setclientDeleteState: function (state ,payload) {
-        
+        state.client.delete = "";
         state.client.list = payload.data;
         
     },

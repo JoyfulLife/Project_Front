@@ -1,33 +1,32 @@
 <template>
   <div class="errPage-container">
-    <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
-      返回
-    </el-button>
-    <el-row>
-      <el-col :span="12">
+    <b-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
+      Home
+    </b-button>
+    <b-row>
+      <b-col cols="12">
         <h1 class="text-jumbo text-ginormous">
           Oops!
         </h1>
-        gif来源<a href="https://zh.airbnb.com/" target="_blank">airbnb</a> 页面
-        <h2>你没有权限去该页面</h2>
-        <h6>如有不满请联系你领导</h6>
+        <!-- gif来源<a href="https://zh.airbnb.com/" target="_blank">airbnb</a> 页面 -->
+        <h2>데이터값이 하나도 없어요..</h2>
+        <h6>뒤로가기, 혹은 Home으로 이동해주세요.</h6>
         <ul class="list-unstyled">
-          <li>或者你可以去:</li>
+          
           <li class="link-type">
-            <router-link to="/dashboard">
-              回首页
+            <router-link to="/">
+              Home
             </router-link>
           </li>
           <li class="link-type">
-            <a href="https://www.taobao.com/">随便看看</a>
+              <a @click="back">뒤로가기</a>
           </li>
-          <li><a href="#" @click.prevent="dialogVisible=true">点我看图</a></li>
         </ul>
-      </el-col>
-      <el-col :span="12">
+      </b-col>
+      <b-col cols="12" class="mt-5">
         <img :src="errGif" width="313" height="428" alt="Girl has dropped her ice cream.">
-      </el-col>
-    </el-row>
+      </b-col>
+    </b-row>
     <el-dialog :visible.sync="dialogVisible" title="随便看">
       <img :src="ewizardClap" class="pan-img">
     </el-dialog>
@@ -48,11 +47,9 @@ export default {
   },
   methods: {
     back() {
-      if (this.$route.query.noGoBack) {
-        this.$router.push({ path: '/dashboard' })
-      } else {
+      
         this.$router.go(-1)
-      }
+    
     }
   }
 }
