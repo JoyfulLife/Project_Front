@@ -613,13 +613,13 @@ export default {
         params: this.myAdRequest,
       };
       //에러메시지 초기화
-      this.myAdRequest.errorList.message = ""
+      this.myAdRequest.error = ""
       this.retrieveMyAd(args).then(this.MyAd_errorCheck);
     },
 
     MyAd_errorCheck(){
-      if(this.myAdRequest.errorList.message){
-        this.$bvModal.msgBoxOk(this.myAdRequest.errorList.message, {
+      if(this.myAdRequest.error){
+        this.$bvModal.msgBoxOk(this.myAdRequest.error, {
           size: 'sm',
           buttonSize: 'sm',
           okVariant: 'primary',

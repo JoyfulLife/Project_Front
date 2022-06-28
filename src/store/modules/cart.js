@@ -36,7 +36,7 @@ const defaultState = {
         url: "",
         allCheckBox: false,
         message: "",
-        errorList: [],
+        error: ""
     },
 
     deleteMyAdList: {
@@ -129,14 +129,14 @@ const mutations = {
     },
 
     setretrieveMyAdState: function (state ,payload) {
-        
+        console.log(payload)
         if(payload.data.res){
         payload.data.res.forEach(cartItem => cartItem.selected = false);
         }
         state.myAdRequest.list = payload.data.res;
         state.myAdRequest.allCount = payload.data.myAdCount;
         if(payload.data.error){
-        state.myAdRequest.errorList = payload.data.error;
+        state.myAdRequest.error = payload.data.error;
         }
         
         
