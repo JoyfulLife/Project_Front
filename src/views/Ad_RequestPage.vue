@@ -237,7 +237,6 @@ export default {
       }).then(value => {
           this.successAction = value
 
-          // ok 버튼을 눌러야 가입을 할 수 있음.
           this.$router.push('/');
 
         })

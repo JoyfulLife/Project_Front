@@ -137,17 +137,31 @@ export default {
     categoryClick(values) {
       
       this.advertisingList.category = values
-      
+      this.advertisingList.error = ""
+
       const args = {
             params: this.advertisingList,
             };
             this.getAdvertisingList(args)
+            .then(this.getCountAd)
+            .then(this.errorCheck)
     },
 
-    errorCount(){
+    errorCheck(){
       
       if(this.count_ad.list.message){
         this.$bvModal.msgBoxOk(this.count_ad.list.message, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'primary',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+          centered: true
+        })
+      }else if(this.advertisingList.error){
+        this.$bvModal.msgBoxOk(this.advertisingList.error, {
           size: 'sm',
           buttonSize: 'sm',
           okVariant: 'primary',
@@ -184,10 +198,11 @@ export default {
       adminCheck: ""
       }
     };
+    this.advertisingList.error = ""
+
     this.getAdvertisingList(args)
     .then(this.getCountAd)
-    .then(this.errorCount)
-
+    .then(this.errorCheck)
 
    
    

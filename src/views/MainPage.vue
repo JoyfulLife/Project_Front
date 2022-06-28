@@ -65,6 +65,7 @@ import ErrorPage from '@/components/layout/ErrorPage.vue'
 
 import { createNamespacedHelpers } from "vuex";
 const commonStore = createNamespacedHelpers("common");
+
 const advertisingListStore = createNamespacedHelpers("advertisingList");
 const clientStore = createNamespacedHelpers("client");
 
@@ -101,28 +102,27 @@ export default {
   methods:{
       
 
-      MainPage_Detail(index){
+    MainPage_Detail(index){
           
-          this.advertisingListDetail.list = this.advertisingList.list[index]
-          this.advertisingListDetail.list.user_id = this.client.list.user_ID
-          console.log(this.advertisingListDetail.list.user_id);
-          this.$router.push('/main-page/detail');
-      },
-      message() {
+      this.advertisingListDetail.list = this.advertisingList.list[index]
+      this.advertisingListDetail.list.user_id = this.client.list.user_ID
+      this.$router.push('/main-page/detail');
+    },
+    
+    message() {
       return 'The webmaster said that you can not enter this page...'
     },
 
     //github 에서 이미지 받아옴.
     getImageUrl(image) {
         
-        return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}`
-      }
+      return `https://raw.githubusercontent.com/JoyfulLife/Image/main/${image}`
+    },
       
   },
 
   created() {
-    this.advertisingList.category = "All";
-      
+    this.advertisingList.category = "All";  
   }
 };
 </script>

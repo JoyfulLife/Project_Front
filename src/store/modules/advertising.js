@@ -5,7 +5,8 @@ const defaultState = {
     advertisingList:{
         category: "",
         list: [],
-        adminCheck: ""
+        adminCheck: "",
+        error: ""
     },
 
     advertisingListDetail:{
@@ -41,12 +42,15 @@ const actions = {
 
 const mutations = {
     setadvertisingListState: function (state ,payload) {
-        
+        console.log(payload);
         state.advertisingList.list = payload.data.res
+        if(payload.data.error){
+            state.advertisingList.error = payload.data.error
+        }
     },
 
     setcountAdState: function (state ,payload) {
-        
+        console.log(payload);
         state.count_ad.list = payload.data
     },
 

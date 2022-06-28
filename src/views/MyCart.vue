@@ -144,7 +144,7 @@
                 <h6> 데이터가 없습니다. </h6>
               </template>
 
-              <template #cell(row_number)="data_01">
+              <template #cell(row_number_01)="data_01">
                 {{ ((cartList.page - 1) * cartList.limit) + data_01.index + 1 }}
               </template>
 
@@ -225,7 +225,7 @@
                 <h6> 데이터가 없습니다. </h6>
               </template>
 
-              <template #cell(row_number)="data_02">
+              <template #cell(row_number_02)="data_02">
                 {{ ((myAdRequest.page - 1) * myAdRequest.limit) + data_02.index + 1 }}
               </template>
 
@@ -344,7 +344,7 @@ export default {
           thClass: "w-checkbox"
         },
         {
-          key: "row_number",
+          key: "row_number_01",
           label: "No.",
           thClass: "w-15 text-left",
           tdClass: "text-left"
@@ -383,7 +383,7 @@ export default {
           thClass: "w-checkbox"
         },
         {
-          key: "row_number",
+          key: "row_number_02",
           label: "No.",
           thClass: "w-15 text-left",
           tdClass: "text-left"
@@ -454,11 +454,8 @@ export default {
       // }
 
       this.cartList.page = page;
-      console.log("this.cartList.page : " + this.cartList.page);
 
       this.cartList.limit_st = (this.cartList.page-1) * this.cartList.limit
-
-      console.log("this.cartList.limit_st : " + this.cartList.limit_st);
       
       this.searchCartList();
     },
@@ -467,8 +464,9 @@ export default {
       this.myAdRequest.page = page;
       
       this.myAdRequest.limit_st = (this.myAdRequest.page-1) * this.myAdRequest.limit
-
+      
       this.searchMyAdRequestList();
+      this.myAdRequest.page = 1
     },
 
     init() {
@@ -553,6 +551,7 @@ export default {
     };
     this.retrieveCart(args).then(this.selectError);
 
+    this.cartList.page = 1
     },
 
     selectError(){
