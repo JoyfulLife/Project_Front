@@ -551,8 +551,22 @@ export default {
       const args = {
       params: this.cartList,
     };
-    this.retrieveCart(args);
+    this.retrieveCart(args).then(this.selectError);
 
+    },
+
+    selectError(){
+      if(this.cartList.error){
+        this.$bvModal.msgBoxOk(this.cartList.error, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'warning',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+      })
+      }
+      
     },
 
     checkError() {
@@ -598,8 +612,25 @@ export default {
       const args = {
         params: this.myAdRequest,
       };
-      this.retrieveMyAd(args);
+      //에러메시지 초기화
+      this.myAdRequest.errorList.message = ""
+      this.retrieveMyAd(args).then(this.MyAd_errorCheck);
     },
+
+    MyAd_errorCheck(){
+      if(this.myAdRequest.errorList.message){
+        this.$bvModal.msgBoxOk(this.myAdRequest.errorList.message, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'primary',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+          centered: true
+        })
+      }
+    }
     
   },
 

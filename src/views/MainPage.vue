@@ -65,7 +65,6 @@ import ErrorPage from '@/components/layout/ErrorPage.vue'
 
 import { createNamespacedHelpers } from "vuex";
 const commonStore = createNamespacedHelpers("common");
-const tableListStore = createNamespacedHelpers("tableList");
 const advertisingListStore = createNamespacedHelpers("advertisingList");
 const clientStore = createNamespacedHelpers("client");
 
@@ -87,9 +86,7 @@ export default {
       ...commonStore.mapState({
       common: state => state.login,
     }),
-      ...tableListStore.mapState({
-          tableList: state => state.tableList,
-        }),
+      
       ...advertisingListStore.mapState({
         advertisingList: state => state.advertisingList,
         advertisingListDetail: state => state.advertisingListDetail,
@@ -102,7 +99,7 @@ export default {
   },
 
   methods:{
-      ...tableListStore.mapActions(["retrieveClient"]),
+      
 
       MainPage_Detail(index){
           
@@ -125,7 +122,6 @@ export default {
 
   created() {
     this.advertisingList.category = "All";
-    this.retrieveClient();
       
   }
 };

@@ -6,7 +6,6 @@ Vue.use(Vuex);
 
 import client from "./modules/client";
 import common from "./modules/common";
-import tableList from "./modules/tableList";
 import advertisingList from "./modules/advertising";
 import cart from "./modules/cart";
 import ad_requestPage from "./modules/ad_requestPage";
@@ -17,7 +16,6 @@ export default new Vuex.Store({
   modules: {
     client,
     common,
-    tableList,
     advertisingList,
     cart,
     ad_requestPage,

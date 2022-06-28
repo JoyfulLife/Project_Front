@@ -15,7 +15,8 @@ const defaultState = {
         allCheckBox: false,
         allCount: 0,
         failMessage: "",
-        successMessage: ""
+        successMessage: "",
+        error:""
     },
 
     deleteCartList: {
@@ -34,7 +35,8 @@ const defaultState = {
         brand_name: "",
         url: "",
         allCheckBox: false,
-        message: ""
+        message: "",
+        errorList: [],
     },
 
     deleteMyAdList: {
@@ -86,10 +88,13 @@ const actions = {
 const mutations = {
 
     setretrieveCartState: function (state ,payload) {
-        
-        payload.data.res.forEach(cartItem => cartItem.selected = false);
+        console.log(payload);
+        if(payload.data.res){
+            payload.data.res.forEach(cartItem => cartItem.selected = false);
+        }
         state.cartList.list = payload.data.res;
         state.cartList.allCount = payload.data.cartCount;
+        state.cartList.error = payload.data.error;
     },
 
     setInsertAddCartState: function (state ,payload) {
@@ -125,9 +130,16 @@ const mutations = {
 
     setretrieveMyAdState: function (state ,payload) {
         
+        if(payload.data.res){
         payload.data.res.forEach(cartItem => cartItem.selected = false);
+        }
         state.myAdRequest.list = payload.data.res;
         state.myAdRequest.allCount = payload.data.myAdCount;
+        if(payload.data.error){
+        state.myAdRequest.errorList = payload.data.error;
+        }
+        
+        
     },
 
     setsendDeleteMyAdListState: function (state ,payload) {

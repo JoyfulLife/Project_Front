@@ -70,7 +70,7 @@
       <b-list-group-item>
         <b-row class="panel-group">
           <b-col class="card-panel-col">
-            <div class="card-panel" @click="categoryClick('News')">
+            <div class="card-panel" @click="categoryClick('Shopping')">
               <div class="card-panel-icon-wrapper icon-message">
                 <b-icon icon="view-stacked" class-name="card-panel-icon" />
               </div>
@@ -91,7 +91,7 @@
       <b-list-group-item>
         <b-row class="panel-group">
           <b-col class="card-panel-col">
-            <div class="card-panel" @click="categoryClick('Web toon')">
+            <div class="card-panel" @click="categoryClick('Book')">
               <div class="card-panel-icon-wrapper icon-money">
                 <b-icon icon="speaker" class-name="card-panel-icon" />
               </div>
@@ -142,7 +142,24 @@ export default {
             params: this.advertisingList,
             };
             this.getAdvertisingList(args)
-    }
+    },
+
+    errorCount(){
+      
+      if(this.count_ad.list.message){
+        this.$bvModal.msgBoxOk(this.count_ad.list.message, {
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'primary',
+          okTitle: 'YES',
+          cancelTitle: 'NO',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+          centered: true
+        })
+      }
+    },
+
   },
 
   computed: {
@@ -154,21 +171,24 @@ export default {
         count_ad: state => state.count_ad,
         ad_noList: state => state.ad_noList,
       }),
+
   },
 
   created() {
-    
+
     const args = {
             // params: this.advertisingList,
-            params: {
-            category: this.advertisingList.category,
-            ad_noList: this.ad_noList.list,
-            adminCheck: ""
-          }
-            };
-            this.getAdvertisingList(args).then(this.getCountAd())
+      params: {
+      category: this.advertisingList.category,
+      ad_noList: this.ad_noList.list,
+      adminCheck: ""
+      }
+    };
+    this.getAdvertisingList(args)
+    .then(this.getCountAd)
+    .then(this.errorCount)
 
-   
+
    
    
   }
