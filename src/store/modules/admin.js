@@ -4,14 +4,16 @@ import axios from "axios";
 const defaultState = {
     AdTable: {
         list: [],
-        category: "All",
+        category: "",
+        ad_no: "",
+        brand_name: "",
+        url: "",
         page: 1,
         limit: 10,
         limit_st: 0,
         limit_fin: 0,
         adminCheck: "Yes",
         message: "",
-        allCheckBox : false,
         allCount: 0,
     },
 
@@ -38,6 +40,10 @@ const actions = {
     sendDenyButton: function (context, payload) {
         
         return apis.sendDenyButton(context, payload);
+    },
+
+    initializeAdTableListSearch: function (context) {
+        context.commit("initializeAdTableSearchState");
     },
 };
 
@@ -66,6 +72,13 @@ const mutations = {
         // payload.data.forEach(cartItem => cartItem.selected = false);
         // state.AdTable.message = payload.data.message
         // state.cartList.allCount = payload.data.cartCount;
+    },
+
+    initializeAdTableSearchState: function (state) {
+        state.AdTable.ad_no = "",
+        state.AdTable.category = "",
+        state.AdTable.brand_name = "",
+        state.AdTable.url = ""
     },
 };
 

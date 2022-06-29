@@ -3,8 +3,79 @@
         <b-container class="mt-5">
 
             <b-tabs content-class="mt-3" align="center">
+                <b-button v-b-toggle.collapse-3 class="m-1" variant="outline-dark">
+                  Search Condtion
+                </b-button>
+                <b-collapse visible id="collapse-3" class="mt-3">
 
-                <b-tab title="AD confirm or deny" active>
+                  <b-row class="text">
+                    <b-col cols="12" md="6">
+                      <b-form-group label-for="reservation-id">
+                        <template #label>
+                          product_no
+                        </template>
+                        <b-form-input
+                          v-model="AdTable.ad_no"
+                          
+                        />
+                      </b-form-group>
+                    </b-col>
+
+                    <b-col cols="12" md="6">
+                      <b-form-group label-for="reservation-id">
+                        <template #label>
+                          category
+                        </template>
+                        <b-form-input
+                          v-model="AdTable.category"
+                        />
+                      </b-form-group>
+                    </b-col>
+                  </b-row>
+
+                  <b-row class="text mt-3">
+                    <b-col cols="12" md="6">
+                      <b-form-group label-for="reservation-id">
+                        <template #label>
+                          brand_name
+                        </template>
+                        <b-form-input
+                          v-model="AdTable.brand_name"
+                          
+                        />
+                      </b-form-group>
+                    </b-col>
+
+                    <b-col cols="12" md="6">
+                      <b-form-group label-for="reservation-id">
+                        <template #label>
+                          url
+                        </template>
+                        <b-form-input
+                          v-model="AdTable.url"
+                          
+                        />
+                      </b-form-group>
+                    </b-col>
+                  </b-row>
+
+                  <b-row class="mt-4">
+                    <b-col cols="12" class="align">
+
+                      <b-button @click="onSearch()" class="color">
+                        Search
+                      </b-button>
+                      <b-button @click="init()" class="margin color">
+                        initialize
+                      </b-button>
+
+                    </b-col>
+                  </b-row>
+
+                </b-collapse>
+
+
+                <b-tab title="Advertising Confirm or Deny" active>
                     <b-table
                         head-variant="primary"
                         class="mt-5"
@@ -26,20 +97,6 @@
                             {{ ((AdTable.page - 1) * AdTable.limit) + data_01.index + 1 }}
                         </template>
 
-                        <!-- <template #head(check_box)>
-                            <b-form-checkbox
-                              @change="allSelectMyCart"
-                              v-model="AdTable.allCheckBox"
-                            >
-                            </b-form-checkbox>
-                        </template>
-
-                        <template #cell(check_box)="{ item }">
-                            <b-form-checkbox
-                                v-model="item.selected"
-                            >
-                            </b-form-checkbox>
-                        </template> -->
                         <template #cell(button)="row">
                             
                             <b-button
@@ -159,7 +216,7 @@ export default {
         },
         {
           key: "ad_no",
-          label: "ad_no",
+          label: "product_no",
           thClass: "w-15 text-left",
           tdClass: "text-left"
         },
@@ -189,7 +246,7 @@ export default {
   },
 
   methods: {
-      ...adminStore.mapActions(["getAdTable","sendConfirmButton","sendDenyButton"]),
+      ...adminStore.mapActions(["getAdTable","sendConfirmButton","sendDenyButton","initializeAdTableListSearch"]),
 
       confirmButton(row){
           console.log(row);
@@ -296,6 +353,9 @@ export default {
         this.$router.push('/main-page/detail');
       },
 
+      init() {
+      this.initializeAdTableListSearch();
+      },
 
   },
 
@@ -328,5 +388,9 @@ export default {
 
 .left{
   text-align: end;
+}
+
+.text {
+  text-align: left;
 }
 </style>
