@@ -8,7 +8,8 @@
             <b-icon stacked icon="chevron-right" shift-h="4" variant="primary"></b-icon>
       </b-iconstack>
 
-      <b-tabs content-class="mt-3" align="center" class="mt-5" v-model="tabIndex">
+      <b-tabs content-class="mt-3" active-nav-item-class="font-weight-bold text-uppercase text-danger"
+    active-tab-class="font-weight-bold text-success" align="center" class="mt-5" v-model="tabIndex">
         <b-tab title="로그인" active>
           <b-card class="text-center" border-variant="white">
 

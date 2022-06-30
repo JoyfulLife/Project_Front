@@ -14,11 +14,13 @@
             class="embed"
             type="iframe"
             aspect="16by9"
-            src="https://www.youtube.com/embed/NbMUCXUnYyA"
+            src="https://www.youtube.com/embed/AxS3-V7yvis"
             allowfullscreen
         ></b-embed>
         </b-card>
-        <!-- src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" -->
+        <!-- src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" 
+        src="https://www.youtube.com/embed/NbMUCXUnYyA"
+        -->
       </b-col>
 
       <b-col cols="5">

@@ -1,7 +1,7 @@
 <template>
   <div>
       <b-container class="mt-5">
-        <b-button v-b-toggle.collapse-3 class="m-1" variant="outline-dark">
+        <b-button v-b-toggle.collapse-3 class="m-1" variant="dark">
           Search Condtion
         </b-button>
         <b-collapse v-if="tabs === 'mycart' " visible id="collapse-3" class="text mt-3">
@@ -10,10 +10,10 @@
             <b-col cols="12" md="6">
               <b-form-group label-for="reservation-id">
                 <template #label>
-                  category
+                  product_no
                 </template>
                 <b-form-input
-                  v-model="cartList.category"
+                  v-model="cartList.ad_no"
                   
                 />
               </b-form-group>
@@ -22,16 +22,28 @@
             <b-col cols="12" md="6">
               <b-form-group label-for="reservation-id">
                 <template #label>
-                  brand_name
+                  category
                 </template>
                 <b-form-input
-                  v-model="cartList.brand_name"
+                  v-model="cartList.category"
                 />
               </b-form-group>
             </b-col>
           </b-row>
 
           <b-row>
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  brand_name
+                </template>
+                <b-form-input
+                  v-model="cartList.brand_name"
+                  
+                />
+              </b-form-group>
+            </b-col>
+
             <b-col cols="12" md="6">
               <b-form-group label-for="reservation-id">
                 <template #label>
@@ -66,10 +78,10 @@
             <b-col cols="12" md="6">
               <b-form-group label-for="reservation-id">
                 <template #label>
-                  category
+                  product_no
                 </template>
                 <b-form-input
-                  v-model="myAdRequest.category"
+                  v-model="myAdRequest.ad_no"
                   
                 />
               </b-form-group>
@@ -78,16 +90,28 @@
             <b-col cols="12" md="6">
               <b-form-group label-for="reservation-id">
                 <template #label>
-                  brand_name
+                  category
                 </template>
                 <b-form-input
-                  v-model="myAdRequest.brand_name"
+                  v-model="myAdRequest.category"
                 />
               </b-form-group>
             </b-col>
           </b-row>
 
-          <b-row>
+          <b-row class="mt-3">
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  brand_name
+                </template>
+                <b-form-input
+                  v-model="myAdRequest.brand_name"
+                  
+                />
+              </b-form-group>
+            </b-col>
+
             <b-col cols="12" md="6">
               <b-form-group label-for="reservation-id">
                 <template #label>
@@ -96,6 +120,21 @@
                 <b-form-input
                   v-model="myAdRequest.url"
                   
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+
+          <b-row class="mt-3">
+            <b-col cols="12" md="6">
+              <b-form-group label-for="reservation-id">
+                <template #label>
+                  Approval Status
+                </template>
+                <b-form-select
+                  class="form-select"
+                  v-model="myAdRequest.approval"
+                  :options="options"
                 />
               </b-form-group>
             </b-col>
@@ -122,11 +161,11 @@
           class="mt-5"
           content-class="mt-3"
           align="center"
-          active-nav-item-class="font-weight-bold text-uppercase text-dark"
+          active-nav-item-class="font-weight-bold  text-danger"
           active-tab-class="font-weight-bold text-dark"
           >
 
-          <b-tab title="Mycart" active @click="tabs = 'mycart'">
+          <b-tab title="Cart에 담은 광고" active @click="tabs = 'mycart'">
             <b-table
               head-variant="primary"
               class="mt-5"
@@ -317,7 +356,14 @@ export default {
           { value: 20, text: '20/Page' },
           { value: 50, text: '50/Page' },
           { value: 100, text: '100/Page' },
-      ],
+        ],
+
+        options: [
+          { value: '', text: '' },
+          { value: 'Confirmed', text: 'Confirmed' },
+          { value: 'Pending', text: 'Pending' },
+          { value: 'Deny', text: 'Deny' },
+        ],
       }
   },
 
@@ -351,7 +397,7 @@ export default {
         },
         {
           key: "ad_no",
-          label: "ad_no",
+          label: "product_no",
           thClass: "w-15 text-left",
           tdClass: "text-left"
         },
@@ -390,7 +436,7 @@ export default {
         },
         {
           key: "ad_no",
-          label: "ad_no",
+          label: "product_no",
           thClass: "w-15 text-left",
           tdClass: "text-left"
         },
@@ -497,7 +543,7 @@ export default {
 
       if(this.deleteCartList.list.length === 0){
           
-          this.$bvModal.msgBoxOk(" 삭제할 data를 클릭해주세요 ", {
+          this.$bvModal.msgBoxOk(" 삭제할 Data를 클릭해주세요 ", {
           size: 'sm',
           buttonSize: 'sm',
           okVariant: 'warning',
@@ -525,7 +571,7 @@ export default {
 
       if(this.deleteMyAdList.list.length === 0){
           
-          this.$bvModal.msgBoxOk(" 삭제할 data를 클릭해주세요 ", {
+          this.$bvModal.msgBoxOk(" 삭제할 Data를 클릭해주세요 ", {
           size: 'sm',
           buttonSize: 'sm',
           okVariant: 'warning',

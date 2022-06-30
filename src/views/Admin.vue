@@ -3,7 +3,7 @@
         <b-container class="mt-5">
 
             <b-tabs content-class="mt-3" align="center">
-                <b-button v-b-toggle.collapse-3 class="m-1" variant="outline-dark">
+                <b-button v-b-toggle.collapse-3 class="m-1" variant="dark">
                   Search Condtion
                 </b-button>
                 <b-collapse visible id="collapse-3" class="mt-3">

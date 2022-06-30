@@ -9,6 +9,7 @@ const defaultState = {
         user_id: "",
         limit_st: 0,
         limit_fin: 0,
+        ad_no: "",
         category: "",
         brand_name: "",
         url: "",
@@ -31,9 +32,11 @@ const defaultState = {
         user_id: "",
         limit_st: 0,
         limit_fin: 0,
+        ad_no: "",
         category: "",
         brand_name: "",
         url: "",
+        approval: "",
         allCheckBox: false,
         message: "",
         error: ""
@@ -108,13 +111,16 @@ const mutations = {
         // state.cartList = newInstance;
         state.cartList.category = "",
         state.cartList.brand_name = "",
-        state.cartList.url = ""
+        state.cartList.url = "",
+        state.cartList.ad_no = ""
     },
 
     initializeMyAdRequestListSearchState: function (state) {
         state.myAdRequest.category = "",
         state.myAdRequest.brand_name = "",
-        state.myAdRequest.url = ""
+        state.myAdRequest.url = "",
+        state.myAdRequest.ad_no = ""
+        state.myAdRequest.approval = ""
     },
 
     setSendDeleteCartListState: function (state ,payload) {
